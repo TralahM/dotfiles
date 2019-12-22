@@ -1,0 +1,24 @@
+[submodule "powerlevel9k"]
+	path = powerlevel9k
+	url = https://github.com/bhilburn/powerlevel9k
+[submodule "nerd-fonts"]
+    path=nerd-fonts
+    url=https://github.com/ryanoasis/nerd-fonts
+[submodule "tmux/.tmux"]
+	path = tmux/.tmux
+	url = https://github.com/gpakosz/.tmux.git
+[submodule "zsh/.zsh/zsh-autosuggestions"]
+	path = zsh/.zsh/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "zsh/.zsh/zsh-syntax-highlighting"]
+	path = zsh/.zsh/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "termux/termux-style"]
+	path = termux/termux-style
+	url = https://github.com/adi1090x/termux-style.git
+[submodule "termux/Termux-Sudo"]
+	path = termux/Termux-Sudo
+	url = https://github.com/BlackHoleSecurity/Termux-Sudo.git
+[submodule "vifm/colors"]
+	path = vifm/colors
+	url = https://github.com/vifm/vifm-colors
