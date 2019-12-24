@@ -15,6 +15,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'mattn/sonictemplate-vim'
 Plug 'euclio/vim-markdown-composer'
 Plug 'mattn/emmet-vim'
@@ -453,4 +454,6 @@ command! MakeTags !ctags -R -a *.*
 " autocmd! bufwritepost * MakeTags
 set nospell
 
-
+" Markdown Composer options
+" Do not attempt to open the browser automatically i'll do it manually
+let g:markdown_composer_open_browser=0
