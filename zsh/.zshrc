@@ -122,6 +122,7 @@ alias djsp="django-admin startproject "
 alias djsa="django-admin startapp "
 alias ghrc="gcli repo create "
 alias grao="git remote add origin "
+alias yt="youtube-dl"
 
 # export PYTHONHOME="/usr/bin/python3"
 export ANDROIDSDK="/home/african/Android/Sdk"
@@ -194,3 +195,7 @@ source "$HOME/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 ### End of Zplugin installer's chunk
+zplugin light iboyperson/pipenv-zsh
+zplugin light oldratlee/hacker-quotes
+zplugin light webyneter/docker-aliases
+zplugin light dbkaplun/smart-cd
