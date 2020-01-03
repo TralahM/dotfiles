@@ -88,6 +88,9 @@ export LESS_TERMCAP_mh=$(tput dim)
 
 export PATH=/home/african/.local/bin:$PATH
 
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT'
+POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'
 # add shellcheck config
 # For a full list of errors, refer to
 # https://github.com/koalaman/shellcheck/wiki
