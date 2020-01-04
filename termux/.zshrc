@@ -169,3 +169,17 @@ unset __conda_setup
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 alias heroku='~/node_modules/heroku/bin/run'
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT'
+POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'
+
+
+### Added by Zplugin's installer
+source "$HOME/.zplugin/bin/zplugin.zsh"
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+### End of Zplugin installer's chunk
+zplugin light iboyperson/pipenv-zsh
+zplugin light oldratlee/hacker-quotes
+zplugin light webyneter/docker-aliases
+zplugin light dbkaplun/smart-cd
