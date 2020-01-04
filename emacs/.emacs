@@ -88,6 +88,10 @@
 
 (require 'unicode-fonts)
 (unicode-fonts-setup)
+(unicode-emoticons-mode)
 
 (require 'yasnippet)
 (yas-global-mode 1)
+
+(smart-tab-mode)
+(smartparens-global-mode)
