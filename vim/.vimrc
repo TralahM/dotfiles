@@ -34,6 +34,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'lervag/vimtex'
+Plug 'xuhdev/vim-latex-live-preview'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'pangloss/vim-javascript'
@@ -44,7 +45,7 @@ Plug 'tweekmonster/braceless.vim', {'for': ['python']}
 Plug 'vim-syntastic/syntastic'
 Plug 'alvan/vim-closetag'
 Plug 'kien/ctrlp.vim'
-Plug 'python-mode/python-mode'
+" Plug 'python-mode/python-mode'
 Plug 'Lokaltog/vim-powerline'
 Plug 'vim-ruby/vim-ruby'
 Plug 'TralahM/Efficient-python-folding'
@@ -72,7 +73,8 @@ Plug 'Shougo/context_filetype.vim'
 Plug 'fisadev/vim-ctrlp-cmdpalette'
 Plug 'vim-scripts/IndexedSearch'
 Plug 'ehamberg/vim-cute-python'
-
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -101,17 +103,21 @@ nmap <leader>V <Plug>yankstack_substitute_newer_paste
 let g:yankstack_yank_keys = ['y', 'd']
 
 "python-mode config
-map <leader>d :call RopeGotoDefinition()<CR>
-nnoremap <leader>d :call RopeGotoDefinition()<CR>
-let ropevim_enable_shortcuts = 0
-let g:pymode_rope_goto_def_newwin="vsplit"
-let g:pymode_rope_extended_complete=0
-let g:pymode_breakpoint=1
-let g:pymode_syntax=1
-let g:pymode_syntax_builtin_objs=1
-let g:pymode_syntax_builtin_funcs=1
-map <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
-nnoremap <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
+" map <leader>d :call RopeGotoDefinition()<CR>
+" nnoremap <leader>d :call RopeGotoDefinition()<CR>
+" let ropevim_enable_shortcuts = 0
+" let g:pymode_rope_lookup_project=0
+" let g:pymode_rope=0
+" let g:pymode_rope_completion = 0
+" let g:pymode_rope_complete_on_dot = 0
+" let g:pymode_rope_goto_def_newwin="vsplit"
+" let g:pymode_rope_extended_complete=0
+" let g:pymode_breakpoint=1
+" let g:pymode_syntax=1
+" let g:pymode_syntax_builtin_objs=1
+" let g:pymode_syntax_builtin_funcs=1
+" map <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
+" nnoremap <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
 
 " Window switching keys
 map <c-j> <c-w>j
@@ -198,6 +204,8 @@ set wildignore+=*.pyc,*.so,*.swp,*.zip,*.un~,.*.*~
 set wildignore+=*/coverage/*
 
 autocmd! bufwritepost .vimrc source %
+autocmd bufwritepre hosts setl filetype=dosini
+autocmd bufread hosts setl filetype=dosini
 set autoindent
 set clipboard=unnamed
 " set cursorline
@@ -457,3 +465,15 @@ set nospell
 " Markdown Composer options
 " Do not attempt to open the browser automatically i'll do it manually
 let g:markdown_composer_open_browser=0
+" Latex Live Preview conf
+autocmd Filetype tex setl updatetime=1
+let g:livepreview_previewer='okular'
+
+" Neosnippets
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+
+" Vim tex conf
+let g:tex_flavor='latex'
+let g:matchup_override_vimtex = 1
+let g:vimtex_fold_enabled =1
