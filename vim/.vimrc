@@ -75,6 +75,8 @@ Plug 'vim-scripts/IndexedSearch'
 Plug 'ehamberg/vim-cute-python'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'bfrg/vim-jq'
+Plug 'bfrg/vim-jqplay'
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
