@@ -45,7 +45,7 @@ Plug 'tweekmonster/braceless.vim', {'for': ['python']}
 Plug 'vim-syntastic/syntastic'
 Plug 'alvan/vim-closetag'
 Plug 'kien/ctrlp.vim'
-" Plug 'python-mode/python-mode'
+Plug 'python-mode/python-mode'
 Plug 'Lokaltog/vim-powerline'
 Plug 'vim-ruby/vim-ruby'
 Plug 'TralahM/Efficient-python-folding'
@@ -103,21 +103,33 @@ nmap <leader>V <Plug>yankstack_substitute_newer_paste
 let g:yankstack_yank_keys = ['y', 'd']
 
 "python-mode config
-" map <leader>d :call RopeGotoDefinition()<CR>
-" nnoremap <leader>d :call RopeGotoDefinition()<CR>
-" let ropevim_enable_shortcuts = 0
-" let g:pymode_rope_lookup_project=0
+map <leader>d :call RopeGotoDefinition()<CR>
+nnoremap <leader>d :call RopeGotoDefinition()<CR>
+let g:pymode_run = 1
+let g:pymode_run_bind = '<leader>r'
+let ropevim_enable_shortcuts = 1
+let g:pymode_rope_lookup_project=0
+let g:pymode_doc = 1
+let g:pymode_doc_bind = 'K'
 " let g:pymode_rope=0
-" let g:pymode_rope_completion = 0
-" let g:pymode_rope_complete_on_dot = 0
-" let g:pymode_rope_goto_def_newwin="vsplit"
-" let g:pymode_rope_extended_complete=0
-" let g:pymode_breakpoint=1
-" let g:pymode_syntax=1
-" let g:pymode_syntax_builtin_objs=1
-" let g:pymode_syntax_builtin_funcs=1
-" map <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
-" nnoremap <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
+let g:pymode_rope_completion = 0
+let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope_autoimport = 1
+let g:pymode_rope_autoimport_modules = ['os', 'datetime']
+let g:pymode_rope_goto_definition_cmd="tab"
+
+let g:pymode_rope_organize_imports_bind = '<C-c>ro'
+let g:pymode_rope_autoimport_bind = '<C-c>ra'
+
+let g:pymode_rope_extended_complete=0
+let g:pymode_breakpoint=1
+let g:pymode_syntax=1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_builtin_objs=0
+let g:pymode_syntax_builtin_funcs=1
+let g:pymode_lint_checkers = ['pep8', 'pyflakes']
+map <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
+nnoremap <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
 
 " Window switching keys
 map <c-j> <c-w>j
@@ -270,16 +282,17 @@ autocmd BufNewFile,BufRead *.md set filetype=markdown
 syntax enable
 let g:solarized_termcolors=256
 let g:gitgutter_max_signs=1000
-let g:UltiSnipsSnippetDirectories=["/home/african/.vim/plugged/vim-snippets/UltiSnips"]
+let g:UltiSnipsSnippetDirectories=['~/.vim/plugged/vim-snippets/UltiSnips/', '~/.vim/Ultisnips/']
+let g:UltiSnipsEditSplit="vertical"
 set background=dark
 colorscheme delek
 " let g:solarized_contrast="high"
 highlight clear SpellBad
-highlight SpellBad cterm=underline,bold ctermbg=none ctermfg=red
+highlight SpellBad cterm=underline,bold ctermbg=none ctermfg=blue
 " Remove trailing spaces on save
 autocmd BufWritePre * :%s/\s\+$//e
 " Git commits
-autocmd Filetype gitcommit setlocal spell textwidth=89
+autocmd Filetype gitcommit setlocal spell textwidth=100
 " Map F2 to paste mode so that pasting in the terminal doesn't mess identation
 nnoremap <M-V> :set invpaste paste?<CR>
 set pastetoggle=<M-v>
@@ -386,7 +399,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 "let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
-"let g:syntastic_rst_checkers = ['text/language_check']
+let g:syntastic_rst_checkers = ['text/language_check']
 "let g:syntastic_tex_checkers = ['text/language_check']
 let g:syntastic_python_checkers = ['flake8']
 "js syntax folding
@@ -458,7 +471,7 @@ let g:over_command_line_prompt=">"
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-command! MakeTags !ctags -R -a *.*
+" command! MakeTags !ctags -R -a *.*
 " autocmd! bufwritepost * MakeTags
 set nospell
 
