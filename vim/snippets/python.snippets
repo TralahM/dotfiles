@@ -1,4 +1,5 @@
 snippet tdc "doc block (triple quotes)" b
+	#!env python
 	# -*- coding: utf-8 -*-
 	"""
 	=======================================================================
@@ -7,10 +8,16 @@ snippet tdc "doc block (triple quotes)" b
 	:GITHUB: 	 <https://github.com/TralahM>
 	:KAGGLE: 	 <https://kaggle.com/TralahM>
 	:COPYRIGHT:  (c) `strftime("%Y")`  TralahTek LLC.
-	:LICENSE: 	 ${1:${VISUAL:LICENSE_NAME }}, see LICENSE for more details.
+	:LICENSE: 	 MIT , see LICENSE for more details.
+	:WEBSITE:	<https://www.tralahtek.com>
 	:CREATED: 	`strftime("%Y-%m-%d  %H:%M")`
+
+	:FILENAME:	`expand("%:t")`
 	=======================================================================
 
-	${2:${VISUAL:DESCRIPTION}}
+
+		DESCRIPTION OF `expand("%:t:r")` MODULE:
+
+	${1:${VISUAL:DESCRIPTION}}
 	"""
 

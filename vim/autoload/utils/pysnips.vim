@@ -15,3 +15,6 @@ function! utils#pysnips#InsertSkeleton() abort
 
     call s:try_insert("tdc")
 endfunction
+
+command! InsPydoc call s:try_insert("tdc")
+nnoremap <leader>3 :InsPydoc <cr>
