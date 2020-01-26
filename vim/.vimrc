@@ -17,6 +17,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'mattn/sonictemplate-vim'
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
 Plug 'euclio/vim-markdown-composer'
 Plug 'mattn/emmet-vim'
 Plug 'tmux-plugins/vim-tmux'
@@ -492,3 +494,14 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 let g:tex_flavor='latex'
 let g:matchup_override_vimtex = 1
 let g:vimtex_fold_enabled =1
+
+
+" Rust Config
+let g:rustfmt_autosave=1
+let g:racer_insert_paren=1
+let g:racer_experimental_completer=1
+au FileType rust nmap gx <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gd <Plug>(rust-def-vertical)
+au FileType rust nmap gt <Plug>(rust-def-tab)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)

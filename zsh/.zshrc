@@ -62,6 +62,9 @@ if [[ -d ~/bin ]]; then
     source ~/bin/tmux-completion/tmux
 fi
 
+if [[ -d ~/.cargo/bin/ ]]; then
+    export PATH=~/.cargo/bin/:$PATH
+fi
 # add a config file for ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 # alias git to hub
@@ -123,6 +126,7 @@ alias djsa="django-admin startapp "
 alias ghrc="gcli repo create "
 alias grao="git remote add origin "
 alias yt="youtube-dl"
+alias scrapy="~/anaconda3/bin/scrapy"
 
 # export PYTHONHOME="/usr/bin/python3"
 export ANDROIDSDK="/home/african/Android/Sdk"
@@ -180,7 +184,7 @@ else
     fi
 fi
 unset __conda_setup
-
+export POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 
 # added by travis gem
 [ -f /home/african/.travis/travis.sh ] && source /home/african/.travis/travis.sh
@@ -199,3 +203,4 @@ zplugin light iboyperson/pipenv-zsh
 zplugin light oldratlee/hacker-quotes
 zplugin light webyneter/docker-aliases
 zplugin light dbkaplun/smart-cd
+export RUST_SRC_PATH=/home/african/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
