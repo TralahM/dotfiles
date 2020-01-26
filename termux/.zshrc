@@ -178,6 +178,7 @@ alias heroku='~/node_modules/heroku/bin/run'
 POWERLEVEL9K_MODE='awesome-mapped-fontconfig'
 POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT'
 POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'
+export POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 
 
 ### Added by Zplugin's installer
@@ -189,4 +190,3 @@ zplugin light iboyperson/pipenv-zsh
 zplugin light oldratlee/hacker-quotes
 zplugin light webyneter/docker-aliases
 zplugin light dbkaplun/smart-cd
-export POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
