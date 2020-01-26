@@ -92,6 +92,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source  ~/powerlevel9k/powerlevel9k.zsh-theme
 export SHODAN_API=6sfgFBXP0xZ5CmDwqgtKSNmTGODaac1f
 alias cls="clear"
+alias vim="nvim"
 alias tls="tmux list-sessions"
 alias ta="tmux attach -t"
 alias gpom="git push origin master"
@@ -107,6 +108,7 @@ export ghrepo="git@github.com:TralahM"
 export glrepo="git@gitlab.com:TralahM"
 export htrepo="https://github.com"
 export ltrepo="https://gitlab.com"
+alias yt="youtube-dl "
 
 export ANDROIDSDK="~/Android/Sdk"
 export ANDROIDNDK="~/android-ndk-r18b"
@@ -165,11 +167,15 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+source ~/.fonts/devicons-regular.sh
+source ~/.fonts/fontawesome-regular.sh
+source ~/.fonts/octicons-regular.sh
+source ~/.fonts/pomicons-regular.sh
 
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 alias heroku='~/node_modules/heroku/bin/run'
-POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_MODE='awesome-mapped-fontconfig'
 POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT'
 POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'
 
@@ -183,3 +189,4 @@ zplugin light iboyperson/pipenv-zsh
 zplugin light oldratlee/hacker-quotes
 zplugin light webyneter/docker-aliases
 zplugin light dbkaplun/smart-cd
+export POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
