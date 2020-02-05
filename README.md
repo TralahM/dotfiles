@@ -1,4 +1,3 @@
-
 [![Build Status](https://travis-ci.com/TralahM/dotfiles.svg?branch=master)](https://travis-ci.com/TralahM/dotfiles)
 [![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
 [![Organization](https://img.shields.io/badge/Org-TralahTek-blue.svg)](https://github.com/TralahTek)
@@ -18,10 +17,18 @@
 [![TralahM](https://img.shields.io/badge/Engineer-TralahM-blue.svg?style=for-the-badge)](https://github.com/TralahM)
 [![TralahM](https://img.shields.io/badge/Maintainer-TralahM-green.svg?style=for-the-badge)](https://github.com/TralahM)
 
-# Documentation
+# How my terminal Looks Like
+![Terminal](terminal.png)
 
-[Read the Docs](https://dotfiles.readthedocs.io)
 # Dependencies
+- radare2
+- Tmux
+- Neovim
+- Rust
+- Python
+- Git
+- Zsh
+- Vifm
 
 # How to Install
 
@@ -35,6 +42,8 @@ cd dotfiles
 
 # Contributing
 [See the Contributing File](CONTRIBUTING.rst)
+
+
 [See the Pull Request File](PULL_REQUEST_TEMPLATE.md)
 
 
@@ -46,4 +55,6 @@ cd dotfiles
 
 # Acknowledgements
 
+[![TralahM](https://img.shields.io/badge/Engineer-TralahM-blue.svg?style=for-the-badge)](https://github.com/TralahM)
+[![TralahM](https://img.shields.io/badge/Maintainer-TralahM-green.svg?style=for-the-badge)](https://github.com/TralahM)
 
