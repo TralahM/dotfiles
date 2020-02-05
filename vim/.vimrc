@@ -18,6 +18,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'mattn/sonictemplate-vim'
 Plug 'rust-lang/rust.vim'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-afterimage'
+Plug 'tpope/vim-abolish'
+Plug 'glts/vim-magnum'
+Plug 'glts/vim-radical'
 Plug 'racer-rust/vim-racer'
 Plug 'euclio/vim-markdown-composer'
 Plug 'mattn/emmet-vim'
@@ -102,7 +110,9 @@ let g:deoplete#enable_at_startup=1
 let g:indent_guides_enable_on_vim_startup=1
 
 "yankstack config
-nmap <leader>v <Plug>yankstack_substitute_older_paste
+call yankstack#setup()
+nmap Y y$
+nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>V <Plug>yankstack_substitute_newer_paste
 let g:yankstack_yank_keys = ['y', 'd']
 
@@ -267,8 +277,8 @@ set noswapfile
 " Set identation to 4 spaces
 set noai ts=4 sw=4 expandtab
 " Set an 80 char column
-set textwidth=90
-set colorcolumn=91
+set textwidth=80
+set colorcolumn=81
 highlight ColorColumn ctermbg=black
 " Line numbers
 set number
@@ -342,7 +352,7 @@ map <leader>ss :call ToggleSpell()<cr>
 " Shortcuts using <leader> (\)
 " Add word to dictionary
 map <leader>sa zg
-nnoremap <leader>sa zg
+nnoremap <leader>sa za
 " Substitution option for marked word
 map <leader>s? z=
 " Spelling always on for some files
@@ -398,7 +408,7 @@ inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 " set statusline+=%*
-" set statusline+=%{FugitiveStatusline()}
+set statusline+=%{FugitiveStatusline()}
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
@@ -505,3 +515,6 @@ au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gd <Plug>(rust-def-vertical)
 au FileType rust nmap gt <Plug>(rust-def-tab)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+map <leader>1 :! sudo chmod a+rw %
+map <leader>2 :! sudo chmod a+x %
