@@ -1,10 +1,26 @@
 # Markdown Snippets Custom
 snippet title "Title With Current Filename" b
 	# `expand('%:t:r')`
-	**Created at `strftime("%Y-%m-%d  %H:%M")`**
+	**`strftime("%Y-%m-%d  %H:%M")`**
+	## ${1:${VISUAL:Subtitle1}}
 
 snippet pyblk "Python Code Block" b
 	```python
 	#!/usr/bin/env python3
 
 	```
+
+snippet console "Bash Console Input" b
+	```console
+	${1:${VISUAL:CMD}}
+
+	```
+
+snippet blogpost "Gh pages jekyll blog" b
+	---
+	title: ${1:${VISUAL:Title}}
+	header:
+		image: ${2:${VISUAL:image}}
+	teaser: ${3:${VISUAL:teaser}}
+	---
+	${4:${VISUAL:content}}
