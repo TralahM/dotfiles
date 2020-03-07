@@ -42,7 +42,10 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-eunuch'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+Plug 'pbrisbin/vim-mkdir'
+Plug 'jkramer/vim-checkbox'
+" Leader tt toggles checkbox
+Plug 'plasticboy/vim-markdown',{'for':'markdown'}
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'lervag/vimtex'
 Plug 'xuhdev/vim-latex-live-preview'
@@ -315,6 +318,8 @@ set showmode
 " Disable folding. It's really annoying and I never remeber the commands.
 set nofoldenable
 " use python folding style for markdown.
+"
+" vim-Markdown customizations
 let g:vim_markdown_folding_style_pythonic=1
 let g:vim_markdown_follow_anchor=1
 " Turn on latex math syntax
@@ -330,6 +335,7 @@ let g:vim_markdown_new_list_item_indent=0
 map <leader>[ :HeaderDecrease <cr>
 map <leader>] :HeaderIncrease <cr>
 map <leader>/ :TableFormat <cr>
+nnoremap <leader>we :tabe ~/Documents/notes/index.md <cr>
 
 
 "Ommit the <C-W> when moving between splits
