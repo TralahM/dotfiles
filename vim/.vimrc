@@ -17,6 +17,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'mattn/sonictemplate-vim'
+Plug 'leafoftree/vim-vue-plugin'
 Plug 'rust-lang/rust.vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
@@ -54,7 +55,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tweekmonster/braceless.vim', {'for': ['python']}
 Plug 'vim-syntastic/syntastic'
 Plug 'alvan/vim-closetag'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'python-mode/python-mode'
 Plug 'Lokaltog/vim-powerline'
 Plug 'vim-ruby/vim-ruby'
@@ -516,5 +517,6 @@ au FileType rust nmap gd <Plug>(rust-def-vertical)
 au FileType rust nmap gt <Plug>(rust-def-tab)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
-map <leader>1 :! sudo chmod a+rw %
-map <leader>2 :! sudo chmod a+x %
+map <leader>1 :! sudo chmod a+rw % <cr>
+map <leader>2 :! sudo chmod a+x % <cr>
+source ~/.vim/autoload/utils/pysnips.vim
