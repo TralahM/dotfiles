@@ -325,9 +325,14 @@ let g:vim_markdown_json_frontmatter=1
 let g:vim_markdown_strikethrough=1
 let g:vim_markdown_no_extensions_in_markdown=1
 let g:vim_markdown_autowrite=1
-let g:vim_markdown_edit_url_in="tab"
+let g:vim_markdown_edit_url_in="hsplit"
+let g:vim_markdown_new_list_item_indent=0
+map <leader>[ :HeaderDecrease <cr>
+map <leader>] :HeaderIncrease <cr>
+map <leader>/ :TableFormat <cr>
 
-" Ommit the <C-W> when moving between splits
+
+"Ommit the <C-W> when moving between splits
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -517,6 +522,15 @@ au FileType rust nmap gd <Plug>(rust-def-vertical)
 au FileType rust nmap gt <Plug>(rust-def-tab)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
+" Emmet Config
+let g:user_emmet_leader_key='<tab>'
+let g:user_emmet_settings={
+            \'php':{'extends':'html','filters':'c'},
+            \'xml':{'extends':'html'},
+            \'haml':{'extends':'html'},
+                \}
+
+"Custom def
 map <leader>1 :! sudo chmod a+rw % <cr>
 map <leader>2 :! sudo chmod a+x % <cr>
 source ~/.vim/autoload/utils/pysnips.vim
