@@ -46,6 +46,8 @@ Plug 'pbrisbin/vim-mkdir'
 Plug 'jkramer/vim-checkbox'
 " Leader tt toggles checkbox
 Plug 'plasticboy/vim-markdown',{'for':'markdown'}
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc'
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'lervag/vimtex'
 Plug 'xuhdev/vim-latex-live-preview'
