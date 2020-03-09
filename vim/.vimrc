@@ -108,129 +108,18 @@ endif
 call plug#end()
 
 " BEGIN CONFIGURATIONS HERE
-"vim POwerline config
-set laststatus=3
-
-" Deoplete Conf
-let g:deoplete#enable_at_startup=1
-let g:indent_guides_enable_on_vim_startup=1
-
-"yankstack config
-call yankstack#setup()
-nmap Y y$
-nmap <leader>p <Plug>yankstack_substitute_older_paste
-nmap <leader>V <Plug>yankstack_substitute_newer_paste
-let g:yankstack_yank_keys = ['y', 'd']
-
-"python-mode config
-map <leader>d :call RopeGotoDefinition()<CR>
-nnoremap <leader>d :call RopeGotoDefinition()<CR>
-let g:pymode_run = 1
-let g:pymode_run_bind = '<leader>r'
-let ropevim_enable_shortcuts = 1
-let g:pymode_rope_lookup_project=0
-let g:pymode_doc = 1
-let g:pymode_doc_bind = 'K'
-" let g:pymode_rope=0
-let g:pymode_rope_completion = 0
-let g:pymode_rope_complete_on_dot = 0
-let g:pymode_rope_autoimport = 1
-let g:pymode_rope_autoimport_modules = ['os', 'datetime']
-let g:pymode_rope_goto_definition_cmd="tab"
-
-let g:pymode_rope_organize_imports_bind = '<C-c>ro'
-let g:pymode_rope_autoimport_bind = '<C-c>ra'
-
-let g:pymode_rope_extended_complete=0
-let g:pymode_breakpoint=1
-let g:pymode_syntax=1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_builtin_objs=0
-let g:pymode_syntax_builtin_funcs=1
-let g:pymode_lint_checkers = ['pep8', 'pyflakes']
-map <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
-nnoremap <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
-
-" Window switching keys
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
-
-"easier movement between tabs
-
-map <leader>. <esc>:tabnext<CR>
-map <leader>, <esc>:tabprevious<CR>
-map <leader>t <esc>:tabnew<CR>
-map <leader>x <esc>:tabclose<CR>
-map <leader>f :MRU<CR>
-map <leader>nn :NERDTreeToggle<CR>
-map <leader>e :NERDTreeFind<CR>
-map <leader>w :w!<CR>
-map <space> /
-map <c-space> ?
-map <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
-map <leader>cd :cd %:p:h<CR>:pwd<CR>
-map <leader>g :Ack
-nnoremap <leader>w :w!<CR>
-nnoremap <leader>. <esc>:tabnext<CR>
-nnoremap <leader>, <esc>:tabprevious<CR>
-nnoremap <leader>t <esc>:tabnew<CR>
-nnoremap <leader>x <esc>:tabclose<CR>
-nnoremap <leader>f :MRU<CR>
-nnoremap <leader>nn :NERDTreeToggle<CR>
-nnoremap <leader>e :NERDTreeFind<CR>
-nnoremap <space> /
-nnoremap <c-space> ?
-nnoremap <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
-nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
-nnoremap <leader>g :Ack
-nnoremap ; :
-nnoremap : ;
-
-" Fuzzy File Finder
-set path+=**
-set wildmenu
-
-"" Better navigation through omnicomplete option list
-set completeopt=longest,menuone
-function! OmniPopup(action)
-    if pumvisible()
-        if a:action=='j'
-            return "\<C-N>"
-        elseif a:action =='k'
-            return "\<C-P>"
-        endif
-    endif
-    return a:action
-endfunction
-
-inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
-inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
-
-set nofoldenable
-
-"CTRLP config
-
-" The Silver Searcher
-if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command='ag %s -l --nocolor -g'
-    let g:ctrlp_use_caching=1
-endif
-
-let g:ctrlp_max_height=7
-let g:ctrlp_map='<C-f>'
-let g:ctrlp_cmd='CtrlP'
-let g:ctrlp_working_path_mode='ra'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_user_command = 'find %s -type f'
-
 " GENERAL CONGIGURATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Some of the following is taken from Steve Losh:
 " http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 " autoreloading of the vimrc file.
+" Basic Internal Configurations
+set undofile
+set undodir=~/.vim/undo "where to save undo histories"
+set undolevels=1000 "How many Undos"
+set undoreload=10000 "number of lines to save for undo"
+set backupdir=~/.vim/backup
+set directory=~/.vim/backup
 set wildignore+=*_build/*
 set wildignore+=*.pyc,*.so,*.swp,*.zip,*.un~,.*.*~
 set wildignore+=*/coverage/*
@@ -319,32 +208,77 @@ set pastetoggle=<M-v>
 set showmode
 " Disable folding. It's really annoying and I never remeber the commands.
 set nofoldenable
-" use python folding style for markdown.
-"
-" vim-Markdown customizations
-let g:vim_markdown_folding_style_pythonic=1
-let g:vim_markdown_follow_anchor=1
-" Turn on latex math syntax
-let g:vim_markdown_math=1
-let g:vim_markdown_frontmatter=1
-let g:vim_markdown_toml_frontmatter=1
-let g:vim_markdown_json_frontmatter=1
-let g:vim_markdown_strikethrough=1
-let g:vim_markdown_no_extensions_in_markdown=1
-let g:vim_markdown_autowrite=1
-let g:vim_markdown_edit_url_in="hsplit"
-let g:vim_markdown_new_list_item_indent=0
-map <leader>[ :HeaderDecrease <cr>
-map <leader>] :HeaderIncrease <cr>
-map <leader>/ :TableFormat <cr>
-nnoremap <leader>we :tabe ~/Documents/notes/index.md <cr>
-
+"vim POwerline config
+set laststatus=3
+set number relativenumber
+set smartindent
 
 "Ommit the <C-W> when moving between splits
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+" Window switching keys
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+" Paste Line with Y
+nmap Y y$
+
+"easier movement between tabs
+map <leader>. <esc>:tabnext<CR>
+map <leader>, <esc>:tabprevious<CR>
+map <leader>t <esc>:tabnew<CR>
+map <leader>x <esc>:tabclose<CR>
+map <leader>f :MRU<CR>
+map <leader>nn :NERDTreeToggle<CR>
+map <leader>e :NERDTreeFind<CR>
+map <leader>w :w!<CR>
+map <space> /
+map <c-space> ?
+map <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
+map <leader>cd :cd %:p:h<CR>:pwd<CR>
+map <leader>g :Ack
+nnoremap <leader>w :w!<CR>
+nnoremap <leader>. <esc>:tabnext<CR>
+nnoremap <leader>, <esc>:tabprevious<CR>
+nnoremap <leader>t <esc>:tabnew<CR>
+nnoremap <leader>x <esc>:tabclose<CR>
+nnoremap <leader>f :MRU<CR>
+nnoremap <leader>nn :NERDTreeToggle<CR>
+nnoremap <leader>e :NERDTreeFind<CR>
+nnoremap <space> /
+nnoremap <c-space> ?
+nnoremap <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+nnoremap <leader>g :Ack
+nnoremap ; :
+nnoremap : ;
+
+" Fuzzy File Finder
+set path+=**
+set wildmenu
+
+"" Better navigation through omnicomplete option list
+set completeopt=longest,menuone
+function! OmniPopup(action)
+    if pumvisible()
+        if a:action=='j'
+            return "\<C-N>"
+        elseif a:action =='k'
+            return "\<C-P>"
+        endif
+    endif
+    return a:action
+endfunction
+
+inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
+inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
+
+set nofoldenable
+
 
 " Spell Check
 " Function to rotate the spell language that is used
@@ -378,19 +312,88 @@ function! EnableRunMakeOnSave()
     echo "Running 'make' on save enabled."
 endfunction
 " map <leader>m :call EnableRunMakeOnSave()<cr>
-" Replace Esc with Ctrl+L to make this work better on Termux.
-" Android uses Esc as a shortcut for the home screen.
-" Use solution in:
-" http://vim.wikia.com/wiki/Avoid_the_escape_key
-" This is a variation on the previous mapping that additionally checks for
-" the popup menu (present when doing completions). During completions, <C-L>
-" adds a character from the current match, so this mapping will preserve that
-" behavior. See :help popupmenu-keys for more.
-:inoremap <expr> <C-L> (pumvisible() <bar><bar> &insertmode) ? '<C-L>' : '<Esc>'
 
 
 " PLUGIN CONFIGURATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Deoplete Conf
+let g:deoplete#enable_at_startup=1
+let g:indent_guides_enable_on_vim_startup=1
+
+"yankstack config
+call yankstack#setup()
+nmap Y y$
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+nmap <leader>V <Plug>yankstack_substitute_newer_paste
+let g:yankstack_yank_keys = ['y', 'd']
+
+"python-mode config
+map <leader>d :call RopeGotoDefinition()<CR>
+nnoremap <leader>d :call RopeGotoDefinition()<CR>
+let g:pymode_run = 1
+let g:pymode_run_bind = '<leader>r'
+let ropevim_enable_shortcuts = 1
+let g:pymode_rope_lookup_project=0
+let g:pymode_doc = 1
+let g:pymode_doc_bind = 'K'
+" let g:pymode_rope=0
+let g:pymode_rope_completion = 0
+let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope_autoimport = 1
+let g:pymode_rope_autoimport_modules = ['os', 'datetime']
+let g:pymode_rope_goto_definition_cmd="tab"
+
+let g:pymode_rope_organize_imports_bind = '<C-c>ro'
+let g:pymode_rope_autoimport_bind = '<C-c>ra'
+
+let g:pymode_rope_extended_complete=0
+let g:pymode_breakpoint=1
+let g:pymode_syntax=1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_builtin_objs=0
+let g:pymode_syntax_builtin_funcs=1
+let g:pymode_lint_checkers = ['pep8', 'pyflakes']
+map <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
+nnoremap <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
+
+"CTRLP config
+
+" The Silver Searcher
+if executable('ag')
+    set grepprg=ag\ --nogroup\ --nocolor
+    let g:ctrlp_user_command='ag %s -l --nocolor -g'
+    let g:ctrlp_use_caching=1
+endif
+
+let g:ctrlp_max_height=7
+let g:ctrlp_map='<C-f>'
+let g:ctrlp_cmd='CtrlP'
+let g:ctrlp_working_path_mode='ra'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_user_command = 'find %s -type f'
+
+" use python folding style for markdown.
+"
+" vim-Markdown customizations
+let g:vim_markdown_folding_style_pythonic=1
+let g:vim_markdown_follow_anchor=1
+" Turn on latex math syntax
+let g:vim_markdown_math=1
+let g:vim_markdown_frontmatter=1
+let g:vim_markdown_toml_frontmatter=1
+let g:vim_markdown_json_frontmatter=1
+let g:vim_markdown_strikethrough=1
+let g:vim_markdown_no_extensions_in_markdown=1
+let g:vim_markdown_autowrite=1
+let g:vim_markdown_edit_url_in="hsplit"
+let g:vim_markdown_new_list_item_indent=0
+map <leader>[ :HeaderDecrease <cr>
+map <leader>] :HeaderIncrease <cr>
+map <leader>/ :TableFormat <cr>
+nnoremap <leader>we :tabe ~/Documents/notes/index.md <cr>
+
+
 " nerdcommenter
 filetype plugin indent on
 
@@ -452,8 +455,6 @@ set conceallevel =3
 " vimtex config for tex files
 let g:tex_flavour='latex'
 
-set number relativenumber
-set smartindent
 
 " filenames like *.xml, *.html, *.xhtml, ...
 " " These are the file extensions where this plugin is enabled.
@@ -501,7 +502,6 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " command! MakeTags !ctags -R -a *.*
 " autocmd! bufwritepost * MakeTags
-set nospell
 
 " Markdown Composer options
 " Do not attempt to open the browser automatically i'll do it manually
