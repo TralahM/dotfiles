@@ -542,3 +542,4 @@ let g:user_emmet_settings={
 map <leader>1 :! sudo chmod a+rw % <cr>
 map <leader>2 :! sudo chmod a+x % <cr>
 source ~/.vim/autoload/utils/pysnips.vim
+set nospell
