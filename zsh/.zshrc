@@ -107,6 +107,7 @@ alias tls="tmux list-sessions"
 alias ta="tmux attach -t"
 alias gpom="git push origin master"
 alias pythonx="python"
+alias gpfo="git fetch origin"
 alias gpum="git pull origin master"
 alias gpud="git pull origin develop"
 alias gpod="git push origin develop:develop"
@@ -114,7 +115,6 @@ alias gphum="git pull heroku master"
 alias gphm="git push heroku master"
 alias grs="git remote set-url "
 alias cls="clear"
-alias cgitrp="create_gh_repo -n "
 alias pubip="curl icanhazip.com"
 alias vim="nvim"
 alias vf="vifm"
@@ -204,3 +204,7 @@ zplugin light oldratlee/hacker-quotes
 zplugin light webyneter/docker-aliases
 zplugin light dbkaplun/smart-cd
 export RUST_SRC_PATH=/home/african/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+
+fpath=(~/.zsh/completions $fpath)
+autoload -U compinit && compinit
+eval $(hub alias -s)

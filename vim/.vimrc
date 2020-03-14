@@ -164,10 +164,6 @@ nnoremap <leader><space> :noh<cr>
 set encoding=utf-8
 set t_Co=256
 set ttimeoutlen=50
-set history=720
-set undolevels=720
-set nobackup
-set nowritebackup
 set noswapfile
 " Set identation to 4 spaces
 set noai ts=4 sw=4 expandtab
