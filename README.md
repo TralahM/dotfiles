@@ -18,6 +18,7 @@
 [![TralahM](https://img.shields.io/badge/Maintainer-TralahM-green.svg?style=for-the-badge)](https://github.com/TralahM)
 
 # How my terminal Looks Like
+![Terminal](term2.png)
 ![Terminal](terminal.png)
 
 # Dependencies
