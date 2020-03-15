@@ -2,6 +2,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Automatically download and install vim-plug if it's not installed
 set nocompatible
+set encoding=utf-8
 syntax on
 filetype on
 filetype indent plugin on    " required
@@ -30,6 +31,9 @@ Plug 'glts/vim-radical'
 Plug 'racer-rust/vim-racer'
 Plug 'euclio/vim-markdown-composer'
 Plug 'mattn/emmet-vim'
+Plug 'chrisbra/csv.vim'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'jreybert/vimagit'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
@@ -52,6 +56,7 @@ Plug 'nelstrom/vim-markdown-folding'
 Plug 'lervag/vimtex'
 Plug 'xuhdev/vim-latex-live-preview'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
@@ -62,7 +67,6 @@ Plug 'vim-syntastic/syntastic'
 Plug 'alvan/vim-closetag'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'python-mode/python-mode'
-Plug 'Lokaltog/vim-powerline'
 Plug 'vim-ruby/vim-ruby'
 Plug 'TralahM/Efficient-python-folding'
 Plug 'kalekundert/vim-coiled-snake'
@@ -130,10 +134,17 @@ autocmd bufread hosts setl filetype=dosini
 set autoindent
 set clipboard=unnamed
 " set cursorline
-set laststatus=2
-set modelines=0
+set modelines=2
 set nocompatible
-set nojoinspaces
+" Improve regex handling
+nnoremap / /\v
+vnoremap / /\v
+" zoom a vim pane, <C-w>= to rebalance
+nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>= :windcmd =<cr>
+set wrap
+set linebreak
+set nolist " disables libebreak"
 set showcmd
 set showmode
 set visualbell
@@ -147,7 +158,7 @@ vnoremap <leader>s :sort <CR>
 " Remove the underline from enabling cursorline
 highlight Cursorline cterm=none
 " Set line numbering to red background:
-highlight CursorLineNR cterm=bold ctermbg=cyan ctermfg=white
+highlight CursorLineNR cterm=bold ctermbg=green ctermfg=white
 set ruler
 set undofile
 set ignorecase
@@ -161,14 +172,17 @@ set showmatch
 set hlsearch
 nnoremap <leader><space> :noh<cr>
 " vnoremap <tab> %
-set encoding=utf-8
 set t_Co=256
 set ttimeoutlen=50
 set noswapfile
 " Set identation to 4 spaces
 set noai ts=4 sw=4 expandtab
 " Set an 80 char column
-set textwidth=80
+set textwidth=0
+set wrapmargin=0
+" read and write changes automatically
+set autoread
+set autowrite
 set colorcolumn=81
 highlight ColorColumn ctermbg=black
 " Line numbers
@@ -189,9 +203,9 @@ let g:solarized_termcolors=256
 let g:gitgutter_max_signs=1000
 let g:UltiSnipsSnippetDirectories=['~/.vim/plugged/vim-snippets/UltiSnips/', '~/.vim/Ultisnips/']
 let g:UltiSnipsEditSplit="vertical"
-set background=dark
+" set background=dark
 colorscheme delek
-" let g:solarized_contrast="high"
+let g:solarized_contrast="high"
 highlight clear SpellBad
 highlight SpellBad cterm=underline,bold ctermbg=none ctermfg=blue
 " Remove trailing spaces on save
@@ -204,8 +218,7 @@ set pastetoggle=<M-v>
 set showmode
 " Disable folding. It's really annoying and I never remeber the commands.
 set nofoldenable
-"vim POwerline config
-set laststatus=3
+set laststatus=2
 set number relativenumber
 set smartindent
 
@@ -393,14 +406,24 @@ nnoremap <leader>we :tabe ~/Documents/notes/index.md <cr>
 " nerdcommenter
 filetype plugin indent on
 
-" airline
+" airline powerline statusline
+"
 let g:airline_detect_modified=1
+let g:airline_theme='papercolor'
+" let g:airline_statusline_on_top=1
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+set statusline+=%{FugitiveStatusline()}
 let g:airline_detect_paste=1
+let g:airline_powerline_fonts=1
+" let g:airline_left_sep = ' '
+" let g:airline_right_sep = '|'
 let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#branch#symbol = '⎇  '
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#formatter = 'jsformatter'
 let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#whitespace#enabled = 1
 
 " vimtex
 let g:vimtex_enabled=1
@@ -418,11 +441,7 @@ let g:deoplete#sources#jedi#ignore_errors=1
 inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"
 
 " syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-set statusline+=%{FugitiveStatusline()}
-"let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
