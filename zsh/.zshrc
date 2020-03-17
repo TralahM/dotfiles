@@ -208,3 +208,4 @@ export RUST_SRC_PATH=/home/african/.rustup/toolchains/stable-x86_64-unknown-linu
 fpath=(~/.zsh/completions $fpath)
 autoload -U compinit && compinit
 eval $(hub alias -s)
+# $NVIM_LISTEN_ADDRESS=/tmp/nvim31foos/0

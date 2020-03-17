@@ -20,6 +20,8 @@ Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'mattn/sonictemplate-vim'
 Plug 'leafoftree/vim-vue-plugin'
 Plug 'rust-lang/rust.vim'
+Plug 'neoclide/coc.nvim', {'branch':'release'}
+Plug 'iamcco/coc-flutter'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-speeddating'
@@ -35,10 +37,14 @@ Plug 'chrisbra/csv.vim'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'jreybert/vimagit'
 Plug 'tmux-plugins/vim-tmux'
+Plug 'SevereOverfl0w/deoplete-github'
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-emoji'
 Plug 'itchyny/lightline.vim'
 Plug 'osyo-manga/vim-over'
 Plug 'scrooloose/nerdtree'
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 'enricobacis/vim-airline-clock'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'tell-k/vim-autopep8'
@@ -46,6 +52,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-eunuch'
 Plug 'godlygeek/tabular'
+Plug 'ap/vim-css-color'
+Plug 'luochen1990/rainbow'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'jkramer/vim-checkbox'
 " Leader tt toggles checkbox
@@ -53,8 +61,10 @@ Plug 'plasticboy/vim-markdown',{'for':'markdown'}
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'nelstrom/vim-markdown-folding'
+Plug 'rhysd/git-messenger.vim'
 Plug 'lervag/vimtex'
 Plug 'xuhdev/vim-latex-live-preview'
+Plug 'jceb/vim-orgmode'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
@@ -80,6 +90,7 @@ Plug 'garbas/vim-snipmate'
 Plug 'dense-analysis/ale'
 Plug 'amix/open_file_under_cursor.vim'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-smooth-scroll'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'altercation/vim-colors-solarized'
@@ -119,6 +130,13 @@ call plug#end()
 " autoreloading of the vimrc file.
 " Basic Internal Configurations
 set undofile
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
 set undodir=~/.vim/undo "where to save undo histories"
 set undolevels=1000 "How many Undos"
 set undoreload=10000 "number of lines to save for undo"
@@ -201,6 +219,13 @@ autocmd BufNewFile,BufRead *.md set filetype=markdown
 syntax enable
 let g:solarized_termcolors=256
 let g:gitgutter_max_signs=1000
+if emoji#available()
+    let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
+    let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
+    let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
+    let g:gitgutter_sign_modified_removed = emoji#for('collision')
+endif
+
 let g:UltiSnipsSnippetDirectories=['~/.vim/plugged/vim-snippets/UltiSnips/', '~/.vim/Ultisnips/']
 let g:UltiSnipsEditSplit="vertical"
 " set background=dark
@@ -221,6 +246,11 @@ set nofoldenable
 set laststatus=2
 set number relativenumber
 set smartindent
+
+" Use <c-space> to trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 "Ommit the <C-W> when moving between splits
 nnoremap <C-J> <C-W><C-J>
@@ -329,6 +359,11 @@ endfunction
 " Deoplete Conf
 let g:deoplete#enable_at_startup=1
 let g:indent_guides_enable_on_vim_startup=1
+let g:deoplete#sources = {}
+let g:deoplete#sources.gitcommit=['github']
+let g:deoplete#keyword_patterns = {}
+let g:deoplete#keyword_patterns.gitcommit = '.+'
+
 
 "yankstack config
 call yankstack#setup()
@@ -429,6 +464,7 @@ let g:airline#extensions#whitespace#enabled = 1
 let g:vimtex_enabled=1
 let g:vimtex_complete_enabled=1
 let g:vimtex_complete_close_braces=1
+let g:vimtex_compiler_progname='nvr'
 
 " braceless.vim
 autocmd filetype python BracelessEnable +indent +highlight
@@ -558,3 +594,4 @@ map <leader>1 :! sudo chmod a+rw % <cr>
 map <leader>2 :! sudo chmod a+x % <cr>
 source ~/.vim/autoload/utils/pysnips.vim
 set nospell
+let g:rainbow_active=1
