@@ -3,6 +3,7 @@
 " Automatically download and install vim-plug if it's not installed
 set nocompatible
 set encoding=utf-8
+set nospell
 syntax on
 filetype on
 filetype indent plugin on    " required
@@ -16,98 +17,97 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plug 'mattn/sonictemplate-vim'
-Plug 'leafoftree/vim-vue-plugin'
-Plug 'rust-lang/rust.vim'
-Plug 'neoclide/coc.nvim', {'branch':'release'}
+" Leader tt toggles checkbox
 " Plug 'iamcco/coc-flutter'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-afterimage'
-Plug 'tpope/vim-abolish'
+Plug 'Konfekt/FastFold'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 'SevereOverfl0w/deoplete-github'
+Plug 'Shougo/context_filetype.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neosnippet.vim'
+Plug 'SirVer/ultisnips'
+Plug 'TralahM/Efficient-python-folding',{'for':'python'}
+Plug 'airblade/vim-gitgutter'
+Plug 'altercation/vim-colors-solarized'
+Plug 'alvan/vim-closetag'
+Plug 'amix/open_file_under_cursor.vim'
+Plug 'ap/vim-css-color'
+Plug 'bfrg/vim-jq',{'for':'json'}
+Plug 'bfrg/vim-jqplay',{'for':'json'}
+Plug 'chrisbra/csv.vim',{'for':'csv'}
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'dense-analysis/ale'
+Plug 'ehamberg/vim-cute-python',{'for':'python'}
+Plug 'enricobacis/vim-airline-clock'
+Plug 'euclio/vim-markdown-composer',{'for':'markdown'}
+Plug 'fisadev/vim-ctrlp-cmdpalette'
+Plug 'garbas/vim-snipmate'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
-Plug 'racer-rust/vim-racer'
-Plug 'euclio/vim-markdown-composer'
-Plug 'mattn/emmet-vim'
-Plug 'chrisbra/csv.vim'
-Plug 'jmcantrell/vim-virtualenv'
+Plug 'godlygeek/tabular'
+Plug 'honza/vim-snippets'
+Plug 'itchyny/lightline.vim'
+Plug 'jceb/vim-orgmode'
+Plug 'jiangmiao/auto-pairs'
+Plug 'jkramer/vim-checkbox',{'for':'markdown'}
+Plug 'jmcantrell/vim-virtualenv',{'for':'python'}
 Plug 'jreybert/vimagit'
-Plug 'tmux-plugins/vim-tmux'
-Plug 'SevereOverfl0w/deoplete-github'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-emoji'
-Plug 'itchyny/lightline.vim'
-Plug 'osyo-manga/vim-over'
-Plug 'scrooloose/nerdtree'
-Plug 'MattesGroeger/vim-bookmarks'
-Plug 'enricobacis/vim-airline-clock'
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
-Plug 'tell-k/vim-autopep8'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-tbone'
-Plug 'tpope/vim-eunuch'
-Plug 'godlygeek/tabular'
-Plug 'ap/vim-css-color'
-Plug 'luochen1990/rainbow'
-Plug 'pbrisbin/vim-mkdir'
-Plug 'jkramer/vim-checkbox'
-" Leader tt toggles checkbox
-Plug 'plasticboy/vim-markdown',{'for':'markdown'}
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'nelstrom/vim-markdown-folding'
-Plug 'rhysd/git-messenger.vim'
-Plug 'lervag/vimtex'
-Plug 'xuhdev/vim-latex-live-preview'
-Plug 'jceb/vim-orgmode'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-fugitive'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'scrooloose/nerdcommenter'
-Plug 'airblade/vim-gitgutter'
-Plug 'tweekmonster/braceless.vim', {'for': ['python']}
-Plug 'vim-syntastic/syntastic'
-Plug 'alvan/vim-closetag'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'python-mode/python-mode'
-Plug 'vim-ruby/vim-ruby'
-Plug 'TralahM/Efficient-python-folding'
-Plug 'kalekundert/vim-coiled-snake'
-Plug 'Konfekt/FastFold'
-Plug 'yegappan/mru' "most recently used
-Plug 'mileszs/ack.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
-Plug 'dense-analysis/ale'
-Plug 'amix/open_file_under_cursor.vim'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'terryma/vim-smooth-scroll'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'maxbrunsfeld/vim-yankstack'
-Plug 'altercation/vim-colors-solarized'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'justinmk/vim-sneak'
+Plug 'kalekundert/vim-coiled-snake'
+Plug 'leafoftree/vim-vue-plugin', {'for':'javascript'}
+Plug 'lervag/vimtex',{'for':'markdown'}
+Plug 'luochen1990/rainbow'
+Plug 'mattn/emmet-vim'
+Plug 'mattn/sonictemplate-vim'
+Plug 'maxbrunsfeld/vim-yankstack'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'mileszs/ack.vim'
+Plug 'mxw/vim-jsx',{'for':'javascript'}
 Plug 'nanotech/jellybeans.vim'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'nelstrom/vim-markdown-folding',{'for':'markdown'}
+Plug 'neoclide/coc.nvim', {'branch':'release'}
+Plug 'osyo-manga/vim-over'
+Plug 'pangloss/vim-javascript',{'for':'javascript'}
+Plug 'pbrisbin/vim-mkdir'
+Plug 'plasticboy/vim-markdown',{'for':'markdown'}
+Plug 'python-mode/python-mode',{'for':'python'}
+Plug 'racer-rust/vim-racer'
+Plug 'rhysd/git-messenger.vim'
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'rust-lang/rust.vim', {'for':'rust'}
 Plug 'ryanoasis/vim-devicons'
-Plug 'Shougo/context_filetype.vim'
-Plug 'fisadev/vim-ctrlp-cmdpalette'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree',{'on':'NERDTreeToggle'}
+Plug 'tell-k/vim-autopep8',{'for':'python'}
+Plug 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-smooth-scroll'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'tomtom/tlib_vim'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-afterimage'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-tbone'
+Plug 'tpope/vim-unimpaired'
+Plug 'tweekmonster/braceless.vim', {'for': ['python']}
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-ruby/vim-ruby',{'for':'ruby'}
 Plug 'vim-scripts/IndexedSearch'
-Plug 'ehamberg/vim-cute-python'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'bfrg/vim-jq'
-Plug 'bfrg/vim-jqplay'
+Plug 'vim-syntastic/syntastic'
+Plug 'xuhdev/vim-latex-live-preview',{'for':'tex'}
+Plug 'yegappan/mru' "most recently used
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -127,7 +127,6 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Some of the following is taken from Steve Losh:
 " http://stevelosh.com/blog/2010/09/coming-home-to-vim/
-" autoreloading of the vimrc file.
 " Basic Internal Configurations
 set undofile
 set hidden
@@ -146,6 +145,7 @@ set wildignore+=*_build/*
 set wildignore+=*.pyc,*.so,*.swp,*.zip,*.un~,.*.*~
 set wildignore+=*/coverage/*
 
+" autoreloading of the vimrc file.
 autocmd! bufwritepost .vimrc source %
 autocmd bufwritepre hosts setl filetype=dosini
 autocmd bufread hosts setl filetype=dosini
@@ -154,12 +154,6 @@ set clipboard=unnamed
 " set cursorline
 set modelines=2
 set nocompatible
-" Improve regex handling
-nnoremap / /\v
-vnoremap / /\v
-" zoom a vim pane, <C-w>= to rebalance
-nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
-nnoremap <leader>= :windcmd =<cr>
 set wrap
 set linebreak
 set nolist " disables libebreak"
@@ -183,13 +177,9 @@ set ignorecase
 set smartcase
 au FocusLost * :wa
 
-vmap Q gq
-nmap Q gqap
 set incsearch
 set showmatch
 set hlsearch
-nnoremap <leader><space> :noh<cr>
-" vnoremap <tab> %
 set t_Co=256
 set ttimeoutlen=50
 set noswapfile
@@ -206,7 +196,7 @@ highlight ColorColumn ctermbg=black
 " Line numbers
 set number
 highlight LineNr ctermfg=white
-highlight SignColumn ctermbg=black
+highlight SignColumn ctermfg=black
 " Rule for Makefiles to use tab
 autocmd BufEnter ?akefile* set noet ts=4 sw=4
 " Syntax highlighting
@@ -237,8 +227,6 @@ highlight SpellBad cterm=underline,bold ctermbg=none ctermfg=blue
 autocmd BufWritePre * :%s/\s\+$//e
 " Git commits
 autocmd Filetype gitcommit setlocal spell textwidth=100
-" Map F2 to paste mode so that pasting in the terminal doesn't mess identation
-nnoremap <M-V> :set invpaste paste?<CR>
 set pastetoggle=<M-v>
 set showmode
 " Disable folding. It's really annoying and I never remeber the commands.
@@ -247,54 +235,8 @@ set laststatus=2
 set number relativenumber
 set smartindent
 
-" Use <c-space> to trigger completion
-inoremap <silent><expr> <c-space> coc#refresh()
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-"Ommit the <C-W> when moving between splits
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-" Window switching keys
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
-
-" Paste Line with Y
-nmap Y y$
-
-"easier movement between tabs
-map <leader>. <esc>:tabnext<CR>
-map <leader>, <esc>:tabprevious<CR>
-map <leader>t <esc>:tabnew<CR>
-map <leader>x <esc>:tabclose<CR>
-map <leader>f :MRU<CR>
-map <leader>nn :NERDTreeToggle<CR>
-map <leader>e :NERDTreeFind<CR>
-map <leader>w :w!<CR>
-map <space> /
-map <c-space> ?
-map <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
-map <leader>cd :cd %:p:h<CR>:pwd<CR>
-map <leader>g :Ack
-nnoremap <leader>w :w!<CR>
-nnoremap <leader>. <esc>:tabnext<CR>
-nnoremap <leader>, <esc>:tabprevious<CR>
-nnoremap <leader>t <esc>:tabnew<CR>
-nnoremap <leader>x <esc>:tabclose<CR>
-nnoremap <leader>f :MRU<CR>
-nnoremap <leader>nn :NERDTreeToggle<CR>
-nnoremap <leader>e :NERDTreeFind<CR>
-nnoremap <space> /
-nnoremap <c-space> ?
-nnoremap <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
-nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
-nnoremap <leader>g :Ack
-nnoremap ; :
-nnoremap : ;
 
 " Fuzzy File Finder
 set path+=**
@@ -313,8 +255,6 @@ function! OmniPopup(action)
     return a:action
 endfunction
 
-inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
-inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 
 set nofoldenable
 
@@ -334,14 +274,7 @@ function! ToggleSpell()
     echo "spell checking language:" g:myLangList[b:myLang]
 endfunction
 " Pressing \ss will toggle and untoggle spell checking
-map <leader>ss :call ToggleSpell()<cr>
 " ]s and [s to move down-up marked words
-" Shortcuts using <leader> (\)
-" Add word to dictionary
-map <leader>sa zg
-nnoremap <leader>sa za
-" Substitution option for marked word
-map <leader>s? z=
 " Spelling always on for some files
 autocmd BufNewFile,BufRead *.ipy,*.py,*.md,*.tex,*.rst,*.c,*.h,Makefile setlocal nospell
 
@@ -367,14 +300,9 @@ let g:deoplete#keyword_patterns.gitcommit = '.+'
 
 "yankstack config
 call yankstack#setup()
-nmap Y y$
-nmap <leader>p <Plug>yankstack_substitute_older_paste
-nmap <leader>V <Plug>yankstack_substitute_newer_paste
 let g:yankstack_yank_keys = ['y', 'd']
 
 "python-mode config
-map <leader>d :call RopeGotoDefinition()<CR>
-nnoremap <leader>d :call RopeGotoDefinition()<CR>
 let g:pymode_run = 1
 let g:pymode_run_bind = '<leader>r'
 let ropevim_enable_shortcuts = 1
@@ -398,8 +326,6 @@ let g:pymode_syntax_all = 1
 let g:pymode_syntax_builtin_objs=0
 let g:pymode_syntax_builtin_funcs=1
 let g:pymode_lint_checkers = ['pep8', 'pyflakes']
-map <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
-nnoremap <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
 
 "CTRLP config
 
@@ -432,10 +358,6 @@ let g:vim_markdown_no_extensions_in_markdown=1
 let g:vim_markdown_autowrite=1
 let g:vim_markdown_edit_url_in="hsplit"
 let g:vim_markdown_new_list_item_indent=0
-map <leader>[ :HeaderDecrease <cr>
-map <leader>] :HeaderIncrease <cr>
-map <leader>/ :TableFormat <cr>
-nnoremap <leader>we :tabe ~/Documents/notes/index.md <cr>
 
 
 " nerdcommenter
@@ -473,8 +395,6 @@ autocmd filetype python BracelessEnable +indent +highlight
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#jedi#enable_typeinfo = 0
 let g:deoplete#sources#jedi#ignore_errors=1
-" " Escape: exit autocompletion, go to Normal mode
-inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"
 
 " syntastic
 let g:syntastic_always_populate_loc_list = 1
@@ -559,7 +479,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:markdown_composer_open_browser=0
 " Latex Live Preview conf
 autocmd Filetype tex setl updatetime=1
-let g:livepreview_previewer='okular'
+let g:livepreview_previewer='mupdf'
 
 " Neosnippets
 " Enable snipMate compatibility feature.
@@ -575,11 +495,6 @@ let g:vimtex_fold_enabled =1
 let g:rustfmt_autosave=1
 let g:racer_insert_paren=1
 let g:racer_experimental_completer=1
-au FileType rust nmap gx <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gd <Plug>(rust-def-vertical)
-au FileType rust nmap gt <Plug>(rust-def-tab)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 " Emmet Config
 let g:user_emmet_leader_key='<tab>'
@@ -589,9 +504,7 @@ let g:user_emmet_settings={
             \'haml':{'extends':'html'},
                 \}
 
-"Custom def
-map <leader>1 :! sudo chmod a+rw % <cr>
-map <leader>2 :! sudo chmod a+x % <cr>
-source ~/.vim/autoload/utils/pysnips.vim
-set nospell
+" Rainbow parentheses
 let g:rainbow_active=1
+" Load my custom functions and keymappings
+source ~/.vim/autoload/load_customs.vim
