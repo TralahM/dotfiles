@@ -21,7 +21,7 @@ Plug 'mattn/sonictemplate-vim'
 Plug 'leafoftree/vim-vue-plugin'
 Plug 'rust-lang/rust.vim'
 Plug 'neoclide/coc.nvim', {'branch':'release'}
-Plug 'iamcco/coc-flutter'
+" Plug 'iamcco/coc-flutter'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-speeddating'
