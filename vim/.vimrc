@@ -57,6 +57,7 @@ Plug 'jreybert/vimagit'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-emoji'
 Plug 'justinmk/vim-sneak'
+" Plug 'jvoorhis/coq.vim', {'for':'coq'}
 Plug 'kalekundert/vim-coiled-snake'
 Plug 'leafoftree/vim-vue-plugin', {'for':'javascript'}
 Plug 'lervag/vimtex',{'for':'markdown'}
@@ -88,6 +89,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tomtom/tlib_vim'
+Plug 'tounaishouta/coq.vim', {'for':'coq'}
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-afterimage'
 Plug 'tpope/vim-commentary'
@@ -236,8 +238,6 @@ set laststatus=2
 set number relativenumber
 set smartindent
 
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Fuzzy File Finder
 set path+=**

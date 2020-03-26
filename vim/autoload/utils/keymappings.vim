@@ -85,7 +85,6 @@ map <leader>] :HeaderIncrease <cr>
 map <leader>/ :TableFormat <cr>
 nnoremap <leader>we :tabe ~/Documents/notes/index.md <cr>
 nnoremap <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
-inoremap <silent><expr> <c-space> coc#refresh()
 " " Escape: exit autocompletion, go to Normal mode
 inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"
 
