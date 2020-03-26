@@ -41,6 +41,7 @@ Plug 'dense-analysis/ale'
 Plug 'ehamberg/vim-cute-python',{'for':'python'}
 Plug 'enricobacis/vim-airline-clock'
 Plug 'euclio/vim-markdown-composer',{'for':'markdown'}
+Plug 'fatih/vim-go',{'for':'go'}
 Plug 'fisadev/vim-ctrlp-cmdpalette'
 Plug 'garbas/vim-snipmate'
 Plug 'glts/vim-magnum'
@@ -69,7 +70,7 @@ Plug 'mxw/vim-jsx',{'for':'javascript'}
 Plug 'nanotech/jellybeans.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'nelstrom/vim-markdown-folding',{'for':'markdown'}
-Plug 'neoclide/coc.nvim', {'branch':'release'}
+" Plug 'neoclide/coc.nvim', {'branch':'release'}
 Plug 'osyo-manga/vim-over'
 Plug 'pangloss/vim-javascript',{'for':'javascript'}
 Plug 'pbrisbin/vim-mkdir'
@@ -81,7 +82,7 @@ Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'rust-lang/rust.vim', {'for':'rust'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree',{'on':'NERDTreeToggle'}
+Plug 'scrooloose/nerdtree'
 Plug 'tell-k/vim-autopep8',{'for':'python'}
 Plug 'terryma/vim-multiple-cursors'
 Plug 'terryma/vim-smooth-scroll'
@@ -377,10 +378,18 @@ let g:airline_powerline_fonts=1
 " let g:airline_left_sep = ' '
 " let g:airline_right_sep = '|'
 let g:airline#extensions#syntastic#enabled = 1
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#formatter = 'jsformatter'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'jsformatter'
 let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#languageclient#enabled = 1
+let g:airline#extensions#promptline#enabled = 1
+let g:airline#extensions#default#enabled = 1
+let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#fugitiveline#enabled = 1
+let g:airline#extensions#unicode#enabled = 1
+let g:airline#extensions#fugitive#enabled = 1
+let g:airline#extensions#branch#enabled = 1
 
 " vimtex
 let g:vimtex_enabled=1
