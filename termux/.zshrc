@@ -190,3 +190,5 @@ zplugin light iboyperson/pipenv-zsh
 zplugin light oldratlee/hacker-quotes
 zplugin light webyneter/docker-aliases
 zplugin light dbkaplun/smart-cd
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
