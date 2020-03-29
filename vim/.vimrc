@@ -54,6 +54,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'jkramer/vim-checkbox',{'for':'markdown'}
 Plug 'jmcantrell/vim-virtualenv',{'for':'python'}
 Plug 'jreybert/vimagit'
+Plug 'junegunn/fzf',{'dir':'~/.fzf','do':'./install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-emoji'
 Plug 'justinmk/vim-sneak'
@@ -364,6 +365,9 @@ let g:vim_markdown_new_list_item_indent=0
 " nerdcommenter
 filetype plugin indent on
 
+" Load my custom functions and keymappings
+source ~/.vim/autoload/load_customs.vim
+
 " airline powerline statusline
 "
 let g:airline_detect_modified=1
@@ -383,9 +387,9 @@ let g:airline#extensions#tabline#formatter = 'jsformatter'
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#languageclient#enabled = 1
 let g:airline#extensions#promptline#enabled = 1
-let g:airline#extensions#default#enabled = 1
+" let g:airline#extensions#default#enabled = 1
 let g:airline#extensions#bufferline#enabled = 1
-let g:airline#extensions#whitespace#enabled = 1
+" let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#fugitiveline#enabled = 1
 let g:airline#extensions#unicode#enabled = 1
 let g:airline#extensions#fugitive#enabled = 1
@@ -515,5 +519,13 @@ let g:user_emmet_settings={
 
 " Rainbow parentheses
 let g:rainbow_active=1
-" Load my custom functions and keymappings
-source ~/.vim/autoload/load_customs.vim
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
+" [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+" [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ctags -R'
+
+
