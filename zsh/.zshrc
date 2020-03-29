@@ -90,6 +90,8 @@ export LESS_TERMCAP_mr=$(tput rev)
 export LESS_TERMCAP_mh=$(tput dim)
 
 export PATH=/home/african/.local/bin:$PATH
+export PATH=/usr/local/go/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/go/lib:$LD_LIBRARY_PATH
 
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT'
@@ -209,3 +211,5 @@ fpath=(~/.zsh/completions $fpath)
 autoload -U compinit && compinit
 eval $(hub alias -s)
 # $NVIM_LISTEN_ADDRESS=/tmp/nvim31foos/0
+export GOHOME=~/gocode
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
