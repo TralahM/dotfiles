@@ -1,0 +1,50 @@
+[user]
+	email = musyoki.tralah@students.jkuat.ac.ke
+	name = TralahM
+[github]
+	user = TralahM
+[color]
+    ui = true
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    grep = auto
+[core]
+    editor = vim
+	fscache = true
+	excludesfile = ~/.gitignore_global
+    pager = less -S
+[push]
+    default = upstream
+[merge]
+    tool = vimdiff
+[difftool.latex]
+    cmd = latexdiff "$LOCAL" "$REMOTE"
+[alias]
+    ldiff = difftool -y -t latex
+    ci = commit
+    co = checkout
+    lg = log --all --abbrev-commit --decorate --graph --oneline
+    st = status
+    mt = mergetool
+[branch]
+    autosetupmerge = always
+    autosetuprebase = always
+[merge]
+    summary = true
+[help]
+    autocorrect = 10
+[pull]
+    rebase = true
+
+[push]
+    default = tracking
+[rebase]
+    autosquash = true
+[web]
+    browser = TralahM
+[include]
+    path = .gitconfig.local
+[credential]
+	helper = store
