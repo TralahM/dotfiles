@@ -96,6 +96,7 @@ export LD_LIBRARY_PATH=/usr/local/go/lib:$LD_LIBRARY_PATH
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT'
 POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'
+export POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 # add shellcheck config
 # For a full list of errors, refer to
 # https://github.com/koalaman/shellcheck/wiki
@@ -121,8 +122,9 @@ alias pubip="curl icanhazip.com"
 alias vim="nvim"
 alias vf="vifm"
 alias hli="heroku login -i"
-alias hlt="heroku logs -t"
-alias hrb="heroku run bash"
+alias herokulogs="heroku logs -t"
+alias herokupyshell="heroku run python manage.py shell_plus"
+alias herokubash="heroku run bash"
 alias djsp="django-admin startproject "
 alias djsa="django-admin startapp "
 alias ghrc="gcli repo create "
@@ -186,13 +188,22 @@ else
     fi
 fi
 unset __conda_setup
-export POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 
 # added by travis gem
 [ -f /home/african/.travis/travis.sh ] && source /home/african/.travis/travis.sh
 # unset PYTHONPATH
 # export PYTHONHOME=/home/african/anaconda/lib/python3.7:/home/african/anaconda3/bin/python
 # export PYTHONPATH=$PYTHONPATH:$PYTHONHOME:/home/anaconda/lib/python3.7
+# Golang home config
+export GOHOME=~/gocode
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=/home/african/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+# alias hub to git
+eval $(hub alias -s)
+# Rust src path
+export RUST_SRC_PATH=/home/african/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
 
 bindkey -v
 
@@ -205,11 +216,6 @@ zplugin light iboyperson/pipenv-zsh
 zplugin light oldratlee/hacker-quotes
 zplugin light webyneter/docker-aliases
 zplugin light dbkaplun/smart-cd
-export RUST_SRC_PATH=/home/african/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
 
 fpath=(~/.zsh/completions $fpath)
 autoload -U compinit && compinit
-eval $(hub alias -s)
-# $NVIM_LISTEN_ADDRESS=/tmp/nvim31foos/0
-export GOHOME=~/gocode
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
