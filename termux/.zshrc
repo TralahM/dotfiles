@@ -182,6 +182,10 @@ POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT'
 POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'
 export POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=/data/data/com.termux/files/home/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ### Added by Zplugin's installer
 source "$HOME/.zplugin/bin/zplugin.zsh"
@@ -193,7 +197,4 @@ zplugin light oldratlee/hacker-quotes
 zplugin light webyneter/docker-aliases
 zplugin light dbkaplun/smart-cd
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/data/data/com.termux/files/home/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+source ~/.zshrc
