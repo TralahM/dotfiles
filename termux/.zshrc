@@ -1,6 +1,11 @@
 export ZSH=~/.zsh
 export LANG="en_US.UTF-8"
 export DEFAULT_USER="$(whoami)"
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT'
+POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'
+export POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+
 
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10
@@ -149,7 +154,6 @@ export NVM_DIR="$HOME/.nvm"
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 
-export G_ML_API=AIzaSyDrAjzK8u-_Y0_YJmY7Yk1K6N_q1p8Bd8w
 alias ls="ls -t --color=auto "
 #
 # start a tmux session
@@ -177,11 +181,6 @@ source ~/.fonts/pomicons-regular.sh
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 alias heroku='~/node_modules/heroku/bin/run'
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT'
-POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'
-export POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/data/data/com.termux/files/home/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
@@ -197,4 +196,3 @@ zplugin light oldratlee/hacker-quotes
 zplugin light webyneter/docker-aliases
 zplugin light dbkaplun/smart-cd
 
-source ~/.zshrc
