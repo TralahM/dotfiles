@@ -18,7 +18,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Leader tt toggles checkbox
-" Plug 'iamcco/coc-flutter'
+Plug 'Inazuma110/deoplete-greek'
 Plug 'Konfekt/FastFold'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'MattesGroeger/vim-bookmarks'
@@ -38,11 +38,13 @@ Plug 'bfrg/vim-jqplay',{'for':'json'}
 Plug 'chrisbra/csv.vim',{'for':'csv'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dense-analysis/ale'
+Plug 'deoplete-plugins/deoplete-zsh'
 Plug 'ehamberg/vim-cute-python',{'for':'python'}
 Plug 'enricobacis/vim-airline-clock'
 Plug 'euclio/vim-markdown-composer',{'for':'markdown'}
 Plug 'fatih/vim-go',{'for':'go'}
 Plug 'fisadev/vim-ctrlp-cmdpalette'
+Plug 'fszymanski/deoplete-emoji'
 Plug 'garbas/vim-snipmate'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
@@ -58,13 +60,14 @@ Plug 'junegunn/fzf',{'dir':'~/.fzf','do':'./install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-emoji'
 Plug 'justinmk/vim-sneak'
-" Plug 'jvoorhis/coq.vim', {'for':'coq'}
 Plug 'kalekundert/vim-coiled-snake'
 Plug 'leafoftree/vim-vue-plugin', {'for':'javascript'}
 Plug 'lervag/vimtex',{'for':'markdown'}
+Plug 'lighttiger2505/deoplete-vim-lsp'
 Plug 'luochen1990/rainbow'
 Plug 'mattn/emmet-vim'
 Plug 'mattn/sonictemplate-vim'
+Plug 'mattn/vim-lsp-settings'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'mileszs/ack.vim'
@@ -72,19 +75,21 @@ Plug 'mxw/vim-jsx',{'for':'javascript'}
 Plug 'nanotech/jellybeans.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'nelstrom/vim-markdown-folding',{'for':'markdown'}
-" Plug 'neoclide/coc.nvim', {'branch':'release'}
 Plug 'osyo-manga/vim-over'
 Plug 'pangloss/vim-javascript',{'for':'javascript'}
 Plug 'pbrisbin/vim-mkdir'
 Plug 'plasticboy/vim-markdown',{'for':'markdown'}
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
 Plug 'python-mode/python-mode',{'for':'python'}
-Plug 'racer-rust/vim-racer'
+Plug 'racer-rust/vim-racer',{'for':'rust'}
 Plug 'rhysd/git-messenger.vim'
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'rust-lang/rust.vim', {'for':'rust'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
+Plug 'sebastianmarkow/deoplete-rust'
 Plug 'tell-k/vim-autopep8',{'for':'python'}
 Plug 'terryma/vim-multiple-cursors'
 Plug 'terryma/vim-smooth-scroll'
@@ -98,6 +103,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-tbone'
@@ -110,6 +116,7 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-ruby/vim-ruby',{'for':'ruby'}
 Plug 'vim-scripts/IndexedSearch'
 Plug 'vim-syntastic/syntastic'
+Plug 'wellle/tmux-complete.vim'
 Plug 'xuhdev/vim-latex-live-preview',{'for':'tex'}
 Plug 'yegappan/mru' "most recently used
 
@@ -122,6 +129,12 @@ else
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
     Plug 'davidhalter/jedi-vim'
+    Plug 'zxqfl/tabnine-vim'
+endif
+if has('win32') || has('win64')
+  Plug 'tbodt/deoplete-tabnine', { 'do': 'powershell.exe .\install.ps1' }
+else
+  Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 endif
 
 call plug#end()
@@ -156,7 +169,7 @@ autocmd bufread hosts setl filetype=dosini
 set autoindent
 set clipboard=unnamed
 " set cursorline
-set modelines=2
+set modelines=1
 set nocompatible
 set wrap
 set linebreak
@@ -208,7 +221,7 @@ syntax on
 autocmd BufNewFile,BufRead *.ipy set filetype=python
 autocmd BufNewFile,BufRead *.pyx set filetype=python
 autocmd BufNewFile,BufRead SConstruct set filetype=python
-autocmd BufNewFile,BufRead *.md set filetype=markdown
+autocmd BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd set filetype=markdown
 " Color scheme
 syntax enable
 let g:solarized_termcolors=256
@@ -220,13 +233,13 @@ if emoji#available()
     let g:gitgutter_sign_modified_removed = emoji#for('collision')
 endif
 
-let g:UltiSnipsSnippetDirectories=['~/.vim/plugged/vim-snippets/UltiSnips/', '~/.vim/Ultisnips/']
+let g:UltiSnipsSnippetDirectories=['~/.vim/plugged/vim-snippets/UltiSnips/', '~/.vim/Ultisnips/','~/.vim/snippets/']
 let g:UltiSnipsEditSplit="vertical"
 " set background=dark
 colorscheme delek
 let g:solarized_contrast="high"
 highlight clear SpellBad
-highlight SpellBad cterm=underline,bold ctermbg=none ctermfg=blue
+highlight SpellBad cterm=underline,bold ctermbg=none ctermfg=red
 " Remove trailing spaces on save
 autocmd BufWritePre * :%s/\s\+$//e
 " Git commits
@@ -291,13 +304,19 @@ endfunction
 " PLUGIN CONFIGURATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Deoplete Conf
-let g:deoplete#enable_at_startup=1
 let g:indent_guides_enable_on_vim_startup=1
+" Deoplete Conf
 let g:deoplete#sources = {}
+let g:deoplete#enable_at_startup=1
 let g:deoplete#sources.gitcommit=['github']
 let g:deoplete#keyword_patterns = {}
+" let g:deoplete#omni#input_patterns = {}
 let g:deoplete#keyword_patterns.gitcommit = '.+'
+
+" call deoplete#util#set_pattern(
+"   \ g:deoplete#omni#input_patterns,
+"   \ 'gitcommit', [g:deoplete#keyword_patterns.gitcommit])
+
 
 
 "yankstack config
@@ -310,7 +329,7 @@ let g:pymode_run_bind = '<leader>r'
 let ropevim_enable_shortcuts = 1
 let g:pymode_rope_lookup_project=0
 let g:pymode_doc = 1
-let g:pymode_doc_bind = 'K'
+let g:pymode_doc_bind = '<leader>i'
 " let g:pymode_rope=0
 let g:pymode_rope_completion = 0
 let g:pymode_rope_complete_on_dot = 0
@@ -318,8 +337,8 @@ let g:pymode_rope_autoimport = 1
 let g:pymode_rope_autoimport_modules = ['os', 'datetime']
 let g:pymode_rope_goto_definition_cmd="tab"
 
-let g:pymode_rope_organize_imports_bind = '<C-c>ro'
-let g:pymode_rope_autoimport_bind = '<C-c>ra'
+let g:pymode_rope_organize_imports_bind = '<leader>ro'
+let g:pymode_rope_autoimport_bind = '<leader>ra'
 
 let g:pymode_rope_extended_complete=0
 let g:pymode_breakpoint=1
@@ -327,7 +346,7 @@ let g:pymode_syntax=1
 let g:pymode_syntax_all = 1
 let g:pymode_syntax_builtin_objs=0
 let g:pymode_syntax_builtin_funcs=1
-let g:pymode_lint_checkers = ['pep8', 'pyflakes']
+let g:pymode_lint_checkers = ['pep8',]
 
 "CTRLP config
 
