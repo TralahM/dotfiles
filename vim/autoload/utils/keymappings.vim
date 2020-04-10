@@ -6,6 +6,8 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
+nnoremap <leader>1 :!chmod +x %
+
 " Improve regex handling
 nnoremap / /\v
 vnoremap / /\v
