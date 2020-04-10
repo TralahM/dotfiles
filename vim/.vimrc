@@ -44,7 +44,7 @@ Plug 'enricobacis/vim-airline-clock'
 Plug 'euclio/vim-markdown-composer',{'for':'markdown'}
 Plug 'fatih/vim-go',{'for':'go'}
 Plug 'fisadev/vim-ctrlp-cmdpalette'
-Plug 'fszymanski/deoplete-emoji'
+" Plug 'fszymanski/deoplete-emoji'
 Plug 'garbas/vim-snipmate'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
@@ -258,7 +258,7 @@ set path+=**
 set wildmenu
 
 "" Better navigation through omnicomplete option list
-set completeopt=longest,menuone
+set completeopt=longest,menuone,preview,noinsert
 function! OmniPopup(action)
     if pumvisible()
         if a:action=='j'
