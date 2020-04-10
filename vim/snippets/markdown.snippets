@@ -4,9 +4,10 @@ snippet title
 	**`strftime("%Y-%m-%d  %H:%M")`**
 	## ${1:${VISUAL:Subtitle1}}
 
-snippet pyblk
+snippet pycode
 	\`\`\`python
 	#!/usr/bin/env python3
+	${1:${VISUAL:CMD}}
 	\`\`\`
 
 snippet console
@@ -17,8 +18,24 @@ snippet console
 snippet blogpost
 	---
 	title: ${1:${VISUAL:Title}}
+	author: Tralah M Brian
+	excerpt: ""
 	header:
 		image: ${2:${VISUAL:image}}
-	teaser: ${3:${VISUAL:teaser}}
+		teaser: ${3:${VISUAL:teaser}}
 	---
+
 	${4:${VISUAL:content}}
+snippet frontm
+	---
+	title: ${1:${VISUAL:Title}}
+	author: Tralah M Brian
+	date: `strftime("%Y-%m-%d")`
+	theme: "Berkeley"
+	colortheme: "dolphin"
+	fonttheme: "structurebold"
+	dpi: 400
+	slide-level:2
+	---
+
+	# ${2:${VISUAL:Head}}
