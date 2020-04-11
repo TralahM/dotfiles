@@ -1,12 +1,17 @@
 " All my keymaps go here
 " Taking a modularized approach
+" Quickly Edit My VIMRC
+"vim8
+nmap <leader>A :tabe ~/.vimrc <CR>
+"Neovim
+nmap <leader>S :tabe $MYVIMRC <CR>
 " Enforcing Purity
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-nmap <leader>1 :!chmod +x %
+nmap <leader>1 :!chmod +x % <CR>
 
 " Improve regex handling
 map / /\v
