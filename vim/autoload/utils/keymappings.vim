@@ -6,9 +6,10 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-nnoremap <leader>1 :!chmod +x %
+nmap <leader>1 :!chmod +x %
 
 " Improve regex handling
+map / /\v
 nnoremap / /\v
 vnoremap / /\v
 " zoom a vim pane, <C-w>= to rebalance
@@ -16,7 +17,7 @@ nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :windcmd =<cr>
 nnoremap <leader><space> :noh<cr>
 " Map F2 to paste mode so that pasting in the terminal doesn't mess identation
-nnoremap <M-V> :set invpaste paste?<CR>
+nnoremap <F11> :set invpaste paste?<CR>
 "Ommit the <C-W> when moving between splits
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -34,8 +35,8 @@ vmap Q gq
 nmap Q gqap
 "yankstack config
 nmap Y y$
-nmap <leader>p <Plug>yankstack_substitute_older_paste
-nmap <leader>V <Plug>yankstack_substitute_newer_paste
+nmap <leader>z <Plug>yankstack_substitute_older_paste
+nmap <leader>c <Plug>yankstack_substitute_newer_paste
 
 " easier better ident in visual
 vnoremap < <gv
@@ -53,7 +54,7 @@ map <leader>f :MRU<CR>
 map <leader>nn :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
 map <leader>w :w!<CR>
-map <space> /
+map <space> /\v
 map <c-space> ?
 map <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
 map <leader>cd :cd %:p:h<CR>:pwd<CR>
@@ -66,7 +67,7 @@ nnoremap <leader>x <esc>:tabclose<CR>
 nnoremap <leader>f :MRU<CR>
 nnoremap <leader>nn :NERDTreeToggle<CR>
 nnoremap <leader>e :NERDTreeFind<CR>
-nnoremap <space> /
+nnoremap <space> /\v
 nnoremap <c-space> ?
 nnoremap <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
@@ -77,16 +78,15 @@ nnoremap : ;
 map <leader>sa zg
 nnoremap <leader>sa za
 " Substitution option for marked word
-map <leader>s? z=
 "python-mode config
-map <leader>d :call RopeGotoDefinition()<CR>
-nnoremap <leader>d :call RopeGotoDefinition()<CR>
-map <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
-map <leader>[ :HeaderDecrease <cr>
-map <leader>] :HeaderIncrease <cr>
-map <leader>/ :TableFormat <cr>
+au Filetype python map <leader>d :call RopeGotoDefinition()<CR>
+au Filetype python nnoremap <leader>d :call RopeGotoDefinition()<CR>
+au Filetype python map <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
+au Filetype python nnoremap <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
+au Filetype markdown map <leader>[ :HeaderDecrease <cr>
+au Filetype markdown map <leader>] :HeaderIncrease <cr>
+au Filetype markdown map <leader>/ :TableFormat <cr>
 nnoremap <leader>we :tabe ~/Documents/notes/index.md <cr>
-nnoremap <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
 " " Escape: exit autocompletion, go to Normal mode
 inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"
 
@@ -97,3 +97,6 @@ au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gd <Plug>(rust-def-vertical)
 au FileType rust nmap gt <Plug>(rust-def-tab)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+nmap <leader><tab> :tabnext
+nmap <leader><Left> :tabprevious

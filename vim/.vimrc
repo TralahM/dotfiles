@@ -4,6 +4,7 @@
 set nocompatible
 set encoding=utf-8
 set nospell
+set inccommand=nosplit
 syntax on
 filetype on
 filetype indent plugin on    " required
@@ -46,6 +47,7 @@ Plug 'fatih/vim-go',{'for':'go'}
 Plug 'fisadev/vim-ctrlp-cmdpalette'
 " Plug 'fszymanski/deoplete-emoji'
 Plug 'garbas/vim-snipmate'
+Plug 'gcorne/vim-sass-lint'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
 Plug 'godlygeek/tabular'
@@ -222,6 +224,7 @@ autocmd BufNewFile,BufRead *.ipy set filetype=python
 autocmd BufNewFile,BufRead *.pyx set filetype=python
 autocmd BufNewFile,BufRead SConstruct set filetype=python
 autocmd BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd set filetype=markdown
+autocmd BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd UltiSnipsAddFiletypes markdown
 " Color scheme
 syntax enable
 let g:solarized_termcolors=256
@@ -435,7 +438,7 @@ let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_check_on_wq = 0
 let g:syntastic_rst_checkers = ['text/language_check']
 "let g:syntastic_tex_checkers = ['text/language_check']
-let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_checkers = ['pep8']
 "js syntax folding
 augroup javascript_folding
     au!
