@@ -5,7 +5,7 @@ __IMPORTANT:__ Please take note of the below checklist, especially the first two
 
 - [ ] All pull requests must include the Contributor License Agreement (see below).
 - [ ] Code should conform to the following:
-    - [ ] pep8 compliant with some exceptions (see pytest.ini)
+    - [ ] PEP8 compliant with some exceptions (see pytest.ini)
     - [ ] 100% test coverage with pytest (with valid tests). If you have difficulty
       writing tests for the code, feel free to ask for help or submit the PR without tests.
     - [ ] Complete, correctly-formatted documentation for all classes, functions and methods.
