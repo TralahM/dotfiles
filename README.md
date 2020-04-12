@@ -9,7 +9,7 @@
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/Naereen/StrapDown.js.svg)](https://gitHub.com/TralahM/dotfiles/pull/)
 [![GitHub version](https://badge.fury.io/gh/Naereen%2FStrapDown.js.svg)](https://github.com/TralahM/dotfiles).
 
-# dotfiles.
+# DOTFILES.
 ![MyDotfiles](dotfiles.png)
 
 # Description
@@ -19,6 +19,8 @@
 
 # How my terminal Looks Like
 ![Terminal](term2.png)
+
+
 ![Terminal](terminal.png)
 
 # Dependencies
