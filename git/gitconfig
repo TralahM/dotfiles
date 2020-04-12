@@ -1,5 +1,5 @@
 [user]
-	email = musyoki.tralah@students.jkuat.ac.ke
+	email = musyoki.brian@tralahtek.com
 	name = TralahM
 [github]
 	user = TralahM
@@ -14,9 +14,9 @@
     editor = vim
 	fscache = true
 	excludesfile = ~/.gitignore_global
-    pager = less -S
+    pager = less -r
 [push]
-    default = upstream
+    default = current
 [merge]
     tool = vimdiff
 [difftool.latex]
@@ -28,6 +28,11 @@
     lg = log --all --abbrev-commit --decorate --graph --oneline
     st = status
     mt = mergetool
+    sm = submodule
+    sma = submodule add
+    smi = submodule init
+    sms = submodule status
+    smu = submodule update
 [branch]
     autosetupmerge = always
     autosetuprebase = always
@@ -48,3 +53,6 @@
     path = .gitconfig.local
 [credential]
 	helper = store
+
+# __END__
+# vim: filetype=gitconfig
