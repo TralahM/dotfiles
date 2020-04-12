@@ -2,9 +2,9 @@
 " Taking a modularized approach
 " Quickly Edit My VIMRC
 "vim8
-nmap <leader>A :tabe ~/.vimrc <CR>
+nnoremap <leader>;a :tabedit ~/.vimrc <CR>
 "Neovim
-nmap <leader>S :tabe $MYVIMRC <CR>
+nnoremap <leader>;s :tabedit $MYVIMRC <CR>
 " Enforcing Purity
 noremap <Up> <Nop>
 noremap <Down> <Nop>
@@ -14,7 +14,7 @@ noremap <Right> <Nop>
 nmap <leader>1 :!chmod +x % <CR>
 
 " Improve regex handling
-map / /\v
+nmap / /\v
 nnoremap / /\v
 vnoremap / /\v
 " zoom a vim pane, <C-w>= to rebalance
