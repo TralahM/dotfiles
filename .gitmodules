@@ -22,3 +22,6 @@
 [submodule "vifm/colors"]
 	path = vifm/colors
 	url = https://github.com/vifm/vifm-colors
+[submodule "heroku_buildpacks"]
+	path = heroku_buildpacks
+	url = git@github.com:TralahM/heroku_buildpacks.git
