@@ -5,7 +5,7 @@ export DEFAULT_USER="$(whoami)"
 
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_241/
 [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/data/data/com.termux/files/usr/share/terminfo
 if [[ -e ~/.localenv ]];then
     source ~/.localenv
@@ -91,6 +91,7 @@ export LESS_TERMCAP_mh=$(tput dim)
 
 export PATH=/home/african/.local/bin:$PATH
 export PATH=/usr/local/go/bin:$PATH
+export PATH=$JAVA_HOME/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/go/lib:$LD_LIBRARY_PATH
 
 POWERLEVEL9K_MODE='nerdfont-complete'
