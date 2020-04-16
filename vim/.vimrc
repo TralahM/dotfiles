@@ -3,9 +3,8 @@
 " Automatically download and install vim-plug if it's not installed
 set nocompatible
 set encoding=utf-8
-set dictionary+=~/words
-set complete+=k
 set nospell
+set inccommand=nosplit
 syntax on
 filetype on
 filetype indent plugin on    " required
@@ -31,38 +30,39 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'SirVer/ultisnips'
 Plug 'TralahM/Efficient-python-folding',{'for':'python'}
 Plug 'airblade/vim-gitgutter'
-Plug 'altercation/vim-colors-solarized'
 Plug 'alvan/vim-closetag'
-Plug 'amix/open_file_under_cursor.vim'
 Plug 'ap/vim-css-color'
 Plug 'bfrg/vim-jq',{'for':'json'}
 Plug 'bfrg/vim-jqplay',{'for':'json'}
+Plug 'bps/vim-textobj-python',{'for':'python'}
 Plug 'chrisbra/csv.vim',{'for':'csv'}
+Plug 'coachshea/vim-textobj-markdown',{'for':'markdown'}
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'dense-analysis/ale'
 Plug 'deoplete-plugins/deoplete-zsh'
 Plug 'ehamberg/vim-cute-python',{'for':'python'}
 Plug 'enricobacis/vim-airline-clock'
 Plug 'euclio/vim-markdown-composer',{'for':'markdown'}
 Plug 'fatih/vim-go',{'for':'go'}
-Plug 'fisadev/vim-ctrlp-cmdpalette'
-" Plug 'fszymanski/deoplete-emoji'
 Plug 'garbas/vim-snipmate'
+Plug 'gcorne/vim-sass-lint'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
 Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'
-Plug 'itchyny/lightline.vim'
 Plug 'jceb/vim-orgmode'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jkramer/vim-checkbox',{'for':'markdown'}
 Plug 'jmcantrell/vim-virtualenv',{'for':'python'}
-Plug 'jreybert/vimagit'
 Plug 'junegunn/fzf',{'dir':'~/.fzf','do':'./install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-emoji'
 Plug 'justinmk/vim-sneak'
 Plug 'kalekundert/vim-coiled-snake'
+Plug 'kana/vim-textobj-entire'
+Plug 'kana/vim-textobj-function'
+Plug 'kana/vim-textobj-datetime'
+Plug 'kana/vim-textobj-lastpat'
+Plug 'kana/vim-textobj-user'
 Plug 'leafoftree/vim-vue-plugin', {'for':'javascript'}
 Plug 'lervag/vimtex',{'for':'markdown'}
 Plug 'lighttiger2505/deoplete-vim-lsp'
@@ -73,6 +73,7 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'mileszs/ack.vim'
+Plug 'mjbrownie/django-template-textobjects'
 Plug 'mxw/vim-jsx',{'for':'javascript'}
 Plug 'nanotech/jellybeans.vim'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -92,6 +93,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'sebastianmarkow/deoplete-rust'
+Plug 'sgur/vim-textobj-parameter'
 Plug 'tell-k/vim-autopep8',{'for':'python'}
 Plug 'terryma/vim-multiple-cursors'
 Plug 'terryma/vim-smooth-scroll'
@@ -104,6 +106,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-heroku'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-speeddating'
@@ -224,6 +227,7 @@ autocmd BufNewFile,BufRead *.ipy set filetype=python
 autocmd BufNewFile,BufRead *.pyx set filetype=python
 autocmd BufNewFile,BufRead SConstruct set filetype=python
 autocmd BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd set filetype=markdown
+autocmd BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd UltiSnipsAddFiletypes markdown
 " Color scheme
 syntax enable
 let g:solarized_termcolors=256
@@ -306,19 +310,20 @@ endfunction
 " PLUGIN CONFIGURATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" vim-indent-guides conf
 let g:indent_guides_enable_on_vim_startup=1
+
 " Deoplete Conf
+" " deoplete completion
 let g:deoplete#sources = {}
 let g:deoplete#enable_at_startup=1
 let g:deoplete#sources.gitcommit=['github']
 let g:deoplete#keyword_patterns = {}
 " let g:deoplete#omni#input_patterns = {}
 let g:deoplete#keyword_patterns.gitcommit = '.+'
-
-" call deoplete#util#set_pattern(
-"   \ g:deoplete#omni#input_patterns,
-"   \ 'gitcommit', [g:deoplete#keyword_patterns.gitcommit])
-
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#enable_typeinfo = 0
+let g:deoplete#sources#jedi#ignore_errors=1
 
 
 "yankstack config
@@ -339,7 +344,7 @@ let g:pymode_rope_autoimport = 1
 let g:pymode_rope_autoimport_modules = ['os', 'datetime']
 let g:pymode_rope_goto_definition_cmd="tab"
 
-let g:pymode_rope_organize_imports_bind = '<leader>ro'
+let g:pymode_rope_organize_imports_bind = '<leader>ri'
 let g:pymode_rope_autoimport_bind = '<leader>ra'
 
 let g:pymode_rope_extended_complete=0
@@ -347,11 +352,11 @@ let g:pymode_breakpoint=1
 let g:pymode_syntax=1
 let g:pymode_syntax_all = 1
 let g:pymode_syntax_builtin_objs=0
-let g:pymode_syntax_builtin_funcs=1
+let g:pymode_syntax_builtin_funcs=0
 let g:pymode_lint_checkers = ['pep8',]
 
-"CTRLP config
 
+"CTRLP config
 " The Silver Searcher
 if executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor
@@ -366,9 +371,10 @@ let g:ctrlp_working_path_mode='ra'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_user_command = 'find %s -type f'
 
-" use python folding style for markdown.
+
 "
 " vim-Markdown customizations
+" use python folding style for markdown.
 let g:vim_markdown_folding_style_pythonic=1
 let g:vim_markdown_follow_anchor=1
 " Turn on latex math syntax
@@ -380,17 +386,20 @@ let g:vim_markdown_strikethrough=1
 let g:vim_markdown_no_extensions_in_markdown=1
 let g:vim_markdown_autowrite=1
 let g:vim_markdown_edit_url_in="hsplit"
-let g:vim_markdown_new_list_item_indent=0
+let g:vim_markdown_new_list_item_indent=1
 
 
-" nerdcommenter
+" Nerdcommenter
 filetype plugin indent on
+" NerdTree
+let NERDTreeShowLineNumbers=1
+autocmd Filetype nerdtree setlocal relativenumber number
 
 " Load my custom functions and keymappings
 source ~/.vim/autoload/load_customs.vim
 
-" airline powerline statusline
 "
+" AIRLINE POWERLINE STATUSLINE
 let g:airline_detect_modified=1
 let g:airline_theme='papercolor'
 " let g:airline_statusline_on_top=1
@@ -405,7 +414,6 @@ let g:airline_powerline_fonts=1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'jsformatter'
-let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#languageclient#enabled = 1
 let g:airline#extensions#promptline#enabled = 1
 " let g:airline#extensions#default#enabled = 1
@@ -416,29 +424,39 @@ let g:airline#extensions#unicode#enabled = 1
 let g:airline#extensions#fugitive#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 
-" vimtex
+
+
+" VIMTEX
 let g:vimtex_enabled=1
 let g:vimtex_complete_enabled=1
 let g:vimtex_complete_close_braces=1
 let g:vimtex_compiler_progname='nvr'
 
-" braceless.vim
+" BRACELESS.VIM
 autocmd filetype python BracelessEnable +indent +highlight
 
-" " deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#jedi#enable_typeinfo = 0
-let g:deoplete#sources#jedi#ignore_errors=1
-
-" syntastic
+" SYNTASTIC SETTING
 let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
 let g:syntastic_rst_checkers = ['text/language_check']
-"let g:syntastic_tex_checkers = ['text/language_check']
-let g:syntastic_python_checkers = ['flake8']
-"js syntax folding
+let g:syntastic_tex_checkers = ['text/language_check']
+let g:syntastic_python_checkers = ['pep8']
+
+
+" VIM-TEXTOBJ-MARKDOWN BUFFER CONFIGS
+" To resolve possible conflict with vim-textobj-function
+augroup markdown_textobjs
+    au!
+    au filetype markdown omap <buffer> af <plug>(textobj-markdown-chunk-a)
+    au filetype markdown omap <buffer> if <plug>(textobj-markdown-chunk-i)
+    au filetype markdown omap <buffer> aF <plug>(textobj-markdown-Bchunk-a)
+    au filetype markdown omap <buffer> iF <plug>(textobj-markdown-Bchunk-i)
+augroup END
+
+
+"JS SYNTAX FOLDING
 augroup javascript_folding
     au!
     au filetype javascript setlocal foldmethod=syntax
@@ -455,58 +473,50 @@ let g:javascript_conceal_super = "Ω"
 let g:javascript_conceal_arrow_function = "⇒"
 let g:javascript_conceal_noarg_arrow_function = "🞅"
 let g:javascript_conceal_underscore_arrow_function = "🞅"
-set conceallevel =3
+set conceallevel =2
 
-" vimtex config for tex files
+
+" VIMTEX CONFIG FOR TEX FILES
 let g:tex_flavour='latex'
 
 
-" filenames like *.xml, *.html, *.xhtml, ...
+" FILENAMES LIKE *.XML, *.HTML, *.XHTML, ...
 " " These are the file extensions where this plugin is enabled.
 " "
+" " This will make the list of non-closing tags self-closing in the specified files.
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,.*.xml,*.jsx'
-"
-" " filenames like *.xml, *.xhtml, ...
-" " This will make the list of non-closing tags self-closing in the specified files.
-" "
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
-"
-" " filetypes like xml, html, xhtml, ...
-" " These are the file types where this plugin is enabled.
-" "
 let g:closetag_filetypes = 'html,xhtml,phtml,jsx'
-"
-" " filetypes like xml, xhtml, ...
-" " This will make the list of non-closing tags self-closing in the specified files.
-" "
+" This will make the list of non-closing tags self-closing in the specified files.
 let g:closetag_xhtml_filetypes = 'xhtml,jsx'
-"
-" " integer value [0|1]
-" " This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be
-" closed while `<link>` won't.)
-" "
 let g:closetag_emptyTags_caseSensitive = 1
-"
 " " Shortcut for closing tags, default is '>'
-" "
 let g:closetag_shortcut = '>'
-"
 " " Add > at current position without closing the current tag, default is ''
-" "
 let g:closetag_close_shortcut = '<leader>>'
 
+
+" Autopep8 conf
 let g:autopep8_disable_show_diff=1
 let g:autopep8_on_save = 1
-let g:over_enable_auto_nohlsearch=1
+
+
+" Vim-overe conf
+let g:over_enable_auto_nohlsearch=0
 let g:over_enable_cmd_window=1
 let g:over_command_line_prompt=">"
+
+
 
 " " Ultisnips Config
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+
 " command! MakeTags !ctags -R -a *.*
 " autocmd! bufwritepost * MakeTags
+
 
 " Markdown Composer options
 " Do not attempt to open the browser automatically i'll do it manually
@@ -519,7 +529,7 @@ let g:livepreview_previewer='mupdf'
 " Enable snipMate compatibility feature.
 let g:neosnippet#enable_snipmate_compatibility = 1
 
-" Vim tex conf
+" VIM TEX CONF
 let g:tex_flavor='latex'
 let g:matchup_override_vimtex = 1
 let g:vimtex_fold_enabled =1
@@ -530,7 +540,8 @@ let g:rustfmt_autosave=1
 let g:racer_insert_paren=1
 let g:racer_experimental_completer=1
 
-" Emmet Config
+
+" EMMET CONFIG
 let g:user_emmet_leader_key='<tab>'
 let g:user_emmet_settings={
             \'php':{'extends':'html','filters':'c'},
@@ -538,14 +549,15 @@ let g:user_emmet_settings={
             \'haml':{'extends':'html'},
                 \}
 
-" Rainbow parentheses
+" RAINBOW PARENTHESES
 let g:rainbow_active=1
+
+
+" FUZZYFIILE CONF
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
-
 " [[B]Commits] Customize the options used by 'git log':
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-
 " [Tags] Command to generate tags file
 let g:fzf_tags_command = 'ctags -R'
 
