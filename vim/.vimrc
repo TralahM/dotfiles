@@ -5,6 +5,8 @@ set nocompatible
 set encoding=utf-8
 set nospell
 set inccommand=nosplit
+set dictionary+=~/words
+set complete+=k
 syntax on
 filetype on
 filetype indent plugin on    " required
