@@ -174,7 +174,7 @@ autocmd! bufwritepost .vimrc source %
 autocmd bufwritepre hosts setl filetype=dosini
 autocmd bufread hosts setl filetype=dosini
 set autoindent
-set clipboard=unnamed
+set clipboard=unnamedplus
 " set cursorline
 set modelines=1
 set nocompatible
@@ -339,7 +339,7 @@ let ropevim_enable_shortcuts = 1
 let g:pymode_rope_lookup_project=0
 let g:pymode_doc = 1
 let g:pymode_doc_bind = '<leader>i'
-" let g:pymode_rope=0
+let g:pymode_rope=0
 let g:pymode_rope_completion = 0
 let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_autoimport = 1
