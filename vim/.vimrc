@@ -230,6 +230,7 @@ autocmd BufNewFile,BufRead *.pyx set filetype=python
 autocmd BufNewFile,BufRead SConstruct set filetype=python
 autocmd BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd set filetype=markdown
 autocmd BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd UltiSnipsAddFiletypes markdown
+autocmd BufNewFile,BufRead *.yml,*.yaml setlocal ts=2
 " Color scheme
 syntax enable
 let g:solarized_termcolors=256
