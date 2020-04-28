@@ -2,7 +2,8 @@
 " Taking a modularized approach
 " Quickly Edit My VIMRC
 " VIM8
-nnoremap <leader>sa :tabedit ~/.vimrc <CR>
+nnoremap <leader>sd :tabedit ~/.vimrc <CR>
+
 "Neovim
 nnoremap <leader>sv :tabedit $MYVIMRC <CR>
 
