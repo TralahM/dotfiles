@@ -6,6 +6,7 @@ export DEFAULT_USER="$(whoami)"
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10
 export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_241/
+unset JAVA_OPTS
 [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/data/data/com.termux/files/usr/share/terminfo
 if [[ -e ~/.localenv ]];then
     source ~/.localenv
@@ -172,7 +173,7 @@ export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 # export PYTHONPATH=/home/anaconda3/lib/python3.6:/home/anaconda3/lib/python3.7:/usr/lib/python3.7:/usr/lib/python3.6:/usr/lib/python3.6:
 export G_ML_API=AIzaSyDrAjzK8u-_Y0_YJmY7Yk1K6N_q1p8Bd8w
-alias ls="ls --color=auto "
+alias ls="ls --color=auto -t"
 #
 # start a tmux session
 
