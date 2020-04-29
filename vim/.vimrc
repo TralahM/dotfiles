@@ -4,7 +4,7 @@
 set nocompatible
 set encoding=utf-8
 set nospell
-set inccommand=nosplit
+" set inccommand=nosplit
 set dictionary+=~/words
 set complete+=k
 syntax on
@@ -174,10 +174,9 @@ autocmd! bufwritepost .vimrc source %
 autocmd bufwritepre hosts setl filetype=dosini
 autocmd bufread hosts setl filetype=dosini
 set autoindent
-set clipboard=unnamedplus
+set clipboard=unnamed
 " set cursorline
-set modelines=1
-set nocompatible
+set modelines=2
 set wrap
 set linebreak
 set nolist " disables libebreak"
@@ -192,7 +191,8 @@ vnoremap > >gv
 
 vnoremap <leader>s :sort <CR>
 " Remove the underline from enabling cursorline
-highlight Cursorline cterm=none
+highlight Cursorline cterm=bold ctermbg=green ctermfg=white
+highlight ColorColumn ctermbg=black
 " Set line numbering to red background:
 highlight CursorLineNR cterm=bold ctermbg=green ctermfg=white
 set ruler
@@ -210,13 +210,12 @@ set noswapfile
 " Set identation to 4 spaces
 set noai ts=4 sw=4 expandtab
 " Set an 80 char column
-set textwidth=0
-set wrapmargin=0
+set textwidth=89
+set wrapmargin=89
 " read and write changes automatically
 set autoread
 set autowrite
-set colorcolumn=81
-highlight ColorColumn ctermbg=black
+set colorcolumn=90
 " Line numbers
 set number
 highlight LineNr ctermfg=white
@@ -229,6 +228,7 @@ autocmd BufNewFile,BufRead *.ipy set filetype=python
 autocmd BufNewFile,BufRead *.pyx set filetype=python
 autocmd BufNewFile,BufRead SConstruct set filetype=python
 autocmd BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd set filetype=markdown
+autocmd BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd setlocal foldmethod=syntax
 autocmd BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd UltiSnipsAddFiletypes markdown
 autocmd BufNewFile,BufRead *.yml,*.yaml setlocal ts=2
 " Color scheme
@@ -248,13 +248,12 @@ let g:UltiSnipsEditSplit="vertical"
 colorscheme delek
 let g:solarized_contrast="high"
 highlight clear SpellBad
-highlight SpellBad cterm=underline,bold ctermbg=none ctermfg=red
+highlight SpellBad cterm=underline,bold ctermbg=white ctermfg=red
 " Remove trailing spaces on save
 autocmd BufWritePre * :%s/\s\+$//e
 " Git commits
 autocmd Filetype gitcommit setlocal spell textwidth=100
 set pastetoggle=<M-v>
-set showmode
 " Disable folding. It's really annoying and I never remeber the commands.
 set nofoldenable
 set laststatus=2
@@ -406,10 +405,6 @@ source ~/.vim/autoload/load_customs.vim
 let g:airline_detect_modified=1
 let g:airline_theme='papercolor'
 " let g:airline_statusline_on_top=1
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-set statusline+=%{FugitiveStatusline()}
 let g:airline_detect_paste=1
 let g:airline_powerline_fonts=1
 " let g:airline_left_sep = ' '
@@ -419,13 +414,17 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'jsformatter'
 let g:airline#extensions#languageclient#enabled = 1
 let g:airline#extensions#promptline#enabled = 1
-" let g:airline#extensions#default#enabled = 1
+let g:airline#extensions#default#enabled = 1
 let g:airline#extensions#bufferline#enabled = 1
 " let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#fugitiveline#enabled = 1
 let g:airline#extensions#unicode#enabled = 1
 let g:airline#extensions#fugitive#enabled = 1
 let g:airline#extensions#branch#enabled = 1
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+set statusline+=%{FugitiveStatusline()}
 
 
 
@@ -440,7 +439,7 @@ autocmd filetype python BracelessEnable +indent +highlight
 
 " SYNTASTIC SETTING
 let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
 let g:syntastic_rst_checkers = ['text/language_check']
@@ -513,7 +512,7 @@ let g:over_command_line_prompt=">"
 
 " " Ultisnips Config
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 
@@ -563,7 +562,6 @@ let g:fzf_buffers_jump = 1
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 " [Tags] Command to generate tags file
 let g:fzf_tags_command = 'ctags -R'
-
 
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
