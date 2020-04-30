@@ -8,9 +8,8 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +1 bootstrap.sh
-badd +53 README.md
+badd +1 README.md
 badd +1 term://.//919439:/usr/bin/zsh
-badd +0 term://.//926991:/usr/bin/zsh
 argglobal
 silent! argdel *
 edit README.md
@@ -18,10 +17,6 @@ set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
 1wincmd h
-wincmd w
-wincmd _ | wincmd |
-split
-1wincmd k
 wincmd w
 set nosplitbelow
 set nosplitright
@@ -31,10 +26,7 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 exe 'vert 1resize ' . ((&columns * 90 + 90) / 181)
-exe '2resize ' . ((&lines * 16 + 18) / 36)
 exe 'vert 2resize ' . ((&columns * 90 + 90) / 181)
-exe '3resize ' . ((&lines * 15 + 18) / 36)
-exe 'vert 3resize ' . ((&columns * 90 + 90) / 181)
 argglobal
 setlocal fdm=expr
 setlocal fde=Foldexpr_markdown(v:lnum)
@@ -52,23 +44,6 @@ normal! zt
 normal! 0
 wincmd w
 argglobal
-if bufexists('term://.//926991:/usr/bin/zsh') | buffer term://.//926991:/usr/bin/zsh | else | edit term://.//926991:/usr/bin/zsh | endif
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-let s:l = 1 - ((0 * winheight(0) + 8) / 16)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-1
-normal! 0
-wincmd w
-argglobal
 if bufexists('bootstrap.sh') | buffer bootstrap.sh | else | edit bootstrap.sh | endif
 setlocal fdm=manual
 setlocal fde=0
@@ -79,7 +54,7 @@ setlocal fml=1
 setlocal fdn=20
 setlocal nofen
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 7) / 15)
+let s:l = 1 - ((0 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -88,10 +63,7 @@ normal! 0
 wincmd w
 2wincmd w
 exe 'vert 1resize ' . ((&columns * 90 + 90) / 181)
-exe '2resize ' . ((&lines * 16 + 18) / 36)
 exe 'vert 2resize ' . ((&columns * 90 + 90) / 181)
-exe '3resize ' . ((&lines * 15 + 18) / 36)
-exe 'vert 3resize ' . ((&columns * 90 + 90) / 181)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
