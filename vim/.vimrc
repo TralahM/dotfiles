@@ -22,6 +22,7 @@ call plug#begin('~/.vim/plugged')
 
 " Leader tt toggles checkbox
 Plug 'Inazuma110/deoplete-greek'
+Plug 'thaerkh/vim-workspace'
 Plug 'Konfekt/FastFold'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'MattesGroeger/vim-bookmarks'
