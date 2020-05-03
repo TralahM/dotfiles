@@ -2,6 +2,11 @@ export ZSH=~/.zsh
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export DEFAULT_USER="$(whoami)"
+# Vulkan Graphics Library setup
+export VULKAN_SDK=~/vulkan/1.2.135.0/x86_64
+export PATH=$PATH:$VULKAN_SDK/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$VULKAN_SDK/lib
+export VK_LAYER_PATH=$VULKAN_SDK/etc/vulkan/explicit_layer.d
 
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10
