@@ -4,7 +4,7 @@
 set nocompatible
 set encoding=utf-8
 set nospell
-" set inccommand=nosplit
+set icm=nosplit
 set dictionary+=~/words
 set complete+=k
 syntax on
