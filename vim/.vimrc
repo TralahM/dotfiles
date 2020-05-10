@@ -23,6 +23,7 @@ call plug#begin('~/.vim/plugged')
 " Leader tt toggles checkbox
 Plug 'Inazuma110/deoplete-greek'
 Plug 'thaerkh/vim-workspace'
+Plug 'psf/black', { 'branch': 'stable' }
 Plug 'Konfekt/FastFold'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'MattesGroeger/vim-bookmarks'
@@ -175,7 +176,7 @@ autocmd! bufwritepost .vimrc source %
 autocmd bufwritepre hosts setl filetype=dosini
 autocmd bufread hosts setl filetype=dosini
 set autoindent
-set clipboard=unnamed
+set clipboard+=unnamedplus
 " set cursorline
 set modelines=2
 set wrap
@@ -227,11 +228,12 @@ autocmd BufEnter ?akefile* set noet ts=4 sw=4
 syntax on
 autocmd BufNewFile,BufRead *.ipy set filetype=python
 autocmd BufNewFile,BufRead *.pyx set filetype=python
+autocmd BufWritePre *.py execute ':Black'
 autocmd BufNewFile,BufRead SConstruct set filetype=python
 autocmd BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd set filetype=markdown
 autocmd BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd setlocal foldmethod=syntax
 autocmd BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd UltiSnipsAddFiletypes markdown
-autocmd BufNewFile,BufRead *.yml,*.yaml setlocal ts=2
+autocmd BufNewFile,BufRead *.yml,*.yaml setlocal ts=2 sw=2
 " Color scheme
 syntax enable
 let g:solarized_termcolors=256
