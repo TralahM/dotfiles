@@ -119,3 +119,5 @@ au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 nnoremap <leader><tab> :tabnext <CR>
 nnoremap <leader>` :tabprevious <CR>
+
+nnoremap <C-f> :FuzzyOpen <CR>
