@@ -7,6 +7,7 @@ set nospell
 set icm=nosplit
 set dictionary+=~/words
 set complete+=k
+let uname = substitute(system('uname'), '\n', '', '')
 syntax on
 filetype on
 filetype indent plugin on    " required
@@ -21,8 +22,13 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Leader tt toggles checkbox
+Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' }
+Plug 'cloudhead/neovim-fuzzy'
+Plug 'neomake/neomake'
 Plug 'Inazuma110/deoplete-greek'
 Plug 'thaerkh/vim-workspace'
+Plug 'thaerkh/vim-workspace'
+Plug 'derekwyatt/vim-scala'
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'Konfekt/FastFold'
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -138,17 +144,27 @@ else
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
     Plug 'davidhalter/jedi-vim'
-    Plug 'zxqfl/tabnine-vim'
+    if uname=='Android'
+        " Do Nothing
+    else
+        Plug 'zxqfl/tabnine-vim'
+    endif
 endif
 if has('win32') || has('win64')
-  Plug 'tbodt/deoplete-tabnine', { 'do': 'powershell.exe .\install.ps1' }
+    Plug 'tbodt/deoplete-tabnine', { 'do': 'powershell.exe .\install.ps1' }
 else
-  Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+    if uname=='Android'
+        " Do Nothing
+    else
+    endif
 endif
 
 call plug#end()
 
 " BEGIN CONFIGURATIONS HERE
+"
+" Load my custom functions and keymappings
+source ~/.vim/autoload/load_customs.vim
 " GENERAL CONGIGURATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Some of the following is taken from Steve Losh:
@@ -175,6 +191,8 @@ set wildignore+=*/coverage/*
 autocmd! bufwritepost .vimrc source %
 autocmd bufwritepre hosts setl filetype=dosini
 autocmd bufread hosts setl filetype=dosini
+" Configuration for vim-scala
+au BufRead,BufNewFile *.sbt set filetype=scala
 set autoindent
 set clipboard+=unnamedplus
 " set cursorline
@@ -212,8 +230,8 @@ set noswapfile
 " Set identation to 4 spaces
 set noai ts=4 sw=4 expandtab
 " Set an 80 char column
-set textwidth=89
-set wrapmargin=89
+set textwidth=88
+set wrapmargin=88
 " read and write changes automatically
 set autoread
 set autowrite
@@ -320,16 +338,37 @@ let g:indent_guides_enable_on_vim_startup=1
 
 " Deoplete Conf
 " " deoplete completion
-let g:deoplete#sources = {}
+let g:deoplete#sources={}
+let g:deoplete#sources._ = ['buffer', 'member', 'file', 'omni', 'tag', 'ultisnips']
 let g:deoplete#enable_at_startup=1
 let g:deoplete#sources.gitcommit=['github']
 let g:deoplete#keyword_patterns = {}
-" let g:deoplete#omni#input_patterns = {}
+let g:deoplete#omni#input_patterns = {}
+let g:deoplete#omni#input_patterns.scala='[^. *\t]\.\w*'
 let g:deoplete#keyword_patterns.gitcommit = '.+'
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#jedi#enable_typeinfo = 0
 let g:deoplete#sources#jedi#ignore_errors=1
 
+" Vim-SCala Conf
+let g:scala_scaladoc_indent = 1
+"Linting with neomake
+let g:neomake_sbt_maker = {
+      \ 'exe': 'sbt',
+      \ 'args': ['-Dsbt.log.noformat=true', 'compile'],
+      \ 'append_file': 0,
+      \ 'auto_enabled': 1,
+      \ 'output_stream': 'stdout',
+      \ 'errorformat':
+          \ '%E[%trror]\ %f:%l:\ %m,' .
+            \ '%-Z[error]\ %p^,' .
+            \ '%-C%.%#,' .
+            \ '%-G%.%#'
+     \ }
+let g:neomake_enabled_makers = ['sbt', 'make']
+let g:neomake_verbose=3
+" Neomake on text change
+autocmd InsertLeave,TextChanged *.scala,*.sbt update | Neomake! sbt
 
 "yankstack config
 call yankstack#setup()
@@ -370,11 +409,9 @@ if executable('ag')
 endif
 
 let g:ctrlp_max_height=7
-let g:ctrlp_map='<C-f>'
 let g:ctrlp_cmd='CtrlP'
 let g:ctrlp_working_path_mode='ra'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_user_command = 'find %s -type f'
 
 
 "
@@ -400,8 +437,6 @@ filetype plugin indent on
 let NERDTreeShowLineNumbers=1
 autocmd Filetype nerdtree setlocal relativenumber number
 
-" Load my custom functions and keymappings
-source ~/.vim/autoload/load_customs.vim
 
 "
 " AIRLINE POWERLINE STATUSLINE
