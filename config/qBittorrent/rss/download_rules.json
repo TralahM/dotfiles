@@ -1,0 +1,16 @@
+{
+    "rss.xml": {
+        "addPaused": null,
+        "affectedFeeds": [
+        ],
+        "assignedCategory": "",
+        "enabled": true,
+        "episodeFilter": "",
+        "ignoreDays": 0,
+        "lastMatch": "",
+        "mustContain": "",
+        "mustNotContain": "",
+        "savePath": "",
+        "useRegex": false
+    }
+}

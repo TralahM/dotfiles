@@ -1,0 +1,89 @@
+Height 640=451
+Height 768=455
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAwAAAAAAAABvAAABifwCAAAAAvsAAAAWAGYAbwBsAGQAZQByAHMARABvAGMAawAAAAAA/////wAAAAoBAAAD+wAAABQAcABsAGEAYwBlAHMARABvAGMAawEAAAA6AAABiQAAAFoBAAADAAAAAQAAAAAAAAAA/AIAAAAB+wAAABAAaQBuAGYAbwBEAG8AYwBrAAAAAAD/////AAAACgEAAAMAAAADAAAAAAAAAAD8AQAAAAH7AAAAGAB0AGUAcgBtAGkAbgBhAGwARABvAGMAawAAAAAA/////wAAAAoBAAADAAACVwAAAYkAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAACAAAAAQAAABYAbQBhAGkAbgBUAG8AbwBsAEIAYQByAQAAAAD/////AAAAAAAAAAA=
+Width 1138=711
+Width 1366=699
+
+[AdditionalInfoDialog]
+Height 768=290
+Width 1366=278
+
+[CompactMode]
+FontFamily=Hack Nerd Font Mono
+FontSize=9
+FontWeight=50
+IconSize=32
+PreviewSize=32
+UseSystemFont=false
+
+[DetailsMode]
+FontFamily=Hack Nerd Font Mono
+FontSize=9
+FontWeight=50
+PreviewSize=22
+UseSystemFont=false
+
+[DownloadDialog Settings]
+Height 640=426
+Width 1138=700
+
+[General]
+ConfirmClosingMultipleTabs=false
+HomeUrl=/home/african/Desktop
+ShowCopyMoveMenu=true
+ShowZoomSlider=false
+SortingChoice=CaseInsensitiveSorting
+Version=200
+ViewPropsTimestamp=2018,10,28,0,36,1
+
+[IconsMode]
+FontFamily=Hack Nerd Font Mono
+FontSize=9
+FontWeight=50
+IconSize=32
+MaximumTextLines=2
+PreviewSize=32
+UseSystemFont=false
+
+[KPropertiesDialog]
+Height 640=427
+Height 768=465
+Width 1138=276
+Width 1366=420
+
+[MainWindow]
+Height 1080=459
+Height 640=476
+Height 768=453
+Height 900=451
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAwAAAAAAAACIAAABovwCAAAAAvsAAAAWAGYAbwBsAGQAZQByAHMARABvAGMAawAAAAAA/////wAAAAoBAAAD+wAAABQAcABsAGEAYwBlAHMARABvAGMAawEAAAA6AAABogAAAFoBAAADAAAAAQAAAAAAAAAA/AIAAAAB+wAAABAAaQBuAGYAbwBEAG8AYwBrAAAAAAD/////AAAACgEAAAMAAAADAAAAAAAAAAD8AQAAAAH7AAAAGAB0AGUAcgBtAGkAbgBhAGwARABvAGMAawAAAAAA/////wAAAAoBAAADAAACqwAAAaIAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAACAAAAAQAAABYAbQBhAGkAbgBUAG8AbwBsAEIAYQByAQAAAAD/////AAAAAAAAAAA=
+ToolBarsMovable=Disabled
+Width 1138=820
+Width 1366=854
+Width 1600=640
+Width 1920=856
+
+[Notification Messages]
+ConfirmDelete=true
+ConfirmEmptyTrash=true
+ShowVcsRestartInformation=false
+
+[Open-with settings]
+CompletionMode=1
+History=neov,fire,kate,kle,gwe,kod,gw,vlc,firefo,kde,cle,CLE,mal,can,cant
+
+[PreviewSettings]
+Plugins=htmlthumbnail,imagethumbnail,jpegthumbnail,gsthumbnail,rawthumbnail,svgthumbnail,textthumbnail,ffmpegthumbs
+
+[SettingsDialog]
+Height 640=465
+Width 1138=512
+
+[VersionControl]
+enabledPlugins=Git
+
+[ViewPropertiesDialog]
+Height 768=476
+Width 1366=360

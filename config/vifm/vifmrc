@@ -1,0 +1,36 @@
+colorscheme lucius
+:nnoremap ; :
+set statusline="  %t%= %A %10u:%-7g %15E %20d  "
+fileviewer *.tar,*.tar.gz tar -tvf %c
+fileviewer *.pdf xpdf %c
+fileviewer
+\ *.mp3,*.flac,*.ogg,*.mp4,*.mkv,*.webm,*.avi,*.mpg,*.ogv,*.m4a,*.mov,*.wav,*.VOB
+\  ffplay %c
+" Yank Current Directory into clipboard
+nnoremap yd :!echo %d | xclip %i<cr>
+" Open file in background using its default program
+nnoremap gb :file &<cr>l
+set vicmd=nvim
+set number
+set relativenumber
+set trash
+set norunexec
+set ignorecase
+set incsearch
+mark h ~/
+mark d ~/Downloads/
+mark c ~/.config/vifm/
+mark t /media/storage/
+mark z /media/store/
+mark p ~/Pictures/
+mark v ~/Videos/
+mark q ~/dwhelper/
+mark f ~/Desktop/
+mark b ~/Desktop/Books/
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+         \ imgt %px %py %pw %ph %c
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+         \ imgt %px %py %pw %ph %c
+         \ %pc
+         \ imgc %px %py %pw %ph
+
