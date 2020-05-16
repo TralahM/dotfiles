@@ -68,6 +68,11 @@ if [[ -d ~/bin ]]; then
     source ~/bin/tmux-completion/tmux
 fi
 
+if [[ -d ~/.rbenv ]]; then
+    export PATH=$PATH:~/.rbenv/bin
+fi
+eval "$(rbenv init -)"
+
 if [[ -d ~/.cargo/bin/ ]]; then
     export PATH=~/.cargo/bin/:$PATH
 fi
@@ -126,7 +131,7 @@ alias gphm="git push heroku master"
 alias grs="git remote set-url "
 alias cls="clear"
 alias pubip="curl icanhazip.com"
-alias vim="nvim --startuptime stime"
+alias vim="nvim --startuptime ~/stime"
 alias vf="vifm"
 alias hli="heroku login -i"
 alias herokulogs="heroku logs -t"
@@ -219,10 +224,9 @@ source "$HOME/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 ### End of Zplugin installer's chunk
-zplugin light iboyperson/pipenv-zsh
-zplugin light oldratlee/hacker-quotes
 zplugin light webyneter/docker-aliases
 zplugin light dbkaplun/smart-cd
+zplugin light oldratlee/hacker-quotes
 
 fpath=(~/.zsh/completions $fpath)
 autoload -U compinit && compinit
