@@ -9,6 +9,7 @@
     status = auto
     branch = auto
     interactive = auto
+    blame = true
     grep = auto
 [core]
     editor = vim
@@ -25,9 +26,11 @@
     ldiff = difftool -y -t latex
     ci = commit
     co = checkout
+    cob = checkout -b
     lg = log --all --abbrev-commit --decorate --graph --oneline
     st = status
     mt = mergetool
+    shw = show
     sm = submodule
     sma = submodule add
     smi = submodule init
