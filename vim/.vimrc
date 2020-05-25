@@ -382,17 +382,17 @@ let g:yankstack_yank_keys = ['y', 'd']
 
 "python-mode config
 let g:pymode_run = 1
-let g:pymode_run_bind = '<leader>r'
-let ropevim_enable_shortcuts = 1
+" let g:pymode_run_bind = '<leader>r'
+let g:ropevim_enable_shortcuts = 1
 let g:pymode_rope_lookup_project=0
-let g:pymode_doc = 1
+let g:pymode_doc = 0
 let g:pymode_doc_bind = '<leader>i'
 let g:pymode_rope=0
 let g:pymode_rope_completion = 0
 let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_autoimport = 1
 let g:pymode_rope_autoimport_modules = ['os', 'datetime']
-let g:pymode_rope_goto_definition_cmd="tab"
+let g:pymode_rope_goto_definition_cmd="gd"
 
 let g:pymode_rope_organize_imports_bind = '<leader>ri'
 let g:pymode_rope_autoimport_bind = '<leader>ra'
@@ -403,7 +403,7 @@ let g:pymode_syntax=1
 let g:pymode_syntax_all = 1
 let g:pymode_syntax_builtin_objs=0
 let g:pymode_syntax_builtin_funcs=0
-let g:pymode_lint_checkers = ['pep8',]
+let g:pymode_lint_checkers = ['flake8',]
 
 
 "CTRLP config
@@ -488,7 +488,7 @@ let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_wq = 0
 let g:syntastic_rst_checkers = ['text/language_check']
 let g:syntastic_tex_checkers = ['text/language_check']
-let g:syntastic_python_checkers = ['pep8']
+let g:syntastic_python_checkers = ['flake8']
 
 
 " VIM-TEXTOBJ-MARKDOWN BUFFER CONFIGS
