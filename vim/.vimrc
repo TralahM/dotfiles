@@ -253,7 +253,8 @@ autocmd BufNewFile,BufRead *.ipy set filetype=python
 autocmd BufNewFile,BufRead *.pyx set filetype=python
 autocmd BufWritePre *.py execute ':Black'
 autocmd BufNewFile,BufRead SConstruct set filetype=python
-autocmd BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd set filetype=markdown
+autocmd BufNewFile,BufRead *.py,*.pyx,SConstruct UltiSnipsAddFiletypes python
+autocmd BufNewFile,BufRead,BufWritePre *.md,*.markdown,*.mkdown,*.mkdn,*.mkd setlocal filetype=markdown
 autocmd BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd setlocal foldmethod=syntax
 autocmd BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd UltiSnipsAddFiletypes markdown
 autocmd BufNewFile,BufRead *.yml,*.yaml setlocal ts=2 sw=2
