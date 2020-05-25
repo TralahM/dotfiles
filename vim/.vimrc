@@ -59,7 +59,7 @@ Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
 Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'
-Plug 'jceb/vim-orgmode'
+Plug 'jceb/vim-orgmode',{'for':'org'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'jkramer/vim-checkbox',{'for':'markdown'}
 Plug 'jmcantrell/vim-virtualenv',{'for':'python'}
