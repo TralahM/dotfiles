@@ -173,8 +173,8 @@ source ~/.vim/autoload/load_customs.vim
 " Basic Internal Configurations
 set undofile
 set hidden
-set nobackup
-set nowritebackup
+" set nobackup
+set writebackup
 set cmdheight=2
 set updatetime=300
 set shortmess+=c
