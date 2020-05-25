@@ -2,6 +2,8 @@ export ZSH=~/.zsh
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export DEFAULT_USER="$(whoami)"
+export GREP_COLORS='ms=01;32;49'
+export GREP_OPTIONS='--color=always'
 # Vulkan Graphics Library setup
 export VULKAN_SDK=~/vulkan/1.2.135.0/x86_64
 export PATH=$PATH:$VULKAN_SDK/bin
