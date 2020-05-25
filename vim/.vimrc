@@ -345,9 +345,9 @@ let g:indent_guides_enable_on_vim_startup=1
 " Deoplete Conf
 " " deoplete completion
 let g:deoplete#sources={}
-let g:deoplete#sources._ = ['buffer', 'member', 'file', 'omni', 'tag', 'ultisnips']
+let g:deoplete#sources._ = ['buffer', 'member', 'file', 'omni', 'tag', 'ultisnips','around']
 let g:deoplete#enable_at_startup=1
-let g:deoplete#sources.gitcommit=['github']
+let g:deoplete#sources.gitcommit=[]
 let g:deoplete#keyword_patterns = {}
 let g:deoplete#omni#input_patterns = {}
 let g:deoplete#omni#input_patterns.scala='[^. *\t]\.\w*'
