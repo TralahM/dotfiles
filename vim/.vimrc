@@ -195,12 +195,16 @@ autocmd bufread hosts setl filetype=dosini
 " Configuration for vim-scala
 au BufRead,BufNewFile *.sbt set filetype=scala
 set autoindent
-set clipboard+=unnamedplus
+if has('nvim')
+    set clipboard+=unnamedplus
+else
+    set clipboard+=unnamed
+endif
 " set cursorline
 set modelines=2
 set wrap
 set linebreak
-set nolist " disables libebreak"
+" set nolist " disables linebreak"
 set showcmd
 set showmode
 set visualbell
