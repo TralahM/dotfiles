@@ -6,7 +6,7 @@ set encoding=utf-8
 set nospell
 set icm=nosplit
 set dictionary+=~/words
-set complete+=k
+" set complete+=k
 let uname = substitute(system('uname'), '\n', '', '')
 syntax on
 filetype on
