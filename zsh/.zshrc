@@ -116,6 +116,8 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source  ~/powerlevel9k/powerlevel9k.zsh-theme
 export SHODAN_API=6sfgFBXP0xZ5CmDwqgtKSNmTGODaac1f
 alias grep="egrep --color "
+alias gadd="git add"
+alias gap="git add -p"
 alias tls="tmux list-sessions"
 alias ta="tmux attach -t"
 alias gpom="git push origin master"
