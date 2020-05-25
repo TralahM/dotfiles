@@ -227,6 +227,22 @@ autoload -Uz _zplugin
 zplugin light webyneter/docker-aliases
 zplugin light dbkaplun/smart-cd
 zplugin light oldratlee/hacker-quotes
+zplugin light "chrissicool/zsh-256color"
+zplugin light "olets/zsh-abbr"
+zplugin light marlonrichert/zsh-autocomplete
+zplugin light Tarrasch/zsh-bd
+zplugin light "arzzen/calc.plugin.zsh"
+zplugin light "momo-lab/zsh-abbrev-alias"
+zplugin light mtxr/zsh-change-case
+zplugin light "changyuheng/fz"
+zplugin light "rupa/z"
 
 fpath=(~/.zsh/completions $fpath)
+fpath=(~/.zplugin/completions/_zplugin $fpath)
 autoload -U compinit && compinit
+zplugin light "hlissner/zsh-autopair"
+bindkey '^K^U' _mtxr-to-upper # Ctrl+K + Ctrl+U
+bindkey '^K^L' _mtxr-to-lower # Ctrl+K + Ctrl+L
+
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=/home/african/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
