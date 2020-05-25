@@ -191,16 +191,16 @@ __conda_setup="$('/home/african/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/african/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/african/anaconda3/etc/profile.d/conda.sh"
+    if [ -f ~/anaconda3/etc/profile.d/conda.sh ]; then
+        . ~/anaconda3/etc/profile.d/conda.sh
     else
-        export PATH="/home/african/anaconda3/bin:$PATH"
+        export PATH=~/anaconda3/bin:$PATH
     fi
 fi
 unset __conda_setup
 
 # added by travis gem
-[ -f /home/african/.travis/travis.sh ] && source /home/african/.travis/travis.sh
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 # unset PYTHONPATH
 # export PYTHONHOME=/home/african/anaconda/lib/python3.7:/home/african/anaconda3/bin/python
 # export PYTHONPATH=$PYTHONPATH:$PYTHONHOME:/home/anaconda/lib/python3.7
@@ -237,6 +237,11 @@ zplugin light "rupa/z"
 
 fpath=(~/.zsh/completions $fpath)
 fpath=(~/.zplugin/completions/_zplugin $fpath)
+# initialize autocomplete
+autoload -U compinit add-zsh-hook
+compinit
+
+for config ($ZSH/completion.zsh) source $config;
 autoload -U compinit && compinit
 zplugin light "hlissner/zsh-autopair"
 bindkey '^K^U' _mtxr-to-upper # Ctrl+K + Ctrl+U
