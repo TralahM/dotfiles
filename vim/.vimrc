@@ -156,6 +156,7 @@ else
     if uname=='Android'
         " Do Nothing
     else
+        Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
     endif
 endif
 
