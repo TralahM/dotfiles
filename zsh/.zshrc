@@ -3,10 +3,11 @@ export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export DEFAULT_USER="$(whoami)"
 export GREP_COLORS='ms=01;32;49'
-export GREP_OPTIONS='--color=always'
+# export GREP_OPTIONS='--color=always'
 # Vulkan Graphics Library setup
 export VULKAN_SDK=~/vulkan/1.2.135.0/x86_64
 export PATH=$PATH:$VULKAN_SDK/bin
+export PATH=$PATH:$GOHOME/bin:~/go/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$VULKAN_SDK/lib
 export VK_LAYER_PATH=$VULKAN_SDK/etc/vulkan/explicit_layer.d
 
@@ -18,9 +19,27 @@ unset JAVA_OPTS
 if [[ -e ~/.localenv ]];then
     source ~/.localenv
 fi
+if [[ -e ~/.profile ]];then
+    source ~/.profile
+fi
 if command -v tmux &> /dev/null && [ -z "$TMUX" ];then
     clear;
 fi
+export HADOOP_HOME=/home/hadoop/hadoop-2.7.7
+export HADOOP_INSTALL=$HADOOP_HOME
+export HADOOP_MAPRED_HOME=$HADOOP_HOME
+export HADOOP_COMMON_HOME=$HADOOP_HOME
+export HADOOP_HDFS_HOME=$HADOOP_HOME
+export YARN_HOME=$HADOOP_HOME
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"
+export SPARK_HOME=~/spark-3.0.0-preview2-bin-hadoop2.7
+export PYTHONPATH=$SPARK_HOME/python:$PYTHONPATH
+export PYSPARK_DRIVER_PYTHON="jupyter"
+export PYSPARK_DRIVER_PYTHON_OPTS="notebook"
+export PYSPARK_PYTHON=python3
+export PATH=$SPARK_HOME:$PATH:$JAVA_HOME/jre/bin
 
 # define the code directory
 # This is where my code exists and where I want the `c` autocomplete to work from exclusively
@@ -116,6 +135,8 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source  ~/powerlevel9k/powerlevel9k.zsh-theme
 export SHODAN_API=6sfgFBXP0xZ5CmDwqgtKSNmTGODaac1f
 alias grep="egrep --color "
+alias norg="gron --ungron"
+alias ungron="gron --ungron"
 alias gadd="git add"
 alias gap="git add -p"
 alias tls="tmux list-sessions"
@@ -143,6 +164,8 @@ alias ghrc="gcli repo create "
 alias grao="git remote add origin "
 alias yt="youtube-dl"
 alias scrapy="~/anaconda3/bin/scrapy"
+alias ipy="ipython"
+alias jpynb="jupyter-notebook . &"
 
 # export PYTHONHOME="/usr/bin/python3"
 # export ANDROIDSDK="/home/african/Android/Sdk"
