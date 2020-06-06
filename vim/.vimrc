@@ -4,7 +4,7 @@
 set nocompatible
 set encoding=utf-8
 set nospell
-set icm=nosplit
+" set icm=nosplit
 set dictionary+=~/words
 " set complete+=k
 let uname = substitute(system('uname'), '\n', '', '')
@@ -24,9 +24,9 @@ call plug#begin('~/.vim/plugged')
 " Leader tt toggles checkbox
 Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' }
 Plug 'cloudhead/neovim-fuzzy'
+Plug 'zchee/deoplete-clang'
 Plug 'neomake/neomake'
 Plug 'Inazuma110/deoplete-greek'
-Plug 'thaerkh/vim-workspace'
 Plug 'thaerkh/vim-workspace'
 Plug 'derekwyatt/vim-scala'
 Plug 'psf/black', { 'branch': 'stable' }
@@ -94,7 +94,7 @@ Plug 'pbrisbin/vim-mkdir'
 Plug 'plasticboy/vim-markdown',{'for':'markdown'}
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
-Plug 'python-mode/python-mode',{'for':'python'}
+Plug 'python-mode/python-mode',{'for':'python', 'branch':'develop'}
 Plug 'racer-rust/vim-racer',{'for':'rust'}
 Plug 'rhysd/git-messenger.vim'
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -190,8 +190,8 @@ set wildignore+=*/coverage/*
 
 " autoreloading of the vimrc file.
 autocmd! bufwritepost .vimrc source %
-autocmd bufwritepre hosts setl filetype=dosini
-autocmd bufread hosts setl filetype=dosini
+autocmd! bufwritepre hosts setl filetype=dosini
+autocmd! bufread hosts setl filetype=dosini
 " Configuration for vim-scala
 au BufRead,BufNewFile *.sbt set filetype=scala
 set autoindent
@@ -249,15 +249,15 @@ highlight SignColumn ctermfg=black
 autocmd BufEnter ?akefile* set noet ts=4 sw=4
 " Syntax highlighting
 syntax on
-autocmd BufNewFile,BufRead *.ipy set filetype=python
-autocmd BufNewFile,BufRead *.pyx set filetype=python
-autocmd BufWritePre *.py execute ':Black'
-autocmd BufNewFile,BufRead SConstruct set filetype=python
-autocmd BufNewFile,BufRead *.py,*.pyx,SConstruct UltiSnipsAddFiletypes python
-autocmd BufNewFile,BufRead,BufWritePre *.md,*.markdown,*.mkdown,*.mkdn,*.mkd setlocal filetype=markdown
-autocmd BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd setlocal foldmethod=syntax
-autocmd BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd UltiSnipsAddFiletypes markdown
-autocmd BufNewFile,BufRead *.yml,*.yaml setlocal ts=2 sw=2
+autocmd! BufNewFile,BufRead *.ipy set filetype=python
+autocmd! BufNewFile,BufRead *.pyx set filetype=python
+autocmd! BufWritePre *.py execute ':Black'
+autocmd! BufNewFile,BufRead SConstruct set filetype=python
+autocmd! BufNewFile,BufRead *.py,*.pyx,SConstruct UltiSnipsAddFiletypes python
+autocmd! BufNewFile,BufRead,BufWritePre *.md,*.markdown,*.mkdown,*.mkdn,*.mkd setlocal filetype=markdown
+autocmd! BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd setlocal foldmethod=syntax
+autocmd! BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd UltiSnipsAddFiletypes markdown
+autocmd! BufNewFile,BufRead *.yml,*.yaml setlocal ts=2 sw=2
 " Color scheme
 syntax enable
 let g:solarized_termcolors=256
@@ -277,9 +277,9 @@ let g:solarized_contrast="high"
 highlight clear SpellBad
 highlight SpellBad cterm=underline,bold ctermbg=white ctermfg=red
 " Remove trailing spaces on save
-autocmd BufWritePre * :%s/\s\+$//e
+autocmd! BufWritePre * :%s/\s\+$//e
 " Git commits
-autocmd Filetype gitcommit setlocal spell textwidth=100
+autocmd! Filetype gitcommit setlocal spell textwidth=100
 set pastetoggle=<M-v>
 " Disable folding. It's really annoying and I never remeber the commands.
 set nofoldenable
@@ -297,9 +297,9 @@ set completeopt=longest,menuone,preview,noinsert
 function! OmniPopup(action)
     if pumvisible()
         if a:action=='j'
-            return "\<C-N>"
+            return "\<C-n\>"
         elseif a:action =='k'
-            return "\<C-P>"
+            return "\<C-p\>"
         endif
     endif
     return a:action
@@ -312,7 +312,7 @@ set nofoldenable
 " Spell Check
 " Function to rotate the spell language that is used
 let b:myLang=0
-let g:myLangList=["nospell","pt_br","en_us"]
+let g:myLangList=["nospell", "pt_br", "en_us", "ke_sw"]
 function! ToggleSpell()
     let b:myLang=b:myLang+1
     if b:myLang>=len(g:myLangList) | let b:myLang=0 | endif
@@ -326,7 +326,7 @@ endfunction
 " Pressing \ss will toggle and untoggle spell checking
 " ]s and [s to move down-up marked words
 " Spelling always on for some files
-autocmd BufNewFile,BufRead *.ipy,*.py,*.md,*.tex,*.rst,*.c,*.h,Makefile setlocal nospell
+autocmd! BufNewFile,BufRead *.ipy,*.py,*.md,*.tex,*.rst,*.c,*.h,Makefile setlocal nospell
 
 " Run 'make' on save
 function! EnableRunMakeOnSave()
@@ -344,17 +344,16 @@ let g:indent_guides_enable_on_vim_startup=1
 
 " Deoplete Conf
 " " deoplete completion
-let g:deoplete#sources={}
-let g:deoplete#sources._ = ['buffer', 'member', 'file', 'omni', 'tag', 'ultisnips','around']
+" let g:deoplete#sources={}
+" let g:deoplete#sources._ = ['buffer', 'file', 'omni', 'tag', 'ultisnips','around']
 let g:deoplete#enable_at_startup=1
-let g:deoplete#sources.gitcommit=[]
-let g:deoplete#keyword_patterns = {}
-let g:deoplete#omni#input_patterns = {}
-let g:deoplete#omni#input_patterns.scala='[^. *\t]\.\w*'
-let g:deoplete#keyword_patterns.gitcommit = '.+'
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#jedi#enable_typeinfo = 0
-let g:deoplete#sources#jedi#ignore_errors=1
+" let g:deoplete#sources.gitcommit=[]
+" let g:deoplete#keyword_patterns = {}
+" let g:deoplete#omni#input_patterns.scala='[^. *\t]\.\w*'
+" let g:deoplete#keyword_patterns.gitcommit = '.+'
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#sources#jedi#enable_typeinfo = 0
+" let g:deoplete#sources#jedi#ignore_errors=1
 
 " Vim-SCala Conf
 let g:scala_scaladoc_indent = 1
@@ -374,7 +373,7 @@ let g:neomake_sbt_maker = {
 let g:neomake_enabled_makers = ['sbt', 'make']
 let g:neomake_verbose=3
 " Neomake on text change
-autocmd InsertLeave,TextChanged *.scala,*.sbt update | Neomake! sbt
+autocmd! InsertLeave,TextChanged *.scala,*.sbt update | Neomake! sbt
 
 "yankstack config
 call yankstack#setup()
@@ -382,7 +381,7 @@ let g:yankstack_yank_keys = ['y', 'd']
 
 "python-mode config
 let g:pymode_run = 1
-" let g:pymode_run_bind = '<leader>r'
+let g:pymode_run_bind = '<leader>r'
 let g:ropevim_enable_shortcuts = 1
 let g:pymode_rope_lookup_project=0
 let g:pymode_doc = 0
@@ -390,7 +389,7 @@ let g:pymode_doc_bind = '<leader>i'
 let g:pymode_rope=0
 let g:pymode_rope_completion = 0
 let g:pymode_rope_complete_on_dot = 0
-let g:pymode_rope_autoimport = 1
+let g:pymode_rope_autoimport = 0
 let g:pymode_rope_autoimport_modules = ['os', 'datetime']
 let g:pymode_rope_goto_definition_cmd="gd"
 
@@ -399,11 +398,11 @@ let g:pymode_rope_autoimport_bind = '<leader>ra'
 
 let g:pymode_rope_extended_complete=0
 let g:pymode_breakpoint=1
-let g:pymode_syntax=1
-let g:pymode_syntax_all = 1
+let g:pymode_syntax=0
+let g:pymode_syntax_all = 0
 let g:pymode_syntax_builtin_objs=0
 let g:pymode_syntax_builtin_funcs=0
-let g:pymode_lint_checkers = ['flake8',]
+let g:pymode_lint_checkers = ['flake8', 'pyflakes' ]
 
 
 "CTRLP config
@@ -440,7 +439,7 @@ let g:vim_markdown_new_list_item_indent=1
 " Nerdcommenter
 filetype plugin indent on
 " NerdTree
-let NERDTreeShowLineNumbers=1
+let g:NERDTreeShowLineNumbers=1
 autocmd Filetype nerdtree setlocal relativenumber number
 
 
@@ -480,15 +479,18 @@ let g:vimtex_compiler_progname='nvr'
 
 " BRACELESS.VIM
 autocmd filetype python BracelessEnable +indent +highlight
+autocmd BufRead,BufNewFile *.py BracelessEnable +indent +highlight
 
 " SYNTASTIC SETTING
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
+let g:syntastic_loc_list_height = 7
+let g:syntastic_aggregate_errors = 1
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
 let g:syntastic_rst_checkers = ['text/language_check']
-let g:syntastic_tex_checkers = ['text/language_check']
-let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_tex_checkers = ['lacheck', 'text/language_check']
+let g:syntastic_python_checkers = ['flake8', 'pyflakes']
 
 
 " VIM-TEXTOBJ-MARKDOWN BUFFER CONFIGS
