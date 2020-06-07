@@ -346,6 +346,11 @@ let g:indent_guides_enable_on_vim_startup=1
 " " deoplete completion
 " let g:deoplete#sources={}
 " let g:deoplete#sources._ = ['buffer', 'file', 'omni', 'tag', 'ultisnips','around']
+call deoplete#custom#option('sources',{
+            \ '_': ['buffer', 'file', 'omni', 'tag', 'ultisnips','around'],
+            \ 'python': [],
+            \ 'cpp': [],
+            \})
 let g:deoplete#enable_at_startup=1
 " let g:deoplete#sources.gitcommit=[]
 " let g:deoplete#keyword_patterns = {}
