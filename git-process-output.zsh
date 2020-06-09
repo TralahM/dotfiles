@@ -1,7 +1,10 @@
 #!/usr/bin/env zsh
 
-emulate -LR zsh -o typesetsilent -o extendedglob -o warncreateglobal
+emulate -LR zsh
 
+setopt typesetsilent extendedglob warncreateglobal
+
+typeset -g COLS="$(tput cols)"
 # Credit to molovo/revolver for the ideas
 typeset -ga progress_frames
 progress_frames=(
@@ -21,19 +24,19 @@ typeset -F SECONDS=0 last_time=0
 if whence tput &> /dev/null; then
   if [[ $OSTYPE == freebsd* ]] || [[ $OSTYPE == dragonfly* ]]; then
     # termcap commands
-    ZPLG_CNORM='tput ve'
-    ZPLG_CIVIS='tput vi'
+    ZINIT_CNORM='tput ve'
+    ZINIT_CIVIS='tput vi'
   else
     # terminfo is more common
-    ZPLG_CNORM='tput cnorm'
-    ZPLG_CIVIS='tput civis'
+    ZINIT_CNORM='tput cnorm'
+    ZINIT_CIVIS='tput civis'
   fi
 fi
 
-if (( $+ZPLG_CNORM )); then
-  trap $ZPLG_CNORM EXIT
-  trap $ZPLG_CNORM INT
-  trap $ZPLG_CNORM TERM
+if (( $+ZINIT_CNORM )); then
+  trap $ZINIT_CNORM EXIT
+  trap $ZINIT_CNORM INT
+  trap $ZINIT_CNORM TERM
 fi
 
 local first=1
@@ -67,7 +70,13 @@ print_my_line() {
     local col="%F{214}" col3="%F{214}" col4="%F{214}" col5="%F{214}"
     [[ -n "${4#...}" && -z "${5#...}" ]] && col3="%F{33}"
     [[ -n "${5#...}" ]] && col4="%F{33}"
-    print -Pnr -- "${col}OBJ%f: $1, ${col}PACK%f: $2/$3${${4:#...}:+, ${col3}REC%f: $4%}${${5:#...}:+, ${col4}RESOL%f: $5%}  "
+    if (( COLS >= 70 )) {
+        print -Pnr -- "${col}OBJ%f: $1, ${col}PACK%f: $2/$3${${4:#...}:+, ${col3}REC%f: $4%}${${5:#...}:+, ${col4}RES%f: $5%}  "
+    } elif (( COLS >= 60 )) {
+        print -Pnr -- "${col}OBJ%f: $1, ${${4:#...}:+, ${col3}REC%f: $4%}${${5:#...}:+, ${col4}RES%f: $5%}  "
+    } else {
+        print -Pnr -- "${${4:#...}:+, ${col3}REC%f: $4%}${${5:#...}:+, ${col4}RES%f: $5%}  "
+    }
     print -n $'\015'
 }
 
@@ -76,7 +85,13 @@ print_my_line_compress() {
     [[ -n "${4#...}" && -z "${5#...}" && -z "${6#...}" ]] && col3="%F{33}"
     [[ -n "${5#...}" && -z "${6#...}" ]] && col4="%F{33}"
     [[ -n "${6#...}" ]] && col5="%F{33}"
-    print -Pnr -- "${col}OBJ%f: $1, ${col}PACK%f: $2/$3, ${col3}COMPR%f: $4%%${${5:#...}:+, ${col4}REC%f: $5%%}${${6:#...}:+, ${col5}RESOL%f: $6%%}  "
+    if (( COLS >= 80 )) {
+        print -Pnr -- "${col}OBJ%f: $1, ${col}PACK%f: $2/$3, ${col3}COMPR%f: $4%%${${5:#...}:+, ${col4}REC%f: $5%%}${${6:#...}:+, ${col5}RES%f: $6%%}  "
+    } elif (( COLS >= 65 )) {
+        print -Pnr -- "${col}OBJ%f: $1, ${col3}COMPR%f: $4%%${${5:#...}:+, ${col4}REC%f: $5%%}${${6:#...}:+, ${col5}RES%f: $6%%}  "
+    } else {
+        print -Pnr -- "${col}OBJ%f: $1, ${${5:#...}:+, ${col4}REC%f: $5%%}${${6:#...}:+, ${col5}RES%f: $6%%}  "
+    }
     print -n $'\015'
 }
 
@@ -86,7 +101,9 @@ integer loop_count=0
 
 IFS=''
 
-(( $+ZPLG_CIVIS )) && eval $ZPLG_CIVIS
+[[ $+ZINIT_CIVIS == 1 && -n $TERM ]] && eval $ZINIT_CIVIS
+
+if [[ -n $TERM ]] {
 
 { command perl -pe 'BEGIN { $|++; $/ = \1 }; tr/\r/\n/' || \
     gstdbuf -o0 gtr '\r' '\n' || \
@@ -155,8 +172,12 @@ while read -r line; do
     fi
 done
 
+} else {
+    grep fatal:
+}
+
 print
 
-(( $+ZPLG_CNORM )) && eval $ZPLG_CNORM
+[[ $+ZINIT_CNORM == 1 && -n $TERM ]] && eval $ZINIT_CNORM
 
-unset ZPLG_CNORM ZPLG_CIVIS
+unset ZINIT_CNORM ZINIT_CIVIS
