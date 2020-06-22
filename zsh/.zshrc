@@ -9,6 +9,7 @@ export VULKAN_SDK=~/vulkan/1.2.135.0/x86_64
 export PATH=$PATH:$VULKAN_SDK/bin
 export PATH=$PATH:$GOHOME/bin:~/go/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$VULKAN_SDK/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/:/usr/lib/
 export VK_LAYER_PATH=$VULKAN_SDK/etc/vulkan/explicit_layer.d
 
 # display how long all tasks over 10 seconds take
@@ -23,7 +24,7 @@ if [[ -e ~/.profile ]];then
     source ~/.profile
 fi
 if command -v tmux &> /dev/null && [ -z "$TMUX" ];then
-    clear;
+    clear;ls
 fi
 export HADOOP_HOME=/home/hadoop/hadoop-2.7.7
 export HADOOP_INSTALL=$HADOOP_HOME
@@ -41,6 +42,13 @@ export PYSPARK_DRIVER_PYTHON_OPTS="notebook"
 export PYSPARK_PYTHON=python3
 export PATH=$SPARK_HOME:$PATH:$JAVA_HOME/jre/bin
 
+export PATH=/home/african/.local/bin:$PATH
+export PATH=/usr/local/go/bin:$PATH
+export PATH=$JAVA_HOME/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/go/lib:$LD_LIBRARY_PATH
+
+# Snap aps
+export PATH=$PATH:/snap/bin
 # define the code directory
 # This is where my code exists and where I want the `c` autocomplete to work from exclusively
 if [[ -d ~/code ]]; then
@@ -48,16 +56,16 @@ if [[ -d ~/code ]]; then
 fi
 
 # source all .zsh files inside of the zsh/ directory
+source "$ZSH/config.zsh"
 source "$ZSH/utils.zsh"
-source "$ZSH/prompt.zsh"
 source "$ZSH/aliases.zsh"
 source "$ZSH/colors.zsh"
 source "$ZSH/completion.zsh"
-source "$ZSH/config.zsh"
-source "$ZSH/functions.zsh"
 source "$ZSH/git.zsh"
 source "$ZSH/tmux.zsh"
+source "$ZSH/prompt.zsh"
 source "$ZSH/z.zsh"
+
 
 if [[ -a ~/.localrc ]]; then
     source ~/.localrc
@@ -65,14 +73,14 @@ fi
 
 
 
-export EDITOR='vim'
-export GIT_EDITOR='vim'
+export EDITOR='nvim'
+export GIT_EDITOR='nvim'
 
-export PATH=/data/data/com.termux/files/usr/local/bin:$PATH
 
 # add /usr/local/sbin
 if [[ -d /data/data/com.termux/files/usr/local/sbin ]]; then
     export PATH=/data/data/com.termux/files/usr/local/sbin:$PATH
+	export PATH=/data/data/com.termux/files/usr/local/bin:$PATH
 fi
 
 # adding path directory for custom scripts
@@ -101,6 +109,7 @@ fi
 
 # move to next word with ctrl-F
 bindkey -M viins "^F" vi-forward-word
+bindkey -M viins "^[" vi-backward-word
 # Move to end of line with ctrl-E
 bindkey -M viins "^E" vi-add-eol
 
@@ -116,11 +125,6 @@ export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
 export LESS_TERMCAP_mr=$(tput rev)
 export LESS_TERMCAP_mh=$(tput dim)
 
-export PATH=/home/african/.local/bin:$PATH
-export PATH=/usr/local/go/bin:$PATH
-export PATH=$JAVA_HOME/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/go/lib:$LD_LIBRARY_PATH
-
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT'
 POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'
@@ -129,32 +133,27 @@ export POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 # For a full list of errors, refer to
 # https://github.com/koalaman/shellcheck/wiki
 #
-# export SHELLCHECK_OPTS=""
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source  ~/powerlevel9k/powerlevel9k.zsh-theme
+export SHELLCHECK_OPTS=""
 export SHODAN_API=6sfgFBXP0xZ5CmDwqgtKSNmTGODaac1f
 alias grep="egrep --color "
 alias norg="gron --ungron"
 alias ungron="gron --ungron"
 alias gadd="git add"
 alias gap="git add -p"
-alias tls="tmux list-sessions"
-alias ta="tmux attach -t"
+alias gap="git add -p"
+alias gp="git push "
 alias gpom="git push origin master"
 alias pythonx="python"
-alias gpfo="git fetch origin"
+alias gpf="git fetch "
 alias gpum="git pull origin master"
-alias gpud="git pull origin develop"
-alias gpod="git push origin develop:develop"
 alias gphum="git pull heroku master"
 alias gphm="git push heroku master"
 alias grs="git remote set-url "
 alias cls="clear"
 alias pubip="curl icanhazip.com"
-alias vim="nvim --startuptime ~/stime"
+alias vim="nvim "
 alias vf="vifm"
-alias hli="heroku login -i"
+alias herokuli="heroku login -i"
 alias herokulogs="heroku logs -t"
 alias herokupyshell="heroku run python manage.py shell_plus"
 alias herokubash="heroku run bash"
@@ -170,36 +169,9 @@ alias jpynb="jupyter-notebook . &"
 # export PYTHONHOME="/usr/bin/python3"
 # export ANDROIDSDK="/home/african/Android/Sdk"
 # export ANDROIDNDK="/home/african/android-ndk-r18b"
-# export ANDROIDAPI="26"
-# export NDKAPI="19"
-# export ANDROIDNDKVER="r18b"
-# export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
 
 export PATH=~/anaconda3/bin:$PATH
 # export PATH=/home/african/Android/Sdk/tools/bin:/home/african/android-studio/bin:$PATH
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-# [ -s "$NVM_DIR/bash_completion"  ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-
-# # place this after nvm initialization!
-# autoload -U add-zsh-hook
-# load-nvmrc() {
-# local node_version="$(nvm version)"
-# local nvmrc_path="$(nvm_find_nvmrc)"
-# if [ -n "$nvmrc_path" ]; then
-#     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-#     if [ "$nvmrc_node_version" = "N/A" ]; then
-#       nvm install
-#     elif [ "$nvmrc_node_version" != "$node_version" ]; then
-#       nvm use
-#     fi
-# elif [ "$node_version" != "$(nvm version default)" ]; then
-#     echo "Reverting to nvm default version"
-#     nvm use default
-# fi
-# }
-# add-zsh-hook chpwd load-nvmrc
-# load-nvmrc
 
 # # Install Ruby Gems to ~/gems
 export GEM_HOME="$HOME/gems"
@@ -252,7 +224,7 @@ zplugin light dbkaplun/smart-cd
 zplugin light oldratlee/hacker-quotes
 zplugin light "chrissicool/zsh-256color"
 zplugin light "olets/zsh-abbr"
-zplugin light marlonrichert/zsh-autocomplete
+# zplugin light marlonrichert/zsh-autocomplete
 zplugin light Tarrasch/zsh-bd
 zplugin light "arzzen/calc.plugin.zsh"
 zplugin light "momo-lab/zsh-abbrev-alias"
@@ -274,3 +246,7 @@ bindkey '^K^L' _mtxr-to-lower # Ctrl+K + Ctrl+L
 
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/home/african/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source  ~/powerlevel9k/powerlevel9k.zsh-theme
