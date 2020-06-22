@@ -1,17 +1,22 @@
-" PLUGIN INSTALL USING VIM-PLUG (https://github.com/junegunn/vim-plug)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Automatically download and install vim-plug if it's not installed
 set nocompatible
 set encoding=utf-8
 set nospell
 " set icm=nosplit
 set dictionary+=~/words
+set dictionary+=/usr/share/dict/american-english
+set dictionary+=/usr/share/dict/british-english
+set dictionary+=/usr/share/dict/words
+set dictionary+=/usr/share/dict/cracklib-small
 " set complete+=k
 let uname = substitute(system('uname'), '\n', '', '')
 syntax on
 filetype on
 filetype indent plugin on    " required
 syn on
+
+" PLUGIN INSTALL USING VIM-PLUG (https://github.com/junegunn/vim-plug)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Automatically download and install vim-plug if it's not installed
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
                 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -22,14 +27,8 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Leader tt toggles checkbox
-Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' }
-Plug 'cloudhead/neovim-fuzzy'
-Plug 'zchee/deoplete-clang'
-Plug 'neomake/neomake'
 Plug 'Inazuma110/deoplete-greek'
-Plug 'thaerkh/vim-workspace'
-Plug 'derekwyatt/vim-scala'
-Plug 'psf/black', { 'branch': 'stable' }
+Plug 'KabbAmine/zeavim.vim'
 Plug 'Konfekt/FastFold'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'MattesGroeger/vim-bookmarks'
@@ -47,67 +46,74 @@ Plug 'bfrg/vim-jqplay',{'for':'json'}
 Plug 'bps/vim-textobj-python',{'for':'python'}
 Plug 'chrisbra/csv.vim',{'for':'csv'}
 Plug 'coachshea/vim-textobj-markdown',{'for':'markdown'}
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'deoplete-plugins/deoplete-zsh'
-Plug 'ehamberg/vim-cute-python',{'for':'python'}
+Plug 'deoplete-plugins/deoplete-asm'
+Plug 'deoplete-plugins/deoplete-dictionary'
+Plug 'deoplete-plugins/deoplete-docker'
+Plug 'deoplete-plugins/deoplete-go'
+Plug 'deoplete-plugins/deoplete-tag'
+Plug 'deoplete-plugins/deoplete-zsh',{'for':'zsh'}
+Plug 'derekwyatt/vim-scala',{'for': ['scala','sbt']}
+Plug 'ehamberg/vim-cute-python',{'for':'python','branch':'moresymbols'}
+Plug 'elixir-editors/vim-elixir',{'for':'elixir'}
 Plug 'enricobacis/vim-airline-clock'
+Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' }
 Plug 'euclio/vim-markdown-composer',{'for':'markdown'}
-Plug 'fatih/vim-go',{'for':'go'}
+Plug 'fszymanski/deoplete-emoji'
 Plug 'garbas/vim-snipmate'
-Plug 'gcorne/vim-sass-lint'
-Plug 'glts/vim-magnum'
-Plug 'glts/vim-radical'
-Plug 'godlygeek/tabular'
+Plug 'gcorne/vim-sass-lint',{'for':['css', 'sass', 'scss', 'less']}
+Plug 'glts/vim-magnum' "required by radical
+Plug 'glts/vim-radical' "crx,crd,cro,crb gA covert w under cursor to hex,dec,oct,bin
+Plug 'godlygeek/tabular' "Tabularize /,  /,/r0c1l1
 Plug 'honza/vim-snippets'
 Plug 'jceb/vim-orgmode',{'for':'org'}
 Plug 'jiangmiao/auto-pairs'
-Plug 'jkramer/vim-checkbox',{'for':'markdown'}
+Plug 'jkramer/vim-checkbox',{'for':'markdown'} "insert checkbox or toggle tt
 Plug 'jmcantrell/vim-virtualenv',{'for':'python'}
 Plug 'junegunn/fzf',{'dir':'~/.fzf','do':'./install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-emoji'
 Plug 'justinmk/vim-sneak'
 Plug 'kalekundert/vim-coiled-snake'
+Plug 'kana/vim-textobj-datetime'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-function'
-Plug 'kana/vim-textobj-datetime'
 Plug 'kana/vim-textobj-lastpat'
 Plug 'kana/vim-textobj-user'
-Plug 'leafoftree/vim-vue-plugin', {'for':'javascript'}
-Plug 'lervag/vimtex',{'for':'markdown'}
+Plug 'leafoftree/vim-vue-plugin', {'for':'vue'}
+Plug 'lervag/vimtex',{'for':['tex', 'markdown']}
 Plug 'lighttiger2505/deoplete-vim-lsp'
 Plug 'luochen1990/rainbow'
+Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
-Plug 'mattn/sonictemplate-vim'
 Plug 'mattn/vim-lsp-settings'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'mileszs/ack.vim'
-Plug 'mjbrownie/django-template-textobjects'
+Plug 'mjbrownie/django-template-textobjects',{'for':['html', 'htmldjango']}
 Plug 'mxw/vim-jsx',{'for':'javascript'}
 Plug 'nanotech/jellybeans.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'nelstrom/vim-markdown-folding',{'for':'markdown'}
-Plug 'osyo-manga/vim-over'
+Plug 'neomake/neomake'
 Plug 'pangloss/vim-javascript',{'for':'javascript'}
 Plug 'pbrisbin/vim-mkdir'
 Plug 'plasticboy/vim-markdown',{'for':'markdown'}
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
+Plug 'psf/black', { 'branch': 'stable' }
 Plug 'python-mode/python-mode',{'for':'python', 'branch':'develop'}
-Plug 'racer-rust/vim-racer',{'for':'rust'}
-Plug 'rhysd/git-messenger.vim'
-Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'rstacruz/sparkup', {'rtp': '~/.vim/'}
 Plug 'rust-lang/rust.vim', {'for':'rust'}
+Plug 'racer-rust/vim-racer',{'for':'rust'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'sebastianmarkow/deoplete-rust'
-Plug 'sgur/vim-textobj-parameter'
+Plug 'sebastianmarkow/deoplete-rust',{'for':'rust'}
+Plug 'slashmili/alchemist.vim',{'for':'elixir'}
 Plug 'tell-k/vim-autopep8',{'for':'python'}
 Plug 'terryma/vim-multiple-cursors'
 Plug 'terryma/vim-smooth-scroll'
-Plug 'tmux-plugins/vim-tmux'
+Plug 'thaerkh/vim-workspace'
 Plug 'tomtom/tlib_vim'
 Plug 'tounaishouta/coq.vim', {'for':'coq'}
 Plug 'tpope/vim-abolish'
@@ -116,7 +122,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-heroku'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-speeddating'
@@ -126,14 +131,15 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tweekmonster/braceless.vim', {'for': ['python']}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc',{'for':['pandoc', 'markdown']}
+Plug 'vim-pandoc/vim-pandoc-syntax',{'for':['pandoc', 'markdown']}
 Plug 'vim-ruby/vim-ruby',{'for':'ruby'}
 Plug 'vim-scripts/IndexedSearch'
 Plug 'vim-syntastic/syntastic'
 Plug 'wellle/tmux-complete.vim'
 Plug 'xuhdev/vim-latex-live-preview',{'for':'tex'}
 Plug 'yegappan/mru' "most recently used
+Plug 'zchee/deoplete-clang'
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -196,7 +202,7 @@ autocmd! bufread hosts setl filetype=dosini
 au BufRead,BufNewFile *.sbt set filetype=scala
 set autoindent
 if has('nvim')
-    set clipboard+=unnamedplus
+    set clipboard+=unnamed
 else
     set clipboard+=unnamed
 endif
@@ -348,17 +354,29 @@ let g:indent_guides_enable_on_vim_startup=1
 " let g:deoplete#sources._ = ['buffer', 'file', 'omni', 'tag', 'ultisnips','around']
 call deoplete#custom#option('sources',{
             \ '_': ['buffer', 'file', 'omni', 'tag', 'ultisnips','around'],
-            \ 'python': [],
-            \ 'cpp': [],
+            \ 'gitcommit': ['github', 'buffer'],
             \})
+" Remove this if you'd like to use fuzzy search
+call deoplete#custom#source( 'dictionary', 'matchers', ['matcher_head'])
+" If dictionary is already sorted, no need to sort it again.
+call deoplete#custom#source('dictionary', 'sorters', [])
+" Do not complete too short words
+call deoplete#custom#source( 'dictionary', 'min_pattern_length', 4)
 let g:deoplete#enable_at_startup=1
-" let g:deoplete#sources.gitcommit=[]
-" let g:deoplete#keyword_patterns = {}
-" let g:deoplete#omni#input_patterns.scala='[^. *\t]\.\w*'
-" let g:deoplete#keyword_patterns.gitcommit = '.+'
-" let g:deoplete#enable_at_startup = 1
-" let g:deoplete#sources#jedi#enable_typeinfo = 0
-" let g:deoplete#sources#jedi#ignore_errors=1
+let g:deoplete#sources#clang#libclang_path='/usr/lib/llvm-6.0/lib/libclang.so'
+let g:deoplete#sources#clang#clang_header='/usr/include/clang/6.0/include/'
+let g:deoplete#sources#clang#sort_algo='priority'
+let g:deoplete#sources#clang#std={'cpp': 'c++17', 'c': 'c11'}
+let g:deoplete#omni#input_patterns={}
+let g:deoplete#keyword_patterns={}
+let g:deoplete#omni#input_patterns.scala='[^. *\t]\.\w*'
+let g:deoplete#keyword_patterns.gitcommit = '.+'
+
+let g:deoplete#sources#jedi#enable_typeinfo = 0
+let g:deoplete#sources#jedi#ignore_errors=1
+let g:deoplete#max_list=1000
+let g:deoplete#enable_ignore_case=1
+
 
 " Vim-SCala Conf
 let g:scala_scaladoc_indent = 1
@@ -375,7 +393,7 @@ let g:neomake_sbt_maker = {
             \ '%-C%.%#,' .
             \ '%-G%.%#'
      \ }
-let g:neomake_enabled_makers = ['sbt', 'make']
+let g:neomake_enabled_makers = ['sbt', 'make', 'cmake', 'qmake']
 let g:neomake_verbose=3
 " Neomake on text change
 autocmd! InsertLeave,TextChanged *.scala,*.sbt update | Neomake! sbt
@@ -410,18 +428,6 @@ let g:pymode_syntax_builtin_funcs=0
 let g:pymode_lint_checkers = ['flake8', 'pyflakes' ]
 
 
-"CTRLP config
-" The Silver Searcher
-if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command='ag %s -l --nocolor -g'
-    let g:ctrlp_use_caching=1
-endif
-
-let g:ctrlp_max_height=7
-let g:ctrlp_cmd='CtrlP'
-let g:ctrlp_working_path_mode='ra'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 
 "
@@ -446,6 +452,9 @@ filetype plugin indent on
 " NerdTree
 let g:NERDTreeShowLineNumbers=1
 autocmd Filetype nerdtree setlocal relativenumber number
+autocmd! WinEnter __Tagbar__* setlocal relativenumber number
+autocmd! WinLeave __Tagbar__* setlocal relativenumber number
+autocmd! WinNew __Tagbar__* setlocal relativenumber number
 
 
 "
@@ -464,15 +473,12 @@ let g:airline#extensions#languageclient#enabled = 1
 let g:airline#extensions#promptline#enabled = 1
 let g:airline#extensions#default#enabled = 1
 let g:airline#extensions#bufferline#enabled = 1
-" let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#fugitiveline#enabled = 1
 let g:airline#extensions#unicode#enabled = 1
 let g:airline#extensions#fugitive#enabled = 1
 let g:airline#extensions#branch#enabled = 1
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-set statusline+=%{FugitiveStatusline()}
+" set statusline+=%{FugitiveStatusline()}
 
 
 
@@ -524,8 +530,8 @@ let g:javascript_conceal_prototype = "¶"
 let g:javascript_conceal_static = "•"
 let g:javascript_conceal_super = "Ω"
 let g:javascript_conceal_arrow_function = "⇒"
-let g:javascript_conceal_noarg_arrow_function = "🞅"
-let g:javascript_conceal_underscore_arrow_function = "🞅"
+let g:javascript_conceal_noarg_arrow_function = "⇒"
+let g:javascript_conceal_underscore_arrow_function = "⇒"
 set conceallevel =2
 
 
@@ -555,7 +561,7 @@ let g:autopep8_on_save = 1
 
 
 " Vim-overe conf
-let g:over_enable_auto_nohlsearch=0
+let g:over_enable_auto_nohlsearch=1
 let g:over_enable_cmd_window=1
 let g:over_command_line_prompt=">"
 
@@ -567,8 +573,8 @@ let g:UltiSnipsJumpForwardTrigger="<c-tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 
-" command! MakeTags !ctags -R -a *.*
-" autocmd! bufwritepost * MakeTags
+command! MakeTags !ctags -R -a *.*
+autocmd! bufwritepost *.c *.cpp *.hpp *.h *.rs *.py  MakeTags
 
 
 " Markdown Composer options
@@ -620,3 +626,26 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+"Zeal Documentation Browser Config
+nmap <leader>z <Plug>Zeavim
+vmap <leader>z <Plug>ZeavimV
+nmap gz <Plug>ZVOperator
+nmap <leader><leader>z <Plug>ZVKeyDocset
+
+nnoremap <leader>] :TagbarToggle<CR>
+nnoremap <leader>[ :NERDTreeToggle<CR>
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <expr><TAB>
+\ pumvisible() ? "\<C-n>" :
+\ neosnippet#expandable_or_jumpable() ?
+\    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
