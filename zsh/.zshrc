@@ -134,15 +134,18 @@ export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
 export LESS_TERMCAP_mr=$(tput rev)
 export LESS_TERMCAP_mh=$(tput dim)
 
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT'
-POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'
+export POWERLEVEL9K_MODE='nerdfont-complete'
+export POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT'
+export POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'
 export POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+export POWERLEVEL9K_VCS_GIT_ICON=$'\uF113 '
+export POWERLEVEL9K_VCS_GIT_ICON='  '
+set POWERLEVEL9K_VCS_GIT_ICON='  '
 # add shellcheck config
 # For a full list of errors, refer to
 # https://github.com/koalaman/shellcheck/wiki
 #
-export SHELLCHECK_OPTS=""
+# export SHELLCHECK_OPTS=""
 export SHODAN_API=6sfgFBXP0xZ5CmDwqgtKSNmTGODaac1f
 alias grep="egrep --color "
 alias norg="gron --ungron"
@@ -225,8 +228,8 @@ bindkey -v
 
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-# source  ~/powerlevel9k/powerlevel9k.zsh-theme
 ### Added by Zplugin's installer
+#
 source "$HOME/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
@@ -237,6 +240,7 @@ zplugin light oldratlee/hacker-quotes
 zplugin light "chrissicool/zsh-256color"
 zplugin light "olets/zsh-abbr"
 # zplugin light marlonrichert/zsh-autocomplete
+zplugin ice "bhilburn/powerlevel9k"
 zplugin light Tarrasch/zsh-bd
 zplugin light "arzzen/calc.plugin.zsh"
 zplugin light "momo-lab/zsh-abbrev-alias"
