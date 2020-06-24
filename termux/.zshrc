@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export ZSH=~/.zsh
 export LANG="en_US.UTF-8"
 export DEFAULT_USER="$(whoami)"
@@ -194,8 +201,46 @@ source "$HOME/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 ### End of Zplugin installer's chunk
-zplugin light iboyperson/pipenv-zsh
 zplugin light oldratlee/hacker-quotes
 zplugin light webyneter/docker-aliases
 zplugin light dbkaplun/smart-cd
 
+### End of Zinit's installer chunk
+source "$HOME/.zplugin/bin/zplugin.zsh"
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+zplugin light webyneter/docker-aliases
+zplugin light dbkaplun/smart-cd
+zplugin light oldratlee/hacker-quotes
+zplugin light "chrissicool/zsh-256color"
+zplugin light "olets/zsh-abbr"
+zplugin light marlonrichert/zsh-autocomplete
+zplugin light Tarrasch/zsh-bd
+zplugin light "arzzen/calc.plugin.zsh"
+zplugin light "momo-lab/zsh-abbrev-alias"
+zplugin light mtxr/zsh-change-case
+zplugin light "changyuheng/fz"
+zplugin light "rupa/z"
+fpath=(~/.zplugin/completions/_zplugin $fpath)
+zplugin light "hlissner/zsh-autopair"
+
+zplugin light "bhilburn/powerlevel9k"
+zplugin ice depth=1; zplugin light romkatv/powerlevel10k
+
+fpath=(~/.zsh/completions $fpath)
+fpath=(~/.zplugin/completions/_zplugin $fpath)
+# initialize autocomplete
+autoload -U compinit add-zsh-hook
+compinit
+
+for config ($ZSH/completion.zsh) source $config;
+autoload -U compinit && compinit
+zplugin light "hlissner/zsh-autopair"
+bindkey '^K^U' _mtxr-to-upper # Ctrl+K + Ctrl+U
+bindkey '^K^L' _mtxr-to-lower # Ctrl+K + Ctrl+L
+
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=~/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
