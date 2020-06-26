@@ -41,6 +41,8 @@ Plug 'TralahM/Efficient-python-folding',{'for':'python'}
 Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-closetag'
 Plug 'ap/vim-css-color'
+Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
+Plug 'Raku/vim-raku' " For raku vim 6 support
 Plug 'bfrg/vim-jq',{'for':'json'}
 Plug 'bfrg/vim-jqplay',{'for':'json'}
 Plug 'bps/vim-textobj-python',{'for':'python'}
@@ -653,3 +655,4 @@ if has('conceal')
 endif
 
 let g:multi_cursor_quit_key='<esc>'
+let g:raku_unicode_abbrevs=1

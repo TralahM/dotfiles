@@ -8,13 +8,13 @@ nnoremap <leader>sd :tabedit ~/.vimrc <CR>
 nnoremap <leader>sv :tabedit $MYVIMRC <CR>
 
 " Git shortcuts
-nnoremap <leader>gs :Gstatus
-nnoremap <leader>gd :Gdiff
-nnoremap <leader>gc :Gcommit
-nnoremap <leader>gb :Gblame
-nnoremap <leader>gl :Glog
-nnoremap <leader>gp :Git push
-nnoremap <leader>gw :Gwrite
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gl :Glog<CR>
+nnoremap <leader>gp :Git push<CR>
+nnoremap <leader>gw :Gwrite<CR>
 " Tabularize shortcuts
 noremap <leader>a= :Tabularize /=<CR>
 noremap <leader>a: :Tabularize /:<CR>
@@ -34,11 +34,9 @@ nnoremap <leader>4 :source ~/.vimrc <CR>
 
 " Improve regex handling
 " nmap / /\v
-nnoremap / /\v
-vnoremap / /\v
 " zoom a vim pane, <C-w>= to rebalance
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
-nnoremap <leader>= :windcmd =<cr>
+nnoremap <leader>= :wincmd =<cr>
 nnoremap <leader><space> :noh<cr>
 " Map F2 to paste mode so that pasting in the terminal doesn't mess identation
 nnoremap <F12> :set invpaste paste?<CR>
@@ -73,7 +71,7 @@ map <leader>ss :call ToggleSpell()<cr>
 map <leader>t <esc>:tabnew<CR>
 map <leader>x <esc>:tabclose<CR>
 map <leader>f :MRU<CR>
-map <leader>nn :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
 map <leader>w :w!<CR>
 map <space> /\v
@@ -84,13 +82,12 @@ nnoremap <leader>w :w!<CR>
 nnoremap <leader>t <esc>:tabnew<CR>
 nnoremap <leader>x <esc>:tabclose<CR>
 nnoremap <leader>f :MRU<CR>
-nnoremap <leader>nn :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>e :NERDTreeFind<CR>
 nnoremap <space> /\v
 nnoremap <c-space> ?
 nnoremap <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
-nnoremap <leader>g :Ack
 nnoremap ; :
 nnoremap : ;
 
@@ -109,8 +106,6 @@ nnoremap <leader>we :tabe ~/Documents/notes/index.md <cr>
 "Escape: exit autocompletion, go to Normal mode
 inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"
 
-inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
-inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 au FileType rust nmap gx <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gd <Plug>(rust-def-vertical)

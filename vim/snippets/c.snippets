@@ -1,0 +1,5 @@
+snippet undef
+	#ifndef `"__".toupper(expand('%:t'))."__"`
+	#define `"__".toupper(expand('%:t'))."__"`
+	$1
+	#endif /* ifndef `"__".toupper(expand('%:t'))."__"` */
