@@ -138,9 +138,8 @@ export POWERLEVEL9K_MODE='nerdfont-complete'
 export POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT'
 export POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'
 export POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-export POWERLEVEL9K_VCS_GIT_ICON=$'\uF113 '
-export POWERLEVEL9K_VCS_GIT_ICON='  '
-set POWERLEVEL9K_VCS_GIT_ICON='  '
+typeset -g POWERLEVEL9K_VCS_GIT_ICON=$'\uF113 '
+# export POWERLEVEL9K_VCS_GIT_ICON='  '
 # add shellcheck config
 # For a full list of errors, refer to
 # https://github.com/koalaman/shellcheck/wiki
@@ -266,3 +265,9 @@ HEROKU_AC_ZSH_SETUP_PATH=/home/african/.cache/heroku/autocomplete/zsh_setup && t
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+PATH="/home/african/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/african/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/african/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/african/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/african/perl5"; export PERL_MM_OPT;

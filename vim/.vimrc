@@ -45,6 +45,7 @@ Plug 'bfrg/vim-jq',{'for':'json'}
 Plug 'bfrg/vim-jqplay',{'for':'json'}
 Plug 'bps/vim-textobj-python',{'for':'python'}
 Plug 'chrisbra/csv.vim',{'for':'csv'}
+Plug 'cloudhead/neovim-fuzzy'
 Plug 'coachshea/vim-textobj-markdown',{'for':'markdown'}
 Plug 'deoplete-plugins/deoplete-asm'
 Plug 'deoplete-plugins/deoplete-dictionary'
@@ -91,7 +92,7 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'mileszs/ack.vim'
 Plug 'mjbrownie/django-template-textobjects',{'for':['html', 'htmldjango']}
 Plug 'mxw/vim-jsx',{'for':'javascript'}
-Plug 'nanotech/jellybeans.vim'
+" Plug 'nanotech/jellybeans.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'nelstrom/vim-markdown-folding',{'for':'markdown'}
 Plug 'neomake/neomake'
@@ -202,9 +203,9 @@ autocmd! bufread hosts setl filetype=dosini
 au BufRead,BufNewFile *.sbt set filetype=scala
 set autoindent
 if has('nvim')
-    set clipboard+=unnamed
+    set clipboard+=unnamed,unnamedplus
 else
-    set clipboard+=unnamed
+    set clipboard+=unnamed,unnamedplus
 endif
 " set cursorline
 set modelines=2
@@ -219,7 +220,9 @@ set visualbell
 vnoremap < <gv
 vnoremap > >gv
 " map sort fx to a key
-
+nmap ` <S-;>
+vnoremap ; :
+vnoremap : ;
 vnoremap <leader>s :sort <CR>
 " Remove the underline from enabling cursorline
 highlight Cursorline cterm=bold ctermbg=green ctermfg=white
@@ -367,14 +370,13 @@ let g:deoplete#sources#clang#libclang_path='/usr/lib/llvm-6.0/lib/libclang.so'
 let g:deoplete#sources#clang#clang_header='/usr/include/clang/6.0/include/'
 let g:deoplete#sources#clang#sort_algo='priority'
 let g:deoplete#sources#clang#std={'cpp': 'c++17', 'c': 'c11'}
-let g:deoplete#omni#input_patterns={}
-let g:deoplete#keyword_patterns={}
-let g:deoplete#omni#input_patterns.scala='[^. *\t]\.\w*'
-let g:deoplete#keyword_patterns.gitcommit = '.+'
+call deoplete#custom#var('keyword_patterns',{'gitcommit': '.+'})
+call deoplete#custom#var('input_patterns',{'scala':'[^. *\t]\.\w*'
+            \})
 
 let g:deoplete#sources#jedi#enable_typeinfo = 0
 let g:deoplete#sources#jedi#ignore_errors=1
-let g:deoplete#max_list=1000
+call deoplete#custom#var('max_list',1000)
 let g:deoplete#enable_ignore_case=1
 
 
@@ -649,3 +651,5 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
+
+let g:multi_cursor_quit_key='<esc>'
