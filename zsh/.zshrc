@@ -145,7 +145,6 @@ typeset -g POWERLEVEL9K_VCS_GIT_ICON=$'\uF113 '
 # https://github.com/koalaman/shellcheck/wiki
 #
 # export SHELLCHECK_OPTS=""
-export SHODAN_API=6sfgFBXP0xZ5CmDwqgtKSNmTGODaac1f
 alias grep="egrep --color "
 alias norg="gron --ungron"
 alias ungron="gron --ungron"
@@ -227,6 +226,7 @@ bindkey -v
 
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zprofile
 ### Added by Zplugin's installer
 #
 source "$HOME/.zplugin/bin/zplugin.zsh"
