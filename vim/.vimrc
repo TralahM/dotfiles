@@ -1,13 +1,13 @@
 set nocompatible
 set encoding=utf-8
 set nospell
-" set icm=nosplit
+set inccommand=nosplit
 set dictionary+=~/words
 set dictionary+=/usr/share/dict/american-english
 set dictionary+=/usr/share/dict/british-english
 set dictionary+=/usr/share/dict/words
 set dictionary+=/usr/share/dict/cracklib-small
-" set complete+=k
+set complete+=k
 let uname = substitute(system('uname'), '\n', '', '')
 syntax on
 filetype on
@@ -174,7 +174,7 @@ call plug#end()
 " BEGIN CONFIGURATIONS HERE
 "
 " Load my custom functions and keymappings
-source ~/.vim/autoload/load_customs.vim
+" source ~/.vim/autoload/load_customs.vim
 " GENERAL CONGIGURATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Some of the following is taken from Steve Losh:
@@ -205,9 +205,9 @@ autocmd! bufread hosts setl filetype=dosini
 au BufRead,BufNewFile *.sbt set filetype=scala
 set autoindent
 if has('nvim')
-    set clipboard+=unnamed,unnamedplus
+    set clipboard+=unnamed
 else
-    set clipboard+=unnamed,unnamedplus
+    set clipboard+=unnamed
 endif
 " set cursorline
 set modelines=2
@@ -246,16 +246,14 @@ set noswapfile
 " Set identation to 4 spaces
 set noai ts=4 sw=4 expandtab
 " Set an 80 char column
-set textwidth=88
-set wrapmargin=88
+set textwidth=90
+set wrapmargin=90
 " read and write changes automatically
 set autoread
 set autowrite
-set colorcolumn=90
+set colorcolumn=91
 " Line numbers
 set number
-highlight LineNr ctermfg=white
-highlight SignColumn ctermfg=black
 " Rule for Makefiles to use tab
 autocmd BufEnter ?akefile* set noet ts=4 sw=4
 " Syntax highlighting
@@ -281,7 +279,7 @@ if emoji#available()
 endif
 
 let g:UltiSnipsSnippetDirectories=['~/.vim/plugged/vim-snippets/UltiSnips/', '~/.vim/Ultisnips/','~/.vim/snippets/']
-let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsEditSplit="horizontal"
 " set background=dark
 colorscheme delek
 let g:solarized_contrast="high"
@@ -290,7 +288,7 @@ highlight SpellBad cterm=underline,bold ctermbg=white ctermfg=red
 " Remove trailing spaces on save
 autocmd! BufWritePre * :%s/\s\+$//e
 " Git commits
-autocmd! Filetype gitcommit setlocal spell textwidth=100
+autocmd! Filetype gitcommit setlocal spell textwidth=80
 set pastetoggle=<M-v>
 " Disable folding. It's really annoying and I never remeber the commands.
 set nofoldenable
@@ -304,7 +302,7 @@ set path+=**
 set wildmenu
 
 "" Better navigation through omnicomplete option list
-set completeopt=longest,menuone,preview,noinsert
+set completeopt=longest,menuone,menu
 function! OmniPopup(action)
     if pumvisible()
         if a:action=='j'
@@ -397,10 +395,10 @@ let g:neomake_sbt_maker = {
             \ '%-C%.%#,' .
             \ '%-G%.%#'
      \ }
-let g:neomake_enabled_makers = ['sbt', 'make', 'cmake', 'qmake']
+let g:neomake_enabled_makers = ['sbt', 'make', 'cmake', 'qmake', 'python']
 let g:neomake_verbose=3
 " Neomake on text change
-autocmd! InsertLeave,TextChanged *.scala,*.sbt update | Neomake! sbt
+autocmd! InsertLeave,TextChanged *.scala update | Neomake! sbt
 
 "yankstack config
 call yankstack#setup()
@@ -416,19 +414,19 @@ let g:pymode_doc_bind = '<leader>i'
 let g:pymode_rope=0
 let g:pymode_rope_completion = 0
 let g:pymode_rope_complete_on_dot = 0
-let g:pymode_rope_autoimport = 0
-let g:pymode_rope_autoimport_modules = ['os', 'datetime']
-let g:pymode_rope_goto_definition_cmd="gd"
+let g:pymode_rope_autoimport = 1
+" let g:pymode_rope_autoimport_modules = ['os', 'datetime']
+" let g:pymode_rope_goto_definition_cmd="gd"
 
 let g:pymode_rope_organize_imports_bind = '<leader>ri'
 let g:pymode_rope_autoimport_bind = '<leader>ra'
 
 let g:pymode_rope_extended_complete=0
 let g:pymode_breakpoint=1
-let g:pymode_syntax=0
-let g:pymode_syntax_all = 0
-let g:pymode_syntax_builtin_objs=0
-let g:pymode_syntax_builtin_funcs=0
+let g:pymode_syntax=1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_builtin_objs=1
+let g:pymode_syntax_builtin_funcs=1
 let g:pymode_lint_checkers = ['flake8', 'pyflakes' ]
 
 
@@ -656,3 +654,148 @@ endif
 
 let g:multi_cursor_quit_key='<esc>'
 let g:raku_unicode_abbrevs=1
+
+function! Prettify()
+    execute "%!python -m json.tool" | w
+endfunction
+
+autocmd! bufwritepost *.json call Prettify()
+
+function! s:try_insert(skel)
+    execute "normal! i" . a:skel . "\<C-r>=UltiSnips#ExpandSnippet()\<CR>"
+    if g:ulti_expand_res == 0
+        silent! undo
+    endif
+
+    return g:ulti_expand_res
+endfunction
+
+function! utils#pysnips#InsertSkeleton() abort
+    " Abort non-empty buffer or extant file
+    if !exists('g:did_UltiSnips_plugin') || !(line('$')) == 1 && getline('$') == ''
+        return
+    endif
+
+    call s:try_insert("tdc")
+endfunction
+
+command! InsPydoc call s:try_insert("tdc")
+nnoremap <leader>3 :InsPydoc <cr>
+" All my keymaps go here
+" Taking a modularized approach
+" Quickly Edit My VIMRC
+" VIM8
+nnoremap <leader>sd :tabedit ~/.vimrc <CR>
+
+"Neovim
+nnoremap <leader>sv :tabedit $MYVIMRC <CR>
+
+" Git shortcuts
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gl :Glog<CR>
+nnoremap <leader>gp :Git push<CR>
+nnoremap <leader>gw :Gwrite<CR>
+" Tabularize shortcuts
+noremap <leader>a= :Tabularize /=<CR>
+noremap <leader>a: :Tabularize /:<CR>
+noremap <leader>a:: :Tabularize /:\zs<CR>
+noremap <leader>a, :Tabularize /,<CR>
+noremap <leader>a<Bar> :Tabularize /<Bar><CR>
+" Enforcing Purity
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
+nmap <leader>1 :!chmod +x % <CR>
+nmap <leader>4 :source ~/.vimrc <CR>
+nnoremap <leader>1 :!chmod +x % <CR>
+nnoremap <leader>4 :source ~/.vimrc <CR>
+
+" Improve regex handling
+" nmap / /\v
+" zoom a vim pane, <C-w>= to rebalance
+nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>= :wincmd =<cr>
+nnoremap <leader><space> :noh<cr>
+" Map F2 to paste mode so that pasting in the terminal doesn't mess identation
+nnoremap <F12> :set invpaste paste?<CR>
+"Ommit the <C-W> when moving between splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+" Window switching keys
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+" Paste Line with Y
+nmap Y y$
+vmap Q gq
+nmap Q gqap
+"yankstack config
+nmap Y y$
+nmap <leader>z <Plug>yankstack_substitute_older_paste
+nmap <leader>c <Plug>yankstack_substitute_newer_paste
+
+" easier better ident in visual
+vnoremap < <gv
+vnoremap > >gv
+" map sort fx to a key
+
+vnoremap <leader>s :sort <CR>
+map <leader>ss :call ToggleSpell()<cr>
+"easier movement between tabs
+map <leader>t <esc>:tabnew<CR>
+map <leader>x <esc>:tabclose<CR>
+map <leader>f :MRU<CR>
+map <leader>n :NERDTreeToggle<CR>
+map <leader>e :NERDTreeFind<CR>
+map <leader>w :w!<CR>
+map <space> /\v
+map <c-space> ?
+map <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
+map <leader>cd :cd %:p:h<CR>:pwd<CR>
+nnoremap <leader>w :w!<CR>
+nnoremap <leader>t <esc>:tabnew<CR>
+nnoremap <leader>x <esc>:tabclose<CR>
+nnoremap <leader>f :MRU<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>e :NERDTreeFind<CR>
+nnoremap <space> /\v
+nnoremap <c-space> ?
+nnoremap <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+nnoremap ; :
+nnoremap : ;
+
+map <leader>sa zg
+nnoremap <leader>sa za
+" Substitution option for marked word
+"python-mode config
+au Filetype python map <leader>d :call RopeGotoDefinition()<CR>
+au Filetype python nnoremap <leader>d :call RopeGotoDefinition()<CR>
+au Filetype python map <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
+au Filetype python nnoremap <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
+au Filetype markdown map <leader>[ :HeaderDecrease <cr>
+au Filetype markdown map <leader>] :HeaderIncrease <cr>
+au Filetype markdown map <leader>/ :TableFormat <cr>
+nnoremap <leader>we :tabe ~/Documents/notes/index.md <cr>
+"Escape: exit autocompletion, go to Normal mode
+inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"
+
+au FileType rust nmap gx <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gd <Plug>(rust-def-vertical)
+au FileType rust nmap gt <Plug>(rust-def-tab)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+nnoremap <leader><tab> :tabnext <CR>
+nnoremap <leader>` :tabprevious <CR>
+
+nnoremap <C-f> :FuzzyOpen <CR>
