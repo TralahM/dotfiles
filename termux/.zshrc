@@ -99,9 +99,9 @@ export PATH=~/.local/bin:$PATH
 # https://github.com/koalaman/shellcheck/wiki
 #
 # export SHELLCHECK_OPTS=""
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source  ~/powerlevel9k/powerlevel9k.zsh-theme
+# source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source  ~/powerlevel9k/powerlevel9k.zsh-theme
 export SHODAN_API=6sfgFBXP0xZ5CmDwqgtKSNmTGODaac1f
 alias cls="clear"
 alias vim="nvim"
@@ -223,6 +223,8 @@ zplugin light "changyuheng/fz"
 zplugin light "rupa/z"
 fpath=(~/.zplugin/completions/_zplugin $fpath)
 zplugin light "hlissner/zsh-autopair"
+zplugin light "zsh-users/zsh-syntax-highlighting"
+zplugin light "zsh-users/zsh-autosuggestions"
 
 zplugin light "bhilburn/powerlevel9k"
 zplugin ice depth=1; zplugin light romkatv/powerlevel10k
