@@ -19,6 +19,9 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$VULKAN_SDK/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/:/usr/lib/
 export VK_LAYER_PATH=$VULKAN_SDK/etc/vulkan/explicit_layer.d
 
+# Snap apps to path
+export PATH=$PATH:/snap/bin
+
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10
 export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_241/
