@@ -1,13 +1,16 @@
 set nocompatible
 set encoding=utf-8
 set nospell
-set inccommand=nosplit
+if has('nvim')
+    set inccommand=nosplit
+    set incsearch
+endif
 set dictionary+=~/words
 set dictionary+=/usr/share/dict/american-english
 set dictionary+=/usr/share/dict/british-english
 set dictionary+=/usr/share/dict/words
 set dictionary+=/usr/share/dict/cracklib-small
-set complete+=k
+" set complete+=k
 let uname = substitute(system('uname'), '\n', '', '')
 syntax on
 filetype on
@@ -29,7 +32,12 @@ call plug#begin('~/.vim/plugged')
 " Leader tt toggles checkbox
 Plug 'Inazuma110/deoplete-greek'
 Plug 'KabbAmine/zeavim.vim'
+Plug 'poppyschmo/deoplete-latex'
+Plug 'pearofducks/ansible-vim'
+Plug 'vimwiki/vimwiki'
+Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'Konfekt/FastFold'
+Plug 'vim-latex/vim-latex'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'SevereOverfl0w/deoplete-github'
@@ -51,6 +59,7 @@ Plug 'cloudhead/neovim-fuzzy'
 Plug 'coachshea/vim-textobj-markdown',{'for':'markdown'}
 Plug 'deoplete-plugins/deoplete-asm'
 Plug 'deoplete-plugins/deoplete-dictionary'
+Plug 'machakann/vim-highlightedyank' " Temporary highlight yanked txt
 Plug 'deoplete-plugins/deoplete-docker'
 Plug 'deoplete-plugins/deoplete-go'
 Plug 'deoplete-plugins/deoplete-tag'
@@ -139,8 +148,8 @@ Plug 'vim-pandoc/vim-pandoc-syntax',{'for':['pandoc', 'markdown']}
 Plug 'vim-ruby/vim-ruby',{'for':'ruby'}
 Plug 'vim-scripts/IndexedSearch'
 Plug 'vim-syntastic/syntastic'
-Plug 'wellle/tmux-complete.vim'
-Plug 'xuhdev/vim-latex-live-preview',{'for':'tex'}
+" Plug 'wellle/tmux-complete.vim'
+Plug 'xuhdev/vim-latex-live-preview'
 Plug 'yegappan/mru' "most recently used
 Plug 'zchee/deoplete-clang'
 
@@ -237,7 +246,6 @@ set ignorecase
 set smartcase
 au FocusLost * :wa
 
-set incsearch
 set showmatch
 set hlsearch
 set t_Co=256
@@ -488,11 +496,11 @@ let g:airline#extensions#branch#enabled = 1
 let g:vimtex_enabled=1
 let g:vimtex_complete_enabled=1
 let g:vimtex_complete_close_braces=1
-let g:vimtex_compiler_progname='nvr'
+let g:vimtex_compiler_progname='pdflatex'
 
 " BRACELESS.VIM
-autocmd filetype python BracelessEnable +indent +highlight
-autocmd BufRead,BufNewFile *.py BracelessEnable +indent +highlight
+" autocmd filetype python :BracelessEnable +indent +highlight
+" autocmd BufRead,BufNewFile *.py :BracelessEnable +indent +highlight
 
 " SYNTASTIC SETTING
 let g:syntastic_always_populate_loc_list = 1
@@ -502,7 +510,7 @@ let g:syntastic_aggregate_errors = 1
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
 let g:syntastic_rst_checkers = ['text/language_check']
-let g:syntastic_tex_checkers = ['lacheck', 'text/language_check']
+let g:syntastic_tex_checkers = []
 let g:syntastic_python_checkers = ['flake8', 'pyflakes']
 
 
@@ -583,8 +591,10 @@ autocmd! bufwritepost *.c *.cpp *.hpp *.h *.rs *.py  MakeTags
 " Do not attempt to open the browser automatically i'll do it manually
 let g:markdown_composer_open_browser=0
 " Latex Live Preview conf
-autocmd Filetype tex setl updatetime=1
-let g:livepreview_previewer='mupdf'
+autocmd Filetype tex setl updatetime=5
+let g:livepreview_previewer='Okular'
+let g:livepreview_use_biber = 1
+let g:livepreview_cursorhold_recompile = 0
 
 " Neosnippets
 " Enable snipMate compatibility feature.
@@ -670,7 +680,7 @@ function! s:try_insert(skel)
     return g:ulti_expand_res
 endfunction
 
-function! utils#pysnips#InsertSkeleton() abort
+function! InsertSkeleton() abort
     " Abort non-empty buffer or extant file
     if !exists('g:did_UltiSnips_plugin') || !(line('$')) == 1 && getline('$') == ''
         return
@@ -774,8 +784,8 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap ; :
 nnoremap : ;
 
-map <leader>sa zg
-nnoremap <leader>sa za
+" map <leader>sa zg
+" nnoremap <leader>sa za
 " Substitution option for marked word
 "python-mode config
 au Filetype python map <leader>d :call RopeGotoDefinition()<CR>
@@ -799,3 +809,26 @@ nnoremap <leader><tab> :tabnext <CR>
 nnoremap <leader>` :tabprevious <CR>
 
 nnoremap <C-f> :FuzzyOpen <CR>
+
+
+
+" Neovim Terminal Mappings
+tnoremap <ESC> <C-\><C-n>
+tnoremap <C-h> <C-\><C-N><C-w>h
+tnoremap <C-j> <C-\><C-N><C-w>j
+tnoremap <C-k> <C-\><C-N><C-w>k
+tnoremap <C-l> <C-\><C-N><C-w>l
+inoremap <C-h> <C-\><C-N><C-w>h
+inoremap <C-j> <C-\><C-N><C-w>j
+inoremap <C-k> <C-\><C-N><C-w>k
+inoremap <C-l> <C-\><C-N><C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+"To simulate |i_CTRL-R| in terminal-mode:
+tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+packadd termdebug
+set pumblend=15
+hi PmenuSel blend=0
+set shada='20,<50,s10,h

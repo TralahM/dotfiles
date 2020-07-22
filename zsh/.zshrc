@@ -19,6 +19,11 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$VULKAN_SDK/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/:/usr/lib/
 export VK_LAYER_PATH=$VULKAN_SDK/etc/vulkan/explicit_layer.d
 
+# Texlive tlmngr
+PATH=/usr/local/texlive/2020/bin/x86_64-linux:$PATH; export PATH
+MANPATH=/usr/local/texlive/2020/texmf-dist/doc/man:$MANPATH; export MANPATH
+INFOPATH=/usr/local/texlive/2020/texmf-dist/doc/info:$INFOPATH; export INFOPATH
+
 # Snap apps to path
 export PATH=$PATH:/snap/bin
 
