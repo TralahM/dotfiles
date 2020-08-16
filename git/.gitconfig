@@ -1,0 +1,65 @@
+[user]
+	email = musyoki.brian@tralahtek.com
+	name = TralahM
+[github]
+	user = TralahM
+[color]
+    ui = true
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    blame = true
+    grep = auto
+[core]
+    editor = vim
+	fscache = true
+	excludesfile = ~/.gitignore_global
+    pager = less -r
+[push]
+    default = current
+[merge]
+    tool = vimdiff
+[difftool.latex]
+    cmd = latexdiff "$LOCAL" "$REMOTE"
+[alias]
+    ldiff = difftool -y -t latex
+    ci = commit
+    co = checkout
+    cob = checkout -b
+    issues = !hub issue -o updated -f '%sC%>(8)%i%Creset | %>(15)%ur | %NC | %sC%<(56)%U%Creset | %t  %l %n'
+    issues-all = !hub issue -s all -o updated -f '%sC%>(8)%i%Creset | %>(15)%ur | %NC | %sC%<(56)%U%Creset | %t  %l %n'
+    lg = log --all --abbrev-commit --decorate --graph --oneline
+    ls = ls-files
+    st = status
+    mt = mergetool
+    prs = !hub pr list -f '%sC%>(8)%i%Creset | %>(15)%ur | %NC | %sC%<(56)%U%Creset | %t  %l %n'
+    shw = show
+    sm = submodule
+    sma = submodule add
+    smi = submodule init
+    sms = submodule status
+    smu = submodule update
+[branch]
+    autosetupmerge = always
+    autosetuprebase = always
+[merge]
+    summary = true
+[help]
+    autocorrect = 10
+[pull]
+    rebase = true
+
+[push]
+    default = upstream
+[rebase]
+    autosquash = true
+[web]
+    browser = TralahM
+[include]
+    path = .gitconfig.local
+[credential]
+	helper = store
+
+# __END__
+# vim: filetype=gitconfig
